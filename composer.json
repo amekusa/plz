@@ -1,0 +1,15 @@
+{
+	"name" : "amekusa/plz",
+	"description" : "A handy PHP library for lazy programmers",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "amekusa",
+			"email" : "post@amekusa.com"
+		}
+	],
+	"autoload" : {
+		"psr-4" : {
+			"amekusa\\plz" : "src"
+		}
+	}
+}
