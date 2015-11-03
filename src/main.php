@@ -1,3 +1,5 @@
 <?php namespace amekusa\plz;
 
-functions::required;
+trait main {
+	use fn;
+}
