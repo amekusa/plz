@@ -1,6 +1,7 @@
 <?php namespace amekusa\plz;
 
 trait fnType {
+	use fnString;
 }
 
 /**
@@ -83,27 +84,41 @@ function is_iterable($xValue) {
  * If $xValue is an object, returns $xValue->toBool()|toBoolean() if they exist
  *
  * @param mixed $xValue
+ * @param boolean $xAlt [Default:false] The alternative value to return if the casting failed
  * @return boolean
  */
-function bool($xValue) {
+function bool($xValue, $xAlt = false) {
 	if (is_bool($xValue)) return $xValue;
 	if (is_string($xValue)) {
-		if (strings_are_equal($xValue, 'false', true)) return false;
-
+		if (!$xValue) return false;
+		switch (trim($xValue)) {
+			case '':
+			case 'false':
+			case 'False':
+			case 'FALSE':
+			case 'null':
+			case 'Null':
+			case 'NULL':
+				return false;
+		}
 	} else if (is_object($xValue)) {
 		$r = null;
 		if (is_callable(array ($xValue, 'toBool'))) $r = $xValue->toBool();
 		else if (is_callable(array ($xValue, 'toBoolean'))) $r = $xValue->toBoolean();
 		if (is_bool($r)) return $r;
 	}
-	return (bool) $xValue;
+	try {
+		return (bool) $xValue;
+	} catch (RecoverableError $e) {
+		return $xAlt;
+	}
 }
 
 /**
  * An alias of bool()
  */
-function boolean($xValue) {
-	return bool($xValue);
+function boolean($xValue, $xAlt = false) {
+	return bool($xValue, $xAlt);
 }
 
 /**
@@ -112,9 +127,10 @@ function boolean($xValue) {
  * If $xValue is an object, returns $xValue->toInt()|toInteger() if they exist
  *
  * @param mixed $xValue
+ * @param integer $xAlt [Default:0] The alternative value to return if the casting failed
  * @return integer
  */
-function int($xValue) {
+function int($xValue, $xAlt = 0) {
 	if (is_int($xValue)) return $xValue;
 	if (is_object($xValue)) {
 		$r = null;
@@ -122,14 +138,18 @@ function int($xValue) {
 		else if (is_callable(array ($xValue, 'toInteger'))) $r = $xValue->toInteger();
 		if (is_int($r)) return $r;
 	}
-	return (int) $xValue;
+	try {
+		return (int) $xValue;
+	} catch (RecoverableError $e) {
+		return $xAlt;
+	}
 }
 
 /**
  * An alias of int()
  */
-function integer($xValue) {
-	return int($xValue);
+function integer($xValue, $xAlt = 0) {
+	return int($xValue, $xAlt);
 }
 
 /**
@@ -138,9 +158,10 @@ function integer($xValue) {
  * If $xValue is an object, returns $xValue->__toString()|toStr()|toString() if they exist
  *
  * @param mixed $xValue
+ * @param string $xAlt [Default:''] The alternative value to return if the casting failed
  * @return string
  */
-function str($xValue) {
+function str($xValue, $xAlt = '') {
 	if (is_string($xValue)) return $xValue;
 	if (is_object($xValue)) {
 		if (is_callable(array ($xValue, '__toString'))) return (string) $xValue;
@@ -158,14 +179,18 @@ function str($xValue) {
 		}
 		return $r ? substr($r, 0, -2) : $r;
 	}
-	return (string) $xValue;
+	try {
+		return (string) $xValue;
+	} catch (RecoverableError $e) {
+		return $xAlt;
+	}
 }
 
 /**
  * An alias of str()
  */
-function string($xValue) {
-	return str($xValue);
+function string($xValue, $xAlt = '') {
+	return str($xValue, $xAlt);
 }
 
 /**
@@ -174,12 +199,13 @@ function string($xValue) {
  * If $xValue is an object, returns $xValue->toArr()|toArray() if they exist
  *
  * @param mixed $xValue
+ * @param string $xAlt [Default:array ($xValue)] The alternative value to return if the casting failed
  * @return array
  */
-function arr($xValue) {
+function arr($xValue, $xAlt = null) {
 	if (is_array($xValue)) return $xValue;
+	$r = null;
 	if (is_object($xValue)) {
-		$r = null;
 		if (is_callable(array ($xValue, 'toArr'))) $r = $xValue->toArr();
 		else if (is_callable(array ($xValue, 'toArray'))) $r = $xValue->toArray();
 		if (is_array($r)) return $r;
@@ -190,6 +216,10 @@ function arr($xValue) {
 			return $r;
 		}
 	}
-	$r = (array) $xValue;
-	return empty($r) ? array ($xValue) : $r;
+	try {
+		$r = (array) $xValue;
+	} catch (RecoverableError $e) {
+		$r = $xAlt;
+	}
+	return $r ?: array ($xValue);
 }

@@ -2,8 +2,9 @@
 
 trait fn {
 	use
-		fnSystem,
-		fnType;
+		fnString,
+		fnType,
+		fnSystem;
 }
 
 function null_safe($xVar, $xAltValue) {
@@ -126,10 +127,6 @@ function get($xName, $xFrom, $xAltValue = null) {
 	else return $xAltValue;
 
 	return enter_array($vars, $xName, $xAltValue);
-}
-
-function string_is_nonsense($xString) {
-	return !$xString || ctype_space($xString);
 }
 
 function string_is_mb($xString) {
