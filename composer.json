@@ -2,17 +2,24 @@
 	"name" : "amekusa/plz",
 	"description" : "A handy PHP library for lazy programmers",
 	"license" : "MIT",
-	"authors" : [
-		{
+	"authors" : [{
 			"name" : "amekusa",
-			"email" : "post@amekusa.com"
+			"email" : "post@amekusa.com",
+			"homepage" : "https://github.com/amekusa",
+			"role" : "Developer"
 		}
 	],
+	"require" : {
+		"php" : ">=5.4"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "5.0.*"
+	},
 	"autoload" : {
 		"psr-4" : {
 			"amekusa\\plz\\" : "src"
 		},
-		"files": [
+		"files" : [
 			"src/main.php"
 		]
 	}

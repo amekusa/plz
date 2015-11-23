@@ -2,120 +2,32 @@
 
 trait fn {
 	use
+		fnCollection,
 		fnString,
 		fnType,
 		fnSystem;
 }
 
-function null_safe($xVar, $xAltValue) {
-	return isset($xVar) ? $xVar : $xAltValue;
-}
-
-function empty_safe($xVar, $xAltValue) {
-	return empty($xVar) ? $xAltValue : $xVar;
-}
-
 /**
+ * If a constant specified by the 1st argument exists, returns its value.
+ * Otherwise returns the 2nd. Additionally if the 3rd is true, defines the constant.
  *
- * @param string $xConstant
- * @param mixed $xAltValue
+ * @param string $xName
+ * @param mixed $xAlt
  * @param bool $xDefines
  * @return mixed
  */
-function undef_safe($xConstant, $xAltValue = null, $xDefines = false) {
-	if (defined($xConstant)) return constant($xConstant);
-	if ($xDefines) define($xConstant, $xAltValue);
-	return $xAltValue;
+function cst($xName, $xAlt = null, $xDefines = false) {
+	if (defined($xName)) return \constant($xName);
+	if ($xDefines) define($xName, $xAlt);
+	return $xAlt;
 }
 
 /**
- * Alias of {@link undef_safe()}
+ * An alias of cst()
  */
-function undefined_safe($xConstant, $xAltValue = null, $xDefines = false) {
-	return undef_safe($xConstant, $xAltValue, $xDefines);
-}
-
-function first($xArray) {
-	return _first($xArray);
-}
-
-function _first(&$xArray) {
-	if (empty($xArray)) return null;
-	$r = reset($xArray);
-	return $r;
-}
-
-function last($xArray) {
-	return _last($xArray);
-}
-
-function _last(&$xArray) {
-	if (empty($xArray)) return null;
-	$r = end($xArray);
-	reset($xArray);
-	return $r;
-}
-
-/**
- * If the array:$xArray has the key:$xKey, $xArray[$xKey] is returned.
- * Otherwise $xAltValue is returned.
- *
- * @param array $xArray
- * @param integer|string $xKey
- * @param mixed $xAltValue
- * @return see the description
- */
-function enter_array(&$xArray, $xKey, $xAltValue = null) {
-	if (empty($xArray)) return $xAltValue;
-	return array_key_exists($xKey, $xArray) ? $xArray[$xKey] : $xAltValue;
-}
-
-function empty_safe_push($xElm, &$xArray) {
-	if (empty($xElm)) return;
-	$xArray[] = $xElm;
-}
-
-function null_safe_push($xElm, &$xArray) {
-	if (is_null($xElm)) return;
-	$xArray[] = $xElm;
-}
-
-function arrays_are_equal(array $xArrayX, array $xArrayY) {
-	foreach ($xArrayX as $nKey => $n) {
-		foreach ($xArrayY as $mKey => $m) {
-			if ($mKey !== $nKey) return false;
-			if ((is_array($m) && is_array($n)) && !arrays_are_equal($m, $n)) return false;
-			if ($m !== $n) return false;
-		}
-	}
-	return true;
-}
-
-/**
- * #UNTESTED
- *
- * @param mixed $xArgs
- * @return array
- */
-function flat_array($xArgs) {
-	$r = array ();
-
-	$args = (func_num_args() > 1) ? func_get_args() : (is_array($xArgs)) ? $xArgs : array ($xArgs);
-
-	foreach ($args as $iArg) {
-		if (is_array($iArg)) $r = array_merge($r, flat_array($iArg));
-		else $r[] = $iArg;
-	}
-
-	return $r;
-}
-
-function array_about($xField, $xArray) {
-	$r = array ();
-	foreach ($xArray as $iElm) {
-		$r[] = get($xField, $iElm);
-	}
-	return $r;
+function constant($xName, $xAlt = null, $xDefines = false) {
+	return cst($xName, $xAlt, $xDefines);
 }
 
 function get($xName, $xFrom, $xAltValue = null) {
