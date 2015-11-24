@@ -12,10 +12,10 @@ class T {
 		UNKNOWN = 0; // unknown_type
 
 	/**
-	 * @param string $x A type expression
+	 * @param string $Type A type expression
 	 * @return integer A type enumeration
 	 */
-	public static function enum($x) {
+	public static function enum($Type) {
 		static $map = array (
 			'resource' => self::RES,
 			'object' => self::OBJ,
@@ -32,8 +32,7 @@ class T {
 			'boolean' => self::BOOL,
 			'bool' => self::BOOL
 		);
-
-		if (!isset($map[$x])) return self::UNKNOWN;
-		return $map[$x];
+		if (!isset($map[$Type])) return self::UNKNOWN;
+		return $map[$Type];
 	}
 }

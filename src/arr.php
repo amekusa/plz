@@ -91,10 +91,10 @@ abstract class arr {
 	 *
 	 * @param array|object $X An array, an array-like object, or a traversable object
 	 * @param mixed $Key
-	 * @param mixed $Alt [null]
+	 * @param mixed $Alt [null] An alternative value to return if X doesn't have the key
 	 * @return mixed
 	 */
-	static function enter($X, $Key, $Alt = null) {
+	static function get($Key, $X, $Alt = null) {
 		if (is_array($X)) return array_key_exists($Key, $X) ? $X[$Key] : $Alt;
 		if (is_object($X)) {
 			if ($X instanceof \ArrayAccess) return $X->offsetExists($Key) ? $X[$Key] : $Alt;

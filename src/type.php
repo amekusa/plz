@@ -22,45 +22,42 @@ abstract class type {
 	}
 
 	/**
-	 * Returns whether or not the type of X matches a specific type
-	 *
-	 * @param mixed $x
-	 * @param int|string $xType A type expression
+	 * Returns whether the type of X matches a specific type
+	 * @param mixed $X
+	 * @param integer|string $Type A type expression
 	 * @return boolean
 	 */
-	static function matches($x, $xType) {
-		switch (is_int($xType) ? $xType : T::enum(str($xType))) {
-			case T::BOOL: return is_bool($x);
-			case T::INT: return is_int($x);
-			case T::FLOAT: return is_float($x);
-			case T::STR: return is_string($x);
-			case T::ARR: return is_array($x);
-			case T::OBJ: return is_object($x);
-			case T::RES: return is_resource($x);
+	static function matches($X, $Type) {
+		switch (is_int($Type) ? $Type : T::enum($type = str($Type))) {
+			case T::BOOL: return is_bool($X);
+			case T::INT: return is_int($X);
+			case T::FLOAT: return is_float($X);
+			case T::STR: return is_string($X);
+			case T::ARR: return is_array($X);
+			case T::OBJ: return is_object($X);
+			case T::RES: return is_resource($X);
 		}
-
-		switch ($xType) {
-			case 'mixed':
-			case 'any': return true;
+		if (!$type) return false;
+		switch ($type) {
+			case 'any':
+			case 'mixed': return true;
+			case 'numeric': return is_numeric($X);
+			case 'callable': return is_callable($X);
+			case 'scalar': return is_scalar($X);
+			case 'vector': return !is_scalar($X);
 		}
-
-		if ($xType === 'mixed') return true;
-		if ($xType === 'numeric') return is_numeric($x);
-		if ($xType === 'callable') return is_callable($x);
-		if ($xType === 'scalar') return is_scalar($x);
-		if ($xType === 'vector') return !is_scalar($x);
-
-		if ($xType === 'long') return is_long($x);
-		if ($xType === 'double') return is_double($x);
-		if ($xType === 'real') return is_real($x);
-
-		if (class_exists($xType)) return $x instanceof $xType;
-
-		return $xType === gettype($x);
+		if (class_exists($type)) return $X instanceof $type;
+		return $Type === gettype($X);
 	}
 
 	/**
-	 * Returns whether or not X is an array or array-like object
+	 * Returns whether X is an array/array-like object
+	 *
+	 * Example:<pre>
+	 * if (type::is_arr_like($var)) {
+	 *   $var[] = 'Element'; // You can treat $var as like an array
+	 * }
+	 * </pre>
 	 *
 	 * @param mixed $X
 	 * @return boolean
@@ -72,7 +69,15 @@ abstract class type {
 	}
 
 	/**
-	 * Returns whether or not X is iterable
+	 * Returns whether X is iterable
+	 *
+	 * Example:<pre>
+	 * if (type::is_iterable($var)) {
+	 *   foreach ($var as $item) { // You can iterate over $var
+	 *     echo $item;
+	 *   }
+	 * }
+	 * </pre>
 	 *
 	 * @param mixed $X
 	 * @return boolean
@@ -84,33 +89,38 @@ abstract class type {
 	}
 
 	/**
-	 * Returns whether or not X is countable
+	 * Returns whether X is countable
 	 *
-	 * @param mixed $x
+	 * Example:<pre>
+	 * if (type::is_countable($var)) {
+	 *   echo count($var); // You can count $var
+	 * }
+	 * </pre>
+	 *
+	 * @param mixed $X
 	 * @return boolean
 	 */
-	static function is_countable($x) {
-		if (is_array($x)) return true;
-		if (is_object($x)) return $x instanceof \Countable;
+	static function is_countable($X) {
+		if (is_array($X)) return true;
+		if (is_object($X)) return $X instanceof \Countable;
 		return false;
 	}
 
 	/**
-	 * Treats a value as a boolean
+	 * Treats X as a boolean
 	 *
-	 * If $xValue is an object, returns $xValue->toBool()|toBoolean() if they exist.
-	 * If $xValue is a countable object, returns (bool) $xValue->count().
+	 * If X is an object, returns X->toBool()/toBoolean() if they exist.
+	 * If X is a countable object, returns count(X) > 0.
 	 *
-	 * @param mixed $xValue
-	 * @param boolean $xAlt [Default:false] The alternative value to return if the casting failed
+	 * @param mixed $X
+	 * @param boolean $Alt [false] An alternative value to return if casting failed
 	 * @return boolean
 	 */
-	static function bool($xValue, $xAlt = false) {
-		if (is_bool($xValue)) return $xValue;
-		if (is_string($xValue)) {
-			if (!$xValue) return false;
-			switch (trim($xValue)) {
-				case '':
+	static function bool($X, $Alt = false) {
+		if (is_bool($X)) return $X;
+		if (is_string($X)) {
+			if (!$X) return false;
+			switch (trim($X)) {
 				case 'false':
 				case 'False':
 				case 'FALSE':
@@ -119,79 +129,65 @@ abstract class type {
 				case 'NULL':
 					return false;
 			}
-		} else if (is_object($xValue)) {
-			if ($xValue instanceof \Countable) return $xValue->count() > 0;
+		} else if (is_object($X)) {
+			if ($X instanceof \Countable) return $X->count() > 0;
 			$r = null;
-			if (is_callable(array ($xValue, 'toBool'))) $r = $xValue->toBool();
-			else if (is_callable(array ($xValue, 'toBoolean'))) $r = $xValue->toBoolean();
+			if (is_callable(array ($X, 'toBool'))) $r = $X->toBool();
+			else if (is_callable(array ($X, 'toBoolean'))) $r = $X->toBoolean();
 			if (is_bool($r)) return $r;
 		}
 		try {
-			return (bool) $xValue;
+			return (bool) $X;
 		} catch (RecoverableError $e) {
-			return $xAlt;
+			return $Alt;
 		}
 	}
 
 	/**
-	 * An alias of bool()
-	 */
-	static function boolean($xValue, $xAlt = false) {
-		return bool($xValue, $xAlt);
-	}
-
-	/**
-	 * Treats a value as an integer
+	 * Treats X as an integer
 	 *
-	 * If $xValue is an object, returns $xValue->toInt()|toInteger() if they exist.
+	 * If X is an object, returns X->toInt()/toInteger() if they exist.
 	 *
-	 * @param mixed $xValue
-	 * @param integer $xAlt [Default:0] The alternative value to return if the casting failed
+	 * @param mixed $X
+	 * @param integer $Alt [0] An alternative value to return if casting failed
 	 * @return integer
 	 */
-	static function int($xValue, $xAlt = 0) {
-		if (is_int($xValue)) return $xValue;
-		if (is_object($xValue)) {
+	static function int($X, $Alt = 0) {
+		if (is_int($X)) return $X;
+		if (is_object($X)) {
 			$r = null;
-			if (is_callable(array ($xValue, 'toInt'))) $r = $xValue->toInt();
-			else if (is_callable(array ($xValue, 'toInteger'))) $r = $xValue->toInteger();
+			if (is_callable(array ($X, 'toInt'))) $r = $X->toInt();
+			else if (is_callable(array ($X, 'toInteger'))) $r = $X->toInteger();
 			if (is_int($r)) return $r;
 		}
 		try {
-			return (int) $xValue;
+			return (int) $X;
 		} catch (RecoverableError $e) {
-			return $xAlt;
+			return $Alt;
 		}
 	}
 
 	/**
-	 * An alias of int()
-	 */
-	static function integer($xValue, $xAlt = 0) {
-		return int($xValue, $xAlt);
-	}
-
-	/**
-	 * Treats a value as an string
+	 * Treats X as an string
 	 *
-	 * If $xValue is an object, returns $xValue->__toString()|toStr()|toString() if they exist.
+	 * If X is an object, returns X->__toString()/toStr()/toString() if they exist.
 	 *
-	 * @param mixed $xValue
-	 * @param string $xAlt [Default:''] The alternative value to return if the casting failed
+	 * @param mixed $X
+	 * @param string $Alt [''] An alternative value to return if the casting failed
 	 * @return string
 	 */
-	static function str($xValue, $xAlt = '') {
-		if (is_string($xValue)) return $xValue;
-		if (is_object($xValue)) {
-			if (is_callable(array ($xValue, '__toString'))) return (string) $xValue;
+	static function str($X, $Alt = '') {
+		if (is_string($X)) return $X;
+		if (is_object($X)) {
+			if (is_callable(array ($X, '__toString'))) return (string) $X;
 			$r = null;
-			if (is_callable(array ($xValue, 'toStr'))) $r = $xValue->toStr();
-			else if (is_callable(array ($xValue, 'toString'))) $r = $xValue->toString();
+			if (is_callable(array ($X, 'toStr'))) $r = $X->toStr();
+			else if (is_callable(array ($X, 'toString'))) $r = $X->toString();
 			if (is_string($r)) return $r;
 		}
-		if (is_iterable($xValue)) { // Comma-separated strings
+		if (is_iterable($X)) { // Comma-separated strings
 			$r = '';
-			foreach ($xValue as $i => $item) {
+			foreach ($X as $i => $item) {
 				if (!$iValue = str($item)) continue;
 				if (is_string($i)) $r .= "{$i}: {$iValue}, ";
 				else $r .= "{$iValue}, ";
@@ -199,47 +195,39 @@ abstract class type {
 			return $r ? substr($r, 0, -2) : $r;
 		}
 		try {
-			return (string) $xValue;
+			return (string) $X;
 		} catch (RecoverableError $e) {
-			return $xAlt;
+			return $Alt;
 		}
 	}
 
 	/**
-	 * An alias of str()
-	 */
-	static function string($xValue, $xAlt = '') {
-		return str($xValue, $xAlt);
-	}
-
-	/**
-	 * Treats a value as an array
+	 * Treats X as an array
 	 *
-	 * If $xValue is an object, returns $xValue->toArr()|toArray() if they exist.
+	 * If X is an object, returns X->toArr()/toArray() if they exist.
 	 *
-	 * @param mixed $xValue
-	 * @param string $xAlt [Default:array ($xValue)] The alternative value to return if the casting failed
+	 * @param mixed $X
+	 * @param array $Alt [array ($X)] An alternative value to return if casting failed
 	 * @return array
 	 */
-	static function arr($xValue, $xAlt = null) {
-		if (is_array($xValue)) return $xValue;
+	static function arr($X, $Alt = null) {
+		if (is_array($X)) return $X;
 		$r = null;
-		if (is_object($xValue)) {
-			if (is_callable(array ($xValue, 'toArr'))) $r = $xValue->toArr();
-			else if (is_callable(array ($xValue, 'toArray'))) $r = $xValue->toArray();
+		if (is_object($X)) {
+			if (is_callable(array ($X, 'toArr'))) $r = $X->toArr();
+			else if (is_callable(array ($X, 'toArray'))) $r = $X->toArray();
 			if (is_array($r)) return $r;
-
-			if ($xValue instanceof \Traversable) {
+			if ($X instanceof \Traversable) {
 				$r = array ();
-				foreach ($xValue as $i => $item) $r[$i] = $item;
+				foreach ($X as $i => $item) $r[$i] = $item;
 				return $r;
 			}
 		}
 		try {
-			$r = (array) $xValue;
+			$r = (array) $X;
 		} catch (RecoverableError $e) {
-			$r = $xAlt;
+			$r = $Alt;
 		}
-		return $r ?: array ($xValue);
+		return $r ?: array ($X);
 	}
 }

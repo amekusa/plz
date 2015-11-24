@@ -10,15 +10,12 @@ abstract class sys {
 	 * @return boolean Returns true if the directive has a correct value. Otherwise false
 	 */
 	static function ensure_ini($X, $Value) {
-		if ($x = ini_get($X) === false)
-			throw new \RuntimeException("No such directive: {$X}");
+		if ($ini = ini_get($X) === false) throw new \RuntimeException("No such directive: {$X}");
+		if ($ini === $Value) return true;
+		if (ini_set($X, $Value) === false)
+			throw new \RuntimeException("The value of the directive: {$X} must be " . print_r($Value));
 
-			if ($x === $Value) return true;
-
-			if (ini_set($X, $Value) === false)
-				throw new \RuntimeException("The value of the directive: {$X} must be " . print_r($Value));
-
-			return true;
+		return true;
 	}
 
 	static function ignore_errors() {
