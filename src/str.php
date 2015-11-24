@@ -34,7 +34,7 @@ abstract class str {
 	static function repeat($X, $Times = 2, $Insert = '') {
 		if ($Times == 1) return $X;
 		$r = '';
-		for ($i = 0; $i < $Times - 1; $i++) $r .= ($X . $Insert);
+		for ($i = 1; $i < $Times; $i++) $r .= ($X . $Insert);
 		return $r . $X;
 	}
 }

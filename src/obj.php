@@ -11,6 +11,5 @@ abstract class obj {
 	}
 
 	static function set($Prop, $X) {
-
 	}
 }
