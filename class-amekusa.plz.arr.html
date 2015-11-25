@@ -3,37 +3,76 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class amekusa\plz\arr</title>
+	<title>Class amekusa\plz\arr | PLZ: A handy PHP library for lazy programmers</title>
 
-	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?70c1d062672daa3f906b72e4f5d03d4bc5c4174d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">PLZ: A handy PHP library for lazy programmers</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-amekusa.plz.html" title="Summary of amekusa\plz"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+					<li class="divider-vertical"></li>
+
+					<li>
+						<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+					</li>
+
+						<li>
+							<a href="annotation-group-todo.html" title="List of elements with todo annotation">
+								<span>Todo</span>
+							</a>
+						</li>
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 				<h3>Namespaces</h3>
 			<ul>
-				<li class="active">
-					<a href="namespace-amekusa.html">
-						amekusa<span></span>
-					</a>
-
-						<ul>
-				<li class="active">
-					<a href="namespace-amekusa.plz.html">
-						plz					</a>
-
-						</li>
-							</ul></li>
+					<li class="active">
+						<a href="namespace-amekusa.html">
+							amekusa<span></span>
+						</a>
+							<ul>
+					<li class="active main">
+						<a href="namespace-amekusa.plz.html">
+							plz						</a>
+							</li>
+								</ul></li>
+					<li>
+						<a href="namespace-PHP.html">
+							PHP						</a>
+							</li>
 			</ul>
 		</div>
-
-		<hr>
 
 
 		<div id="elements">
@@ -73,30 +112,7 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li>
-				<a href="namespace-amekusa.plz.html" title="Summary of amekusa\plz"><span>Namespace</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class arr</h1>
 
@@ -120,7 +136,7 @@ To use them, a following line is required on top of your code:</p>
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		<b>Abstract</b><br>
 		
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
@@ -132,117 +148,71 @@ To use them, a following line is required on top of your code:</p>
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="count" id="_count">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="count" id="_count">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				integer
+				
+				</code>
+			</td>
 
-			integer
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_count">#</a>
+			<code><a href="source-class-amekusa.plz.arr.html#12-34" title="Go to source code">count</a>( <span>array|object <var>$X</var></span>, <span>boolean <var>$Recursive</var> = <span class="php-keyword1">false</span></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_count">#</a>
-		<code><a href="source-class-amekusa.plz.arr.html#12-34" title="Go to source code">count</a>( <span>array|object <var>$X</var></span>, <span>boolean <var>$Recursive</var> = <span class="php-keyword1">false</span></span> )</code>
+			<div class="description short">
+				<p>Returns a number of elements in X</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns a number of elements in X</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns a number of elements in X</p>
+			<div class="description detailed hidden">
+				<p>Returns a number of elements in X</p>
 
 <p>If X is uncountable, 1 is returned.
 If X is null, 0 is returned.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$X</var></dt>
-					<dd>An array, a countable object, or an iterable object</dd>
-					<dt><var>$Recursive</var></dt>
-					<dd>[false] Whether or not to count recursively</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$X</var></dt>
+						<dd>An array, a countable object, or an iterable object</dd>
+						<dt><var>$Recursive</var></dt>
+						<dd>[false] Whether or not to count recursively</dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					integer
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="first" id="_first">
-
-		<td class="attributes"><code>
-			 public static
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_first">#</a>
-		<code><a href="source-class-amekusa.plz.arr.html#36-47" title="Go to source code">first</a>( <span>array|object <var>$X</var></span> )</code>
-
-		<div class="description short">
-			<p>Returns the first element of X</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the first element of X</p>
-
-<p>CAUTION: Calling this in a</p>
-
-<pre><span class="php-keyword1">foreach</span></pre>
-
-<p>loop over X can cause unpredictable results</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$X</var></dt>
-					<dd>An array or an iterable object</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						integer
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="last" id="_last">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="first" id="_first">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				mixed
+				
+				</code>
+			</td>
 
-			mixed
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_first">#</a>
+			<code><a href="source-class-amekusa.plz.arr.html#36-47" title="Go to source code">first</a>( <span>array|object <var>$X</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_last">#</a>
-		<code><a href="source-class-amekusa.plz.arr.html#49-65" title="Go to source code">last</a>( <span>array|object <var>$X</var></span> )</code>
+			<div class="description short">
+				<p>Returns the first element of X</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the last element of X</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the last element of X</p>
+			<div class="description detailed hidden">
+				<p>Returns the first element of X</p>
 
 <p>CAUTION: Calling this in a</p>
 
@@ -251,158 +221,193 @@ If X is null, 0 is returned.</p>
 <p>loop over X can cause unpredictable results</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$X</var></dt>
-					<dd>An array or an iterable object</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$X</var></dt>
+						<dd>An array or an iterable object</dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="has_key" id="_has_key">
-
-		<td class="attributes"><code>
-			 public static
-
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_has_key">#</a>
-		<code><a href="source-class-amekusa.plz.arr.html#67-85" title="Go to source code">has_key</a>( <span>mixed <var>$Key</var></span>, <span>array|object <var>$X</var></span> )</code>
-
-		<div class="description short">
-			<p>Returns whether or not X has the supplied key</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns whether or not X has the supplied key</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$Key</var></dt>
-					<dd></dd>
-					<dt><var>$X</var></dt>
-					<dd>An array, an array-like object, or a traversable object</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get" id="_get">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="last" id="_last">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				mixed
+				
+				</code>
+			</td>
 
-			mixed
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_last">#</a>
+			<code><a href="source-class-amekusa.plz.arr.html#49-65" title="Go to source code">last</a>( <span>array|object <var>$X</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-amekusa.plz.arr.html#87-109" title="Go to source code">get</a>( <span>array|object <var>$Key</var></span>, <span>mixed <var>$X</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
+			<div class="description short">
+				<p>Returns the last element of X</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns X's element indexed by the supplied key</p>
-		</div>
+			<div class="description detailed hidden">
+				<p>Returns the last element of X</p>
 
-		<div class="description detailed hidden">
-			<p>Returns X's element indexed by the supplied key</p>
+<p>CAUTION: Calling this in a</p>
+
+<pre><span class="php-keyword1">foreach</span></pre>
+
+<p>loop over X can cause unpredictable results</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$X</var></dt>
+						<dd>An array or an iterable object</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="has_key" id="_has_key">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_has_key">#</a>
+			<code><a href="source-class-amekusa.plz.arr.html#67-85" title="Go to source code">has_key</a>( <span>mixed <var>$Key</var></span>, <span>array|object <var>$X</var></span> )</code>
+
+			<div class="description short">
+				<p>Returns whether or not X has the supplied key</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns whether or not X has the supplied key</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$Key</var></dt>
+						<dd></dd>
+						<dt><var>$X</var></dt>
+						<dd>An array, an array-like object, or a traversable object</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="get" id="_get">
+
+			<td class="attributes"><code>
+				 public static
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_get">#</a>
+			<code><a href="source-class-amekusa.plz.arr.html#87-109" title="Go to source code">get</a>( <span>array|object <var>$Key</var></span>, <span>mixed <var>$X</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Returns X's element indexed by the supplied key</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns X's element indexed by the supplied key</p>
 
 <p>If the element doesn't exist, returns the 3rd argument.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$Key</var></dt>
-					<dd>$X An array, an array-like object, or a traversable object</dd>
-					<dt><var>$X</var></dt>
-					<dd>$Key</dd>
-					<dt><var>$Alt</var></dt>
-					<dd>[null] An alternative value to return if X doesn't have the key</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$Key</var></dt>
+						<dd>$X An array, an array-like object, or a traversable object</dd>
+						<dt><var>$X</var></dt>
+						<dd>$Key</dd>
+						<dt><var>$Alt</var></dt>
+						<dd>[null] An alternative value to return if X doesn't have the key</dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
-
-
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
 
 
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="flat" id="_flat">
+
+			<td class="attributes"><code>
+				 public static
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_flat">#</a>
+			<code><a href="source-class-amekusa.plz.arr.html#111-125" title="Go to source code">flat</a>( <span>mixed <var>$X</var></span>, <span>mixed <var>$Xn</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Treats arguments as an one-dimensional array</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Treats arguments as an one-dimensional array</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$X</var></dt>
+						<dd></dd>
+						<dt><var>$Xn</var></dt>
+						<dd>[null] Any number of parameters are accepted</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
 		</div>
-		</div></td>
-	</tr>
-	<tr data-order="flat" id="_flat">
-
-		<td class="attributes"><code>
-			 public static
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_flat">#</a>
-		<code><a href="source-class-amekusa.plz.arr.html#111-125" title="Go to source code">flat</a>( <span>mixed <var>$X</var></span>, <span>mixed <var>$Xn</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Treats arguments as an one-dimensional array</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Treats arguments as an one-dimensional array</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$X</var></dt>
-					<dd></dd>
-					<dt><var>$Xn</var></dt>
-					<dd>[null] Any number of parameters are accepted</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
 
 
 
@@ -415,11 +420,11 @@ If X is null, 0 is returned.</p>
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+		PLZ: A handy PHP library for lazy programmers API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>
