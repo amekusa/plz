@@ -29,15 +29,9 @@ gulp.task('docs.clean', function (done) {
 	return del([path.docs + '/**/*'], done);
 });
 
-gulp.task('docs.deploy', ['docs'], function (done) {
-	var remote = 'origin';
-	var branch = 'gh-pages';
-	g.git.exec({args: 'subtree push --prefix ' + path.docs + ' ' + remote + ' ' + branch},
-	function (error, stdout) {
-		if (error !== null) console.log('' + error);
-		else console.log(stdout);
-		done();
-	});
+gulp.task('docs.deploy', ['docs'], function () {
+	return gulp.src(path.docs + '/**/*')
+		.pipe(g.ghPages());
 });
 
 gulp.task('watch', function () {
