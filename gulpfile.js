@@ -1,11 +1,11 @@
 var path = {
-	pkg: './package.json',
-	src: './src',
-	docs: './docs'
+	pkg: 'package.json',
+	src: 'src',
+	docs: 'docs',
+	docsConf: 'apigen.neon'
 };
 
-var pkg = require(path.pkg);
-
+var pkg = require('./' + path.pkg);
 var gulp = require('gulp');
 var g = require('gulp-load-plugins')();
 var shell = require('child_process').exec;
@@ -43,6 +43,7 @@ gulp.task('docs.deploy', ['docs'], function (done) {
 gulp.task('watch', function () {
 	gulp.watch([
 		path.src + '/**/*.php',
-		path.pkg
+		path.pkg,
+		path.docsConf
 	], ['docs']);
 });
