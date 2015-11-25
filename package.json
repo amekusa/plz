@@ -1,0 +1,31 @@
+{
+  "name": "plz",
+  "version": "0.2.0",
+  "description": "A handy PHP library for lazy programmers",
+  "main": "src/main.php",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amekusa/plz.git"
+  },
+  "keywords": [
+    "php"
+  ],
+  "author": "amekusa <post@amekusa.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amekusa/plz/issues"
+  },
+  "homepage": "https://github.com/amekusa/plz#readme",
+  "devDependencies": {
+    "del": "^2.1.0",
+    "gulp": "^3.9.0",
+    "gulp-git": "^1.6.0",
+    "gulp-load-plugins": "^1.1.0"
+  }
+}
