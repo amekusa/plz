@@ -1,7 +1,7 @@
 {
 	"name" : "amekusa/plz",
 	"description" : "A handy PHP library for lazy programmers",
-	"version" : "0.3.0",
+	"version" : "0.4.0",
 	"license" : "MIT",
 	"authors" : [{
 			"name" : "amekusa",
