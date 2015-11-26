@@ -8,6 +8,8 @@ var path = {
 var pkg = require('./' + path.pkg);
 var gulp = require('gulp');
 var g = require('gulp-load-plugins')();
+var series = require('run-sequence'); // TODO Replace with gulp.series on Gulp 4.0 release
+var bsync = require('browser-sync');
 var shell = require('child_process').exec;
 var del = require('del');
 var util = require('util');
@@ -34,10 +36,23 @@ gulp.task('docs.deploy', ['docs'], function () {
 		.pipe(g.ghPages());
 });
 
+gulp.task('reload', function (done) {
+	bsync.reload();
+	done();
+});
+
 gulp.task('watch', function () {
+	bsync.init({
+		server: {
+			baseDir: path.docs
+		}
+	});
+
 	gulp.watch([
 		path.src + '/**/*.php',
 		path.pkg,
 		path.docsConf
-	], ['docs']);
+	], function (event) {
+		series('docs', 'reload'); // Run tasks synchronously
+	});
 });
