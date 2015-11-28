@@ -82,10 +82,8 @@
 				<li><a href="class-amekusa.plz.arr.html">arr</a></li>
 				<li><a href="class-amekusa.plz.constant.html">constant</a></li>
 				<li class="active"><a href="class-amekusa.plz.fn.html">fn</a></li>
-				<li><a href="class-amekusa.plz.main.html">main</a></li>
 				<li><a href="class-amekusa.plz.num.html">num</a></li>
 				<li><a href="class-amekusa.plz.obj.html">obj</a></li>
-				<li><a href="class-amekusa.plz.op.html">op</a></li>
 				<li><a href="class-amekusa.plz.path.html">path</a></li>
 				<li><a href="class-amekusa.plz.str.html">str</a></li>
 				<li><a href="class-amekusa.plz.sys.html">sys</a></li>
@@ -117,6 +115,13 @@
 	<h1>Class fn</h1>
 
 
+	<div class="description">
+	<p>A collection of utilities for Functions.</p>
+
+<p>To get started, place the following line around top of your code.</p>
+
+<pre><span class="php-keyword1">use</span> amekusa\plz\fn;</pre>
+	</div>
 
 
 
@@ -132,7 +137,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.fn.html#3-18" title="Go to source code">fn.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.fn.html#3-28" title="Go to source code">fn.php</a>
 		<br>
 	</div>
 
@@ -145,35 +150,43 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				mixed
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_call">#</a>
-			<code><a href="source-class-amekusa.plz.fn.html#5-17" title="Go to source code">call</a>( <span>callable <var>$X</var></span>, <span>array <var>$Args</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.fn.html#13-27" title="Go to source code">call</a>( <span>callable <var>$X</var></span>, <span>array <var>$Args</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>TODO Write doc</p>
+				<p>Calls a function</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>TODO Write doc</p>
+				<p>Calls a function</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$X</var></dt>
-						<dd></dd>
+						<dd>A function to call</dd>
 						<dt><var>$Args</var></dt>
-						<dd></dd>
+						<dd>Arguments to pass to <code>$X</code></dd>
 						<dt><var>$Alt</var></dt>
-						<dd>[null]</dd>
+						<dd><em>(optional)</em> A fail-safe value</dd>
 					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						mixed<br>A value <code>$X</code> returns or <code>$Alt</code>
+					</div>
 
 
+					<h4>Todo</h4>
+					<div class="list">
+							More specific documentation<br>
+					</div>
 
 
 			</div>

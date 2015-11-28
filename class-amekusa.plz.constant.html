@@ -82,10 +82,8 @@
 				<li><a href="class-amekusa.plz.arr.html">arr</a></li>
 				<li class="active"><a href="class-amekusa.plz.constant.html">constant</a></li>
 				<li><a href="class-amekusa.plz.fn.html">fn</a></li>
-				<li><a href="class-amekusa.plz.main.html">main</a></li>
 				<li><a href="class-amekusa.plz.num.html">num</a></li>
 				<li><a href="class-amekusa.plz.obj.html">obj</a></li>
-				<li><a href="class-amekusa.plz.op.html">op</a></li>
 				<li><a href="class-amekusa.plz.path.html">path</a></li>
 				<li><a href="class-amekusa.plz.str.html">str</a></li>
 				<li><a href="class-amekusa.plz.sys.html">sys</a></li>
@@ -117,6 +115,13 @@
 	<h1>Class constant</h1>
 
 
+	<div class="description">
+	<p>A collection of utilities for Constants.</p>
+
+<p>To get started, place the following line around top of your code.</p>
+
+<pre><span class="php-keyword1">use</span> amekusa\plz\<span class="php-keyword2">constant</span>;</pre>
+	</div>
 
 
 
@@ -132,7 +137,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.constant.html#3-21" title="Go to source code">constant.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.constant.html#3-29" title="Go to source code">constant.php</a>
 		<br>
 	</div>
 
@@ -152,17 +157,17 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_get">#</a>
-			<code><a href="source-class-amekusa.plz.constant.html#5-20" title="Go to source code">get</a>( <span>string <var>$X</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$Defines</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.constant.html#13-28" title="Go to source code">get</a>( <span>string <var>$X</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$Defines</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				<p>Returns the value of the constant:X</p>
+				<p>Returns the value of constant:X</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns the value of the constant:X</p>
+				<p>Returns the value of constant:X</p>
 
 <p>If the constant is undefined, returns the 2nd argument.
-Additionally if the 3rd is true, defines the constant:X with the 2nd as its value.</p>
+Additionally, if the 3rd is true, defines constant:X with the 2nd as its value.</p>
 
 
 					<h4>Parameters</h4>
@@ -170,14 +175,14 @@ Additionally if the 3rd is true, defines the constant:X with the 2nd as its valu
 						<dt><var>$X</var></dt>
 						<dd>The name of a constant</dd>
 						<dt><var>$Alt</var></dt>
-						<dd>[null] The alternative value to return if the constant is undefined</dd>
+						<dd><em>(optional)</em> The alternative value to return if constant:X is undefined</dd>
 						<dt><var>$Defines</var></dt>
-						<dd>[false] Whether or not to define the constant if it is undefined</dd>
+						<dd><em>(optional)</em> Whether or not to define constant:X if it is undefined</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						mixed
+						mixed<br>The value of constant:X or <code>$Alt</code>
 					</div>
 
 
