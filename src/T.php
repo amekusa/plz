@@ -1,18 +1,31 @@
 <?php namespace amekusa\plz;
 
+/**
+ * A collection of type enumerations
+ */
 class T {
+
 	const
-		RES = 64, // resource
-		OBJ = 32, // object
-		ARR = 16, // array
-		STR = 8, // string
-		FLOAT = 4, // float
-		INT = 2, // integer
-		BOOL = 1, // boolean
-		UNKNOWN = 0; // unknown_type
+		/** Represents `resource` */
+		RES = 64,
+		/** Represents `object` */
+		OBJ = 32,
+		/** Represents `array` */
+		ARR = 16,
+		/** Represents `string` */
+		STR = 8,
+		/** Represents `float` */
+		FLOAT = 4,
+		/** Represents `integer` */
+		INT = 2,
+		/** Represents `boolean` */
+		BOOL = 1,
+		/** Represents `unknown_type` */
+		UNKNOWN = 0;
 
 	/**
-	 * @param string $Type A type expression
+	 * Returns a type enumeration by name
+	 * @param string $Type A type name
 	 * @return integer A type enumeration
 	 */
 	public static function enum($Type) {

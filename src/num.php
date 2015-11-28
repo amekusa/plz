@@ -1,9 +1,17 @@
 <?php namespace amekusa\plz;
 
+/**
+ * A collection of utilities for Numbers.
+ *
+ * To get started, place the following line around top of your code.
+ * ```php
+ * use amekusa\plz\num;
+ * ```
+ */
 abstract class num {
 
 	/**
-	 * TODO Write doc
+	 * Returns an ordinal number
 	 * @param integer $X
 	 * @return string
 	 */
@@ -26,7 +34,7 @@ abstract class num {
 	}
 
 	/**
-	 * TODO Write doc
+	 * Returns an alphabet
 	 * @param integer $X
 	 * @return string
 	 */

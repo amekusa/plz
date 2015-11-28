@@ -1,11 +1,12 @@
 <?php namespace amekusa\plz;
 
 /**
- * A container of global functions that is prefixed with <code>arr::</code> and related to Array
- * To use them, a following line is required on top of your code:
- * <pre>
+ * A collection of utilities for Arrays.
+ *
+ * To get started, place the following line around top of your code.
+ * ```php
  * use amekusa\plz\arr;
- * </pre>
+ * ```
  */
 abstract class arr {
 
@@ -16,7 +17,7 @@ abstract class arr {
 	 * If X is null, 0 is returned.
 	 *
 	 * @param array|object $X An array, a countable object, or an iterable object
-	 * @param boolean $Recursive [false] Whether or not to count recursively
+	 * @param boolean $Recursive *(optional)* Whether or not to count recursively
 	 * @return integer
 	 */
 	static function count($X, $Recursive = false) {
@@ -36,7 +37,7 @@ abstract class arr {
 	/**
 	 * Returns the first element of X
 	 *
-	 * CAUTION: Calling this in a <code>foreach</code> loop over X can cause unpredictable results
+	 * CAUTION: Calling this in a `foreach` loop over X can cause unpredictable results
 	 *
 	 * @param array|object $X An array or an iterable object
 	 * @return mixed
@@ -49,7 +50,7 @@ abstract class arr {
 	/**
 	 * Returns the last element of X
 	 *
-	 * CAUTION: Calling this in a <code>foreach</code> loop over X can cause unpredictable results
+	 * CAUTION: Calling this in a `foreach` loop over X can cause unpredictable results
 	 *
 	 * @param array|object $X An array or an iterable object
 	 * @return mixed
@@ -66,11 +67,11 @@ abstract class arr {
 
 	/**
 	 * Returns whether or not X has the supplied key
+	 * @param array|object $X An array, array-like object, or traversable object
 	 * @param mixed $Key
-	 * @param array|object $X An array, an array-like object, or a traversable object
 	 * @return boolean
 	 */
-	static function has_key($Key, $X) {
+	static function has_key($X, $Key) {
 		if (is_array($X)) return array_key_exists($Key, $X);
 		if (is_object($X)) {
 			if ($X instanceof \ArrayAccess) return $X->offsetExists($Key);
@@ -85,16 +86,16 @@ abstract class arr {
 	}
 
 	/**
-	 * Returns X's element indexed by the supplied key
+	 * Returns X’s element indexed by the supplied key
 	 *
-	 * If the element doesn't exist, returns the 3rd argument.
+	 * If the element doesn’t exist, returns the 3rd argument.
 	 *
-	 * @param array|object $X An array, an array-like object, or a traversable object
-	 * @param mixed $Key
-	 * @param mixed $Alt [null] An alternative value to return if X doesn't have the key
+	 * @param array|object $X An array, array-like object, or traversable object
+	 * @param mixed $Key The key of an element to be returned
+	 * @param mixed $Alt *(optional)* An alternative value to return if `X` doesn’t have the key
 	 * @return mixed
 	 */
-	static function get($Key, $X, $Alt = null) {
+	static function get($X, $Key, $Alt = null) {
 		if (is_array($X)) return array_key_exists($Key, $X) ? $X[$Key] : $Alt;
 		if (is_object($X)) {
 			if ($X instanceof \ArrayAccess) return $X->offsetExists($Key) ? $X[$Key] : $Alt;
@@ -110,11 +111,10 @@ abstract class arr {
 
 	/**
 	 * Treats arguments as an one-dimensional array
-	 * @param mixed $X
-	 * @param mixed $Xn [null] Any number of parameters are accepted
+	 * @param mixed $X Any number of parameters are accepted
 	 * @return array
 	 */
-	static function flat($X, $Xn = null) {
+	static function flat($X) {
 		$r = array ();
 		$args = (func_num_args() > 1) ? func_get_args() : (is_array($X)) ? $X : array ($X);
 		foreach ($args as $iArg) {

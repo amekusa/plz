@@ -1,5 +1,13 @@
 <?php namespace amekusa\plz;
 
+/**
+ * A collection of utilities for Types.
+ *
+ * To get started, place the following line around top of your code.
+ * ```php
+ * use amekusa\plz\type;
+ * ```
+ */
 abstract class type {
 
 	/**
@@ -7,8 +15,8 @@ abstract class type {
 	 *
 	 * If X is an object, returns the class name of the object.
 	 *
-	 * @param mixed $X
-	 * @return string The type name
+	 * @param mixed $X A variable you want to know the type
+	 * @return string A type name
 	 */
 	static function name($X) {
 		if (is_object($X)) return get_class($X);
@@ -23,7 +31,7 @@ abstract class type {
 
 	/**
 	 * Returns whether the type of X matches a specific type
-	 * @param mixed $X
+	 * @param mixed $X A variable to check type
 	 * @param integer|string $Type A type expression
 	 * @return boolean
 	 */
@@ -53,13 +61,13 @@ abstract class type {
 	/**
 	 * Returns whether X is an array/array-like object
 	 *
-	 * Example:<pre>
+	 * @example Basic usage
+	 * ```php
 	 * if (type::is_arr_like($var)) {
 	 *   $var[] = 'Element'; // You can treat $var as like an array
 	 * }
-	 * </pre>
-	 *
-	 * @param mixed $X
+	 * ```
+	 * @param mixed $X A variable to check type
 	 * @return boolean
 	 */
 	static function is_arr_like($X) {
@@ -71,15 +79,15 @@ abstract class type {
 	/**
 	 * Returns whether X is iterable
 	 *
-	 * Example:<pre>
+	 * @example Basic usage
+	 * ```php
 	 * if (type::is_iterable($var)) {
 	 *   foreach ($var as $item) { // You can iterate over $var
 	 *     echo $item;
 	 *   }
 	 * }
-	 * </pre>
-	 *
-	 * @param mixed $X
+	 * ```
+	 * @param mixed $X A variable to check type
 	 * @return boolean
 	 */
 	static function is_iterable($X) {
@@ -91,13 +99,13 @@ abstract class type {
 	/**
 	 * Returns whether X is countable
 	 *
-	 * Example:<pre>
+	 * @example Basic usage
+	 * ```php
 	 * if (type::is_countable($var)) {
 	 *   echo count($var); // You can count $var
 	 * }
-	 * </pre>
-	 *
-	 * @param mixed $X
+	 * ```
+	 * @param mixed $X A variable to check type
 	 * @return boolean
 	 */
 	static function is_countable($X) {
@@ -109,11 +117,11 @@ abstract class type {
 	/**
 	 * Treats X as a boolean
 	 *
-	 * If X is an object, returns X->toBool()/toBoolean() if they exist.
-	 * If X is a countable object, returns count(X) > 0.
+	 * + If X is an object, calls `$X->toBool()` / `$X->toBoolean()` if they exist.
+	 * + If X is a countable object, returns `count($X) > 0`.
 	 *
-	 * @param mixed $X
-	 * @param boolean $Alt [false] An alternative value to return if casting failed
+	 * @param mixed $X A variable to treat as a boolean
+	 * @param boolean $Alt *(optional)* An alternative value to return if casting failed
 	 * @return boolean
 	 */
 	static function bool($X, $Alt = false) {
@@ -170,7 +178,7 @@ abstract class type {
 	/**
 	 * Treats X as an string
 	 *
-	 * If X is an object, returns X->__toString()/toStr()/toString() if they exist.
+	 * If X is an object, returns `__toString()`/`toStr()`/`toString()` if they exist.
 	 *
 	 * @param mixed $X
 	 * @param string $Alt [''] An alternative value to return if the casting failed
