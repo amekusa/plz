@@ -2,7 +2,7 @@
 	"name" : "amekusa/plz",
 	"description" : "A handy PHP library for lazy programmers",
 	"version" : "0.5.0",
-	"keywords" : "general, syntax, sugar, lazy",
+	"keywords" : ["general", "syntax", "sugar", "lazy"],
 	"homepage" : "http://amekusa.github.io/plz",
 	"license" : "MIT",
 	"authors" : [{
