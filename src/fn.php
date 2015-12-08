@@ -11,18 +11,29 @@
 abstract class fn {
 
 	/**
-	 * Calls a function
-	 * @todo More specific documentation
+	 * Calls a function:`$X`
+	 *
+	 * Additionally,
+	 *
+	 * + If `$X` is not callable, returns `$Alt`
+	 * + If `$X` is not callable, And `$Alt` is callable, calls `$Alt`
+	 *
 	 * @param callable $X A function to call
-	 * @param array $Args Arguments to pass to `$X`
+	 * @param mixed $Args *(optional)* Arguments to pass to `$X`. Pass an array for multiple parameters
 	 * @param mixed $Alt *(optional)* A fail-safe value
 	 * @return mixed A value `$X` returns or `$Alt`
 	 */
-	static function call($X, $Args, $Alt = null) {
+	static function call($X, $Args = null, $Alt = null) {
 		if (!is_callable($X)) {
-			if (is_callable($Alt)) return call_user_func($Alt, $Args);
+			if (is_callable($Alt)) {
+				return isset($Args) ?
+					call_user_func_array($Alt, type::arr($Args)) :
+					call_user_func($Alt);
+			}
 			return $Alt;
 		}
-		return call_user_func_array($X, $Args);
+		return isset($Args) ?
+			call_user_func_array($X, type::arr($Args)) :
+			call_user_func($X);
 	}
 }
