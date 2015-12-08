@@ -4,7 +4,7 @@
 You can install PLZ via Composer by running the following command on your project root.
 
 ```sh
-composer require --save amekuska/plz
+composer require amekuska/plz
 ```
 
 ## Usage
