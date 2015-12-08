@@ -18,7 +18,7 @@ var fs = require('fs');
 gulp.task('default', ['build']);
 gulp.task('build', ['docs']);
 
-gulp.task('docs', function (done) {
+gulp.task('docs', ['docs.clean'], function (done) {
 	shell('apigen generate -s ' + path.src + ' -d ' + path.docs,
 	function (error, stdout, stderr) {
 		if (error !== null) console.log('' + error);
@@ -41,7 +41,7 @@ gulp.task('reload', function (done) {
 	done();
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['docs'], function () {
 	bsync.init({
 		server: {
 			baseDir: path.docs
