@@ -137,7 +137,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.type.html#3-241" title="Go to source code">type.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.type.html#3-238" title="Go to source code">type.php</a>
 		<br>
 	</div>
 
@@ -160,13 +160,13 @@
 			<code><a href="source-class-amekusa.plz.type.html#13-30" title="Go to source code">name</a>( <span>mixed <var>$X</var></span> )</code>
 
 			<div class="description short">
-				<p>Returns the type name of X</p>
+				<p>Returns the type name of <code>$X</code></p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns the type name of X</p>
+				<p>Returns the type name of <code>$X</code></p>
 
-<p>If X is an object, returns the class name of the object.</p>
+<p>If <code>$X</code> is an object, returns the class name of the object.</p>
 
 
 					<h4>Parameters</h4>
@@ -177,7 +177,7 @@
 
 					<h4>Returns</h4>
 					<div class="list">
-						string<br>A type name
+						string<br>A type name or class name
 					</div>
 
 
@@ -200,11 +200,11 @@
 			<code><a href="source-class-amekusa.plz.type.html#32-59" title="Go to source code">matches</a>( <span>mixed <var>$X</var></span>, <span>integer|string <var>$Type</var></span> )</code>
 
 			<div class="description short">
-				<p>Returns whether the type of X matches a specific type</p>
+				<p>Returns whether the type of <code>$X</code> matches a specific type</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns whether the type of X matches a specific type</p>
+				<p>Returns whether the type of <code>$X</code> matches a specific type</p>
 
 
 					<h4>Parameters</h4>
@@ -237,14 +237,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_is_arr_like">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#61-77" title="Go to source code">is_arr_like</a>( <span>mixed <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#61-76" title="Go to source code">is_arr_like</a>( <span>mixed <var>$X</var></span> )</code>
 
 			<div class="description short">
-				<p>Returns whether X is an array/array-like object</p>
+				<p>Returns whether <code>$X</code> is an array or array-like object</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns whether X is an array/array-like object</p>
+				<p>Returns whether <code>$X</code> is an array or array-like object</p>
 
 
 					<h4>Parameters</h4>
@@ -283,14 +283,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_is_iterable">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#79-97" title="Go to source code">is_iterable</a>( <span>mixed <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#78-95" title="Go to source code">is_iterable</a>( <span>mixed <var>$X</var></span> )</code>
 
 			<div class="description short">
-				<p>Returns whether X is iterable</p>
+				<p>Returns whether <code>$X</code> is iterable</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns whether X is iterable</p>
+				<p>Returns whether <code>$X</code> is iterable</p>
 
 
 					<h4>Parameters</h4>
@@ -331,14 +331,14 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_is_countable">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#99-115" title="Go to source code">is_countable</a>( <span>mixed <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#97-112" title="Go to source code">is_countable</a>( <span>mixed <var>$X</var></span> )</code>
 
 			<div class="description short">
-				<p>Returns whether X is countable</p>
+				<p>Returns whether <code>$X</code> is countable</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns whether X is countable</p>
+				<p>Returns whether <code>$X</code> is countable</p>
 
 
 					<h4>Parameters</h4>
@@ -377,18 +377,18 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_bool">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#117-152" title="Go to source code">bool</a>( <span>mixed <var>$X</var></span>, <span>boolean <var>$Alt</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#114-149" title="Go to source code">bool</a>( <span>mixed <var>$X</var></span>, <span>boolean <var>$Alt</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				<p>Treats X as a boolean</p>
+				<p>Treats <code>$X</code> as a boolean</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Treats X as a boolean</p>
+				<p>Treats <code>$X</code> as a boolean</p>
 
 <ul>
-<li>If X is an object, calls <code>$X-&gt;toBool()</code> / <code>$X-&gt;toBoolean()</code> if they exist.</li>
-<li>If X is a countable object, returns <code>count($X) &gt; 0</code>.</li>
+<li>If <code>$X</code> is an object, calls <code>$X-&gt;toBool()</code> or <code>$X-&gt;toBoolean()</code> if they exist.</li>
+<li>If <code>$X</code> is a countable object, returns whether <code>count($X) &gt; 0</code>.</li>
 </ul>
 
 
@@ -422,16 +422,16 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_int">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#154-176" title="Go to source code">int</a>( <span>mixed <var>$X</var></span>, <span>integer <var>$Alt</var> = <span class="php-num">0</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#151-173" title="Go to source code">int</a>( <span>mixed <var>$X</var></span>, <span>integer <var>$Alt</var> = <span class="php-num">0</span></span> )</code>
 
 			<div class="description short">
-				<p>Treats X as an integer</p>
+				<p>Treats <code>$X</code> as an integer</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Treats X as an integer</p>
+				<p>Treats <code>$X</code> as an integer</p>
 
-<p>If X is an object, returns X->toInt()/toInteger() if they exist.</p>
+<p>If <code>$X</code> is an object, calls <code>$X-&gt;toInt()</code> or <code>$X-&gt;toInteger()</code> if they exist.</p>
 
 
 					<h4>Parameters</h4>
@@ -439,7 +439,7 @@
 						<dt><var>$X</var></dt>
 						<dd></dd>
 						<dt><var>$Alt</var></dt>
-						<dd>[0] An alternative value to return if casting failed</dd>
+						<dd><em>(optional)</em> An alternative value to return if casting failed</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -464,16 +464,16 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_str">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#178-210" title="Go to source code">str</a>( <span>mixed <var>$X</var></span>, <span>string <var>$Alt</var> = <span class="php-quote">''</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#175-207" title="Go to source code">str</a>( <span>mixed <var>$X</var></span>, <span>string <var>$Alt</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
-				<p>Treats X as an string</p>
+				<p>Treats <code>$X</code> as an string</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Treats X as an string</p>
+				<p>Treats <code>$X</code> as an string</p>
 
-<p>If X is an object, returns <code>__toString()</code>/<code>toStr()</code>/<code>toString()</code> if they exist.</p>
+<p>If <code>$X</code> is an object, calls <code>$X-&gt;__toString()</code>, <code>$X-&gt;toStr()</code> or <code>$X-&gt;toString()</code> if they exist.</p>
 
 
 					<h4>Parameters</h4>
@@ -481,7 +481,7 @@
 						<dt><var>$X</var></dt>
 						<dd></dd>
 						<dt><var>$Alt</var></dt>
-						<dd>[''] An alternative value to return if the casting failed</dd>
+						<dd><em>(optional)</em> An alternative value to return if the casting failed</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -506,16 +506,16 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_arr">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#212-240" title="Go to source code">arr</a>( <span>mixed <var>$X</var></span>, <span>array <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#209-237" title="Go to source code">arr</a>( <span>mixed <var>$X</var></span>, <span>array <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Treats X as an array</p>
+				<p>Treats <code>$X</code> as an array</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Treats X as an array</p>
+				<p>Treats <code>$X</code> as an array</p>
 
-<p>If X is an object, returns X->toArr()/toArray() if they exist.</p>
+<p>If <code>$X</code> is an object, calls <code>$X-&gt;toArr()</code> or <code>$X-&gt;toArray()</code> if they exist.</p>
 
 
 					<h4>Parameters</h4>
@@ -523,7 +523,7 @@
 						<dt><var>$X</var></dt>
 						<dd></dd>
 						<dt><var>$Alt</var></dt>
-						<dd>[array ($X)] An alternative value to return if casting failed</dd>
+						<dd><em>(optional)</em> An alternative value to return if casting failed</dd>
 					</dl></div>
 
 					<h4>Returns</h4>

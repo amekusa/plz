@@ -126,15 +126,15 @@
 </span><span id="11" class="l"><span class="php-keyword1">abstract</span> <span class="php-keyword1">class</span> <span class="php-keyword2">constant</span> {
 </span><span id="12" class="l">
 </span><span id="13" class="l">    <span class="php-comment">/**
-</span></span><span id="14" class="l"><span class="php-comment">     * Returns the value of constant:X
+</span></span><span id="14" class="l"><span class="php-comment">     * Returns the value of constant:`$X`
 </span></span><span id="15" class="l"><span class="php-comment">     *
 </span></span><span id="16" class="l"><span class="php-comment">     * If the constant is undefined, returns the 2nd argument.
-</span></span><span id="17" class="l"><span class="php-comment">     * Additionally, if the 3rd is true, defines constant:X with the 2nd as its value.
+</span></span><span id="17" class="l"><span class="php-comment">     * Additionally, if the 3rd is `true`, defines constant:`$X` of which value is the 2nd.
 </span></span><span id="18" class="l"><span class="php-comment">     *
 </span></span><span id="19" class="l"><span class="php-comment">     * @param string $X The name of a constant
-</span></span><span id="20" class="l"><span class="php-comment">     * @param mixed $Alt *(optional)* The alternative value to return if constant:X is undefined
-</span></span><span id="21" class="l"><span class="php-comment">     * @param boolean $Defines *(optional)* Whether or not to define constant:X if it is undefined
-</span></span><span id="22" class="l"><span class="php-comment">     * @return mixed The value of constant:X or `$Alt`
+</span></span><span id="20" class="l"><span class="php-comment">     * @param mixed $Alt *(optional)* The alternative value to return if constant:`$X` is undefined
+</span></span><span id="21" class="l"><span class="php-comment">     * @param boolean $Defines *(optional)* Whether or not to define constant:`$X` if it is undefined
+</span></span><span id="22" class="l"><span class="php-comment">     * @return mixed The value of constant:`$X` or `$Alt`
 </span></span><span id="23" class="l"><span class="php-comment">     */</span>
 </span><span id="24" class="l">    <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> get(<span class="php-var">$X</span>, <span class="php-var">$Alt</span> = <span class="php-keyword1">null</span>, <span class="php-var">$Defines</span> = <span class="php-keyword1">false</span>) {
 </span><span id="25" class="l">        <span class="php-keyword1">if</span> (<span class="php-keyword2">defined</span>(<span class="php-var">$X</span>)) <span class="php-keyword1">return</span> <span class="php-keyword2">constant</span>(<span class="php-var">$X</span>);

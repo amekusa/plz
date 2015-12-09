@@ -137,7 +137,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.arr.html#3-126" title="Go to source code">arr.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.arr.html#3-145" title="Go to source code">arr.php</a>
 		<br>
 	</div>
 
@@ -160,20 +160,20 @@
 			<code><a href="source-class-amekusa.plz.arr.html#13-35" title="Go to source code">count</a>( <span>array|object <var>$X</var></span>, <span>boolean <var>$Recursive</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				<p>Returns a number of elements in X</p>
+				<p>Returns the number of elements in <code>$X</code></p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns a number of elements in X</p>
+				<p>Returns the number of elements in <code>$X</code></p>
 
-<p>If X is uncountable, 1 is returned.
-If X is null, 0 is returned.</p>
+<p>If <code>$X</code> is uncountable, <code>1</code> is returned.
+If <code>$X</code> is <code>null</code>, <code>0</code> is returned.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$X</var></dt>
-						<dd>An array, a countable object, or an iterable object</dd>
+						<dd>An array, countable object, or iterable object</dd>
 						<dt><var>$Recursive</var></dt>
 						<dd><em>(optional)</em> Whether or not to count recursively</dd>
 					</dl></div>
@@ -203,13 +203,13 @@ If X is null, 0 is returned.</p>
 			<code><a href="source-class-amekusa.plz.arr.html#37-48" title="Go to source code">first</a>( <span>array|object <var>$X</var></span> )</code>
 
 			<div class="description short">
-				<p>Returns the first element of X</p>
+				<p>Returns the first element of <code>$X</code></p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns the first element of X</p>
+				<p>Returns the first element of <code>$X</code></p>
 
-<p>CAUTION: Calling this in a <code>foreach</code> loop over X can cause unpredictable results</p>
+<p><strong>CAUTION:</strong> Calling in a <code>foreach</code> loop over <code>$X</code> can cause unpredictable results.</p>
 
 
 					<h4>Parameters</h4>
@@ -243,13 +243,13 @@ If X is null, 0 is returned.</p>
 			<code><a href="source-class-amekusa.plz.arr.html#50-66" title="Go to source code">last</a>( <span>array|object <var>$X</var></span> )</code>
 
 			<div class="description short">
-				<p>Returns the last element of X</p>
+				<p>Returns the last element of <code>$X</code></p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns the last element of X</p>
+				<p>Returns the last element of <code>$X</code></p>
 
-<p>CAUTION: Calling this in a <code>foreach</code> loop over X can cause unpredictable results</p>
+<p><strong>CAUTION:</strong> Calling this in a <code>foreach</code> loop over <code>$X</code> can cause unpredictable results.</p>
 
 
 					<h4>Parameters</h4>
@@ -283,11 +283,11 @@ If X is null, 0 is returned.</p>
 			<code><a href="source-class-amekusa.plz.arr.html#68-86" title="Go to source code">has_key</a>( <span>array|object <var>$X</var></span>, <span>mixed <var>$Key</var></span> )</code>
 
 			<div class="description short">
-				<p>Returns whether or not X has the supplied key</p>
+				<p>Returns whether <code>$X</code> has the supplied key</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns whether or not X has the supplied key</p>
+				<p>Returns whether <code>$X</code> has the supplied key</p>
 
 
 					<h4>Parameters</h4>
@@ -295,7 +295,7 @@ If X is null, 0 is returned.</p>
 						<dt><var>$X</var></dt>
 						<dd>An array, array-like object, or traversable object</dd>
 						<dt><var>$Key</var></dt>
-						<dd></dd>
+						<dd>A key to find</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -323,13 +323,13 @@ If X is null, 0 is returned.</p>
 			<code><a href="source-class-amekusa.plz.arr.html#88-110" title="Go to source code">get</a>( <span>array|object <var>$X</var></span>, <span>mixed <var>$Key</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Returns X’s element indexed by the supplied key</p>
+				<p>Returns <code>$X</code>’s element indexed by <code>$Key</code></p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Returns X’s element indexed by the supplied key</p>
+				<p>Returns <code>$X</code>’s element indexed by <code>$Key</code></p>
 
-<p>If the element doesn’t exist, returns the 3rd argument.</p>
+<p>If the element doesn’t exist, returns <code>$Alt</code>.</p>
 
 
 					<h4>Parameters</h4>
@@ -339,7 +339,7 @@ If X is null, 0 is returned.</p>
 						<dt><var>$Key</var></dt>
 						<dd>The key of an element to be returned</dd>
 						<dt><var>$Alt</var></dt>
-						<dd><em>(optional)</em> An alternative value to return if <code>X</code> doesn’t have the key</dd>
+						<dd><em>(optional)</em> An alternative value to return if <code>$X</code> doesn’t have the key</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -364,7 +364,7 @@ If X is null, 0 is returned.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_flat">#</a>
-			<code><a href="source-class-amekusa.plz.arr.html#112-125" title="Go to source code">flat</a>( <span>mixed <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.arr.html#112-144" title="Go to source code">flat</a>( <span>mixed <var>$X</var></span> )</code>
 
 			<div class="description short">
 				<p>Treats arguments as an one-dimensional array</p>
@@ -386,6 +386,26 @@ If X is null, 0 is returned.</p>
 					</div>
 
 
+					<h4>Example</h4>
+					<div class="list">
+							<p>Converting a multi-dimentional array into one-dimentional</p>
+
+<pre><span class="php-var">$var</span> = <span class="php-keyword1">array</span> (
+  <span class="php-quote">'A'</span>,
+  <span class="php-keyword1">array</span> (
+    <span class="php-quote">'B'</span>,
+    <span class="php-keyword1">array</span> (
+      <span class="php-quote">'C'</span>
+    )
+  ),
+  <span class="php-quote">'D'</span>
+);
+<span class="php-var">$r</span> = arr::flat(<span class="php-var">$var</span>); <span class="php-comment">// $r = array ('A', 'B', 'C', 'D')</span></pre><br>
+							<p>Converting multiple arguments into an one-dimentional array</p>
+
+<pre><span class="php-var">$r</span> = arr::flat(<span class="php-quote">'A'</span>, <span class="php-keyword1">array</span> (<span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>), <span class="php-quote">'D'</span>);
+    <span class="php-comment">// $r = array ('A', 'B', 'C', 'D')</span></pre><br>
+					</div>
 
 
 			</div>

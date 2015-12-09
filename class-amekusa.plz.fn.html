@@ -137,7 +137,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.fn.html#3-28" title="Go to source code">fn.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.fn.html#3-39" title="Go to source code">fn.php</a>
 		<br>
 	</div>
 
@@ -157,14 +157,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_call">#</a>
-			<code><a href="source-class-amekusa.plz.fn.html#13-27" title="Go to source code">call</a>( <span>callable <var>$X</var></span>, <span>array <var>$Args</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.fn.html#13-38" title="Go to source code">call</a>( <span>callable <var>$X</var></span>, <span>mixed <var>$Args</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Calls a function</p>
+				<p>Calls a function:<code>$X</code></p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Calls a function</p>
+				<p>Calls a function:<code>$X</code></p>
+
+<p>Additionally,</p>
+
+<ul>
+<li>If <code>$X</code> is not callable, returns <code>$Alt</code></li>
+<li>If <code>$X</code> is not callable, And <code>$Alt</code> is callable, calls <code>$Alt</code></li>
+</ul>
 
 
 					<h4>Parameters</h4>
@@ -172,7 +179,7 @@
 						<dt><var>$X</var></dt>
 						<dd>A function to call</dd>
 						<dt><var>$Args</var></dt>
-						<dd>Arguments to pass to <code>$X</code></dd>
+						<dd><em>(optional)</em> Arguments to pass to <code>$X</code>. Pass an array for multiple parameters</dd>
 						<dt><var>$Alt</var></dt>
 						<dd><em>(optional)</em> A fail-safe value</dd>
 					</dl></div>
@@ -183,10 +190,6 @@
 					</div>
 
 
-					<h4>Todo</h4>
-					<div class="list">
-							More specific documentation<br>
-					</div>
 
 
 			</div>
