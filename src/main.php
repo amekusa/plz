@@ -1,5 +1,8 @@
 <?php namespace amekusa\plz;
 
+/**
+ * @ignore
+ */
 abstract class main {
 
 	static function init() {
