@@ -11,9 +11,9 @@
 abstract class sys {
 
 	/**
-	 * Verifies a PHP directive has a specific value
+	 * Ensures whether a PHP directive has a specific value
 	 * @param string $X The name of a directive
-	 * @param mixed $Value The value of the directive
+	 * @param mixed $Value The value that the directive should have
 	 * @return boolean `true` if the directive has a correct value. Otherwise `false`
 	 */
 	static function ensure_ini($X, $Value) {

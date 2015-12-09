@@ -11,12 +11,12 @@
 abstract class type {
 
 	/**
-	 * Returns the type name of X
+	 * Returns the type name of `$X`
 	 *
-	 * If X is an object, returns the class name of the object.
+	 * If `$X` is an object, returns the class name of the object.
 	 *
 	 * @param mixed $X A variable you want to know the type
-	 * @return string A type name
+	 * @return string A type name or class name
 	 */
 	static function name($X) {
 		if (is_object($X)) return get_class($X);
@@ -30,7 +30,7 @@ abstract class type {
 	}
 
 	/**
-	 * Returns whether the type of X matches a specific type
+	 * Returns whether the type of `$X` matches a specific type
 	 * @param mixed $X A variable to check type
 	 * @param integer|string $Type A type expression
 	 * @return boolean
@@ -59,8 +59,7 @@ abstract class type {
 	}
 
 	/**
-	 * Returns whether X is an array/array-like object
-	 *
+	 * Returns whether `$X` is an array or array-like object
 	 * @example Basic usage
 	 * ```php
 	 * if (type::is_arr_like($var)) {
@@ -77,8 +76,7 @@ abstract class type {
 	}
 
 	/**
-	 * Returns whether X is iterable
-	 *
+	 * Returns whether `$X` is iterable
 	 * @example Basic usage
 	 * ```php
 	 * if (type::is_iterable($var)) {
@@ -97,8 +95,7 @@ abstract class type {
 	}
 
 	/**
-	 * Returns whether X is countable
-	 *
+	 * Returns whether `$X` is countable
 	 * @example Basic usage
 	 * ```php
 	 * if (type::is_countable($var)) {
@@ -115,10 +112,10 @@ abstract class type {
 	}
 
 	/**
-	 * Treats X as a boolean
+	 * Treats `$X` as a boolean
 	 *
-	 * + If X is an object, calls `$X->toBool()` / `$X->toBoolean()` if they exist.
-	 * + If X is a countable object, returns `count($X) > 0`.
+	 * + If `$X` is an object, calls `$X->toBool()` or `$X->toBoolean()` if they exist.
+	 * + If `$X` is a countable object, returns whether `count($X) > 0`.
 	 *
 	 * @param mixed $X A variable to treat as a boolean
 	 * @param boolean $Alt *(optional)* An alternative value to return if casting failed
@@ -152,12 +149,12 @@ abstract class type {
 	}
 
 	/**
-	 * Treats X as an integer
+	 * Treats `$X` as an integer
 	 *
-	 * If X is an object, returns X->toInt()/toInteger() if they exist.
+	 * If `$X` is an object, calls `$X->toInt()` or `$X->toInteger()` if they exist.
 	 *
 	 * @param mixed $X
-	 * @param integer $Alt [0] An alternative value to return if casting failed
+	 * @param integer $Alt *(optional)* An alternative value to return if casting failed
 	 * @return integer
 	 */
 	static function int($X, $Alt = 0) {
@@ -176,12 +173,12 @@ abstract class type {
 	}
 
 	/**
-	 * Treats X as an string
+	 * Treats `$X` as an string
 	 *
-	 * If X is an object, returns `__toString()`/`toStr()`/`toString()` if they exist.
+	 * If `$X` is an object, calls `$X->__toString()`, `$X->toStr()` or `$X->toString()` if they exist.
 	 *
 	 * @param mixed $X
-	 * @param string $Alt [''] An alternative value to return if the casting failed
+	 * @param string $Alt *(optional)* An alternative value to return if the casting failed
 	 * @return string
 	 */
 	static function str($X, $Alt = '') {
@@ -210,12 +207,12 @@ abstract class type {
 	}
 
 	/**
-	 * Treats X as an array
+	 * Treats `$X` as an array
 	 *
-	 * If X is an object, returns X->toArr()/toArray() if they exist.
+	 * If `$X` is an object, calls `$X->toArr()` or `$X->toArray()` if they exist.
 	 *
 	 * @param mixed $X
-	 * @param array $Alt [array ($X)] An alternative value to return if casting failed
+	 * @param array $Alt *(optional)* An alternative value to return if casting failed
 	 * @return array
 	 */
 	static function arr($X, $Alt = null) {

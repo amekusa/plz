@@ -11,7 +11,7 @@
 abstract class str {
 
 	/**
-	 * Returns whether X equals Y
+	 * Returns whether `$X` equals `$Y`
 	 * @param string $X A string to compare with `$Y`
 	 * @param string $Y A string to compare with `$X`
 	 * @param boolean $CaseInsensitive *(optional)* Whether or not to ignore letter case
@@ -23,7 +23,7 @@ abstract class str {
 	}
 
 	/**
-	 * Returns whether X contains any visible character
+	 * Returns whether `$X` contains any visible character
 	 * @param string $X
 	 * @return boolean
 	 */
@@ -32,7 +32,7 @@ abstract class str {
 	}
 
 	/**
-	 * Returns whether X contains any multibyte character
+	 * Returns whether `$X` contains any multibyte character
 	 * @param string $X
 	 * @return boolean
 	 */
@@ -41,7 +41,7 @@ abstract class str {
 	}
 
 	/**
-	 * Returns whether X contains Y
+	 * Returns whether `$X` contains `$Y`
 	 * @param string $X A haystack
 	 * @param string $Y A needle
 	 * @param boolean $CaseInsensitive *(optional)* Whether or not to ignore letter case
@@ -52,7 +52,7 @@ abstract class str {
 	}
 
 	/**
-	 * Removes control characters in X
+	 * Removes control characters in `$X`
 	 * @param string $X
 	 * @return string A processed string
 	 */
@@ -62,8 +62,7 @@ abstract class str {
 	}
 
 	/**
-	 * Replaces newline characters in X with the supplied string
-	 *
+	 * Replaces newline characters in `$X` with the supplied string
 	 * @example Replace every line-breaks with `<br>`
 	 * ```php
 	 * $var = <<<DOC
@@ -83,7 +82,7 @@ abstract class str {
 	}
 
 	/**
-	 * Repeats X
+	 * Repeats `$X`
 	 * @example Basic usage
 	 * ```php
 	 * echo str::repeat('Knock');

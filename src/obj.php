@@ -12,9 +12,49 @@ abstract class obj {
 
 	/**
 	 * Returns a property of an object
-	 * @param object $X
-	 * @param string $Prop
-	 * @param mixed $Alt *(optional)*
+	 *
+	 * If `$X` has a *getter* method, calls it.
+	 *
+	 * @example Basic usage
+	 * ```php
+	 * class Student {
+	 *   public $name;
+	 *   private $age;
+	 *
+	 *   public function __construct($Name, $Age) {
+	 *     $this->name = $Name;
+	 *     $this->age = $Age;
+	 *   }
+	 * }
+	 *
+	 * $student = new Student('Alice', 21);
+	 * $r1 = obj::get($student, 'name', 'Secret!'); // $r1 = 'Alice'
+	 * $r2 = obj::get($student, 'age', 'Secret!');  // $r2 = 'Secret!'
+	 * ```
+	 * @example Calling a *getter* method
+	 * ```php
+	 * class Student {
+	 *   public $name;
+	 *   private $age;
+	 *
+	 *   public function __construct($Name, $Age) {
+	 *     $this->name = $Name;
+	 *     $this->age = $Age;
+	 *   }
+	 *
+	 *   // The getter method for $age
+	 *   public function getAge() {
+	 *     return $this->age - 2; // Lies :P
+	 *   }
+	 * }
+	 *
+	 * $student = new Student('Alice', 21);
+	 * $r1 = obj::get($student, 'name', 'Secret!'); // $r1 = 'Alice'
+	 * $r2 = obj::get($student, 'age', 'Secret!');  // $r2 = '19'
+	 * ```
+	 * @param object $X An object to retrieve a property from
+	 * @param string $Prop The name of a property to get
+	 * @param mixed $Alt *(optional)* A fail-safe value
 	 */
 	static function get($X, $Prop, $Alt = null) {
 		$getter = array ($X, 'get' . ucfirst($Prop));

@@ -11,7 +11,7 @@
 abstract class alt {
 
 	/**
-	 * If X is null, returns the 2nd argument. Otherwise returns X
+	 * If `$X` is `null`, returns `$Alt`. Otherwise returns `$X`
 	 * @example Basic usage
 	 * ```php
 	 * $var1 = 'Not Null';
@@ -28,7 +28,7 @@ abstract class alt {
 	}
 
 	/**
-	 * If X is falsy, returns the 2nd argument. Otherwise returns X
+	 * If `$X` is *falsy*, returns `$Alt`. Otherwise returns `$X`
 	 * @example Basic usage
 	 * ```php
 	 * $var1 = 'Truthy';

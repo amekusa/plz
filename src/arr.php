@@ -11,12 +11,12 @@
 abstract class arr {
 
 	/**
-	 * Returns a number of elements in X
+	 * Returns the number of elements in `$X`
 	 *
-	 * If X is uncountable, 1 is returned.
-	 * If X is null, 0 is returned.
+	 * If `$X` is uncountable, `1` is returned.
+	 * If `$X` is `null`, `0` is returned.
 	 *
-	 * @param array|object $X An array, a countable object, or an iterable object
+	 * @param array|object $X An array, countable object, or iterable object
 	 * @param boolean $Recursive *(optional)* Whether or not to count recursively
 	 * @return integer
 	 */
@@ -35,9 +35,9 @@ abstract class arr {
 	}
 
 	/**
-	 * Returns the first element of X
+	 * Returns the first element of `$X`
 	 *
-	 * CAUTION: Calling this in a `foreach` loop over X can cause unpredictable results
+	 * **CAUTION:** Calling in a `foreach` loop over `$X` can cause unpredictable results.
 	 *
 	 * @param array|object $X An array or an iterable object
 	 * @return mixed
@@ -48,9 +48,9 @@ abstract class arr {
 	}
 
 	/**
-	 * Returns the last element of X
+	 * Returns the last element of `$X`
 	 *
-	 * CAUTION: Calling this in a `foreach` loop over X can cause unpredictable results
+	 * **CAUTION:** Calling this in a `foreach` loop over `$X` can cause unpredictable results.
 	 *
 	 * @param array|object $X An array or an iterable object
 	 * @return mixed
@@ -66,9 +66,9 @@ abstract class arr {
 	}
 
 	/**
-	 * Returns whether or not X has the supplied key
+	 * Returns whether `$X` has the supplied key
 	 * @param array|object $X An array, array-like object, or traversable object
-	 * @param mixed $Key
+	 * @param mixed $Key A key to find
 	 * @return boolean
 	 */
 	static function has_key($X, $Key) {
@@ -86,13 +86,13 @@ abstract class arr {
 	}
 
 	/**
-	 * Returns X’s element indexed by the supplied key
+	 * Returns `$X`’s element indexed by `$Key`
 	 *
-	 * If the element doesn’t exist, returns the 3rd argument.
+	 * If the element doesn’t exist, returns `$Alt`.
 	 *
 	 * @param array|object $X An array, array-like object, or traversable object
 	 * @param mixed $Key The key of an element to be returned
-	 * @param mixed $Alt *(optional)* An alternative value to return if `X` doesn’t have the key
+	 * @param mixed $Alt *(optional)* An alternative value to return if `$X` doesn’t have the key
 	 * @return mixed
 	 */
 	static function get($X, $Key, $Alt = null) {
@@ -111,6 +111,25 @@ abstract class arr {
 
 	/**
 	 * Treats arguments as an one-dimensional array
+	 * @example Converting a multi-dimentional array into one-dimentional
+	 * ```php
+	 * $var = array (
+	 *   'A',
+	 *   array (
+	 *     'B',
+	 *     array (
+	 *       'C'
+	 *     )
+	 *   ),
+	 *   'D'
+	 * );
+	 * $r = arr::flat($var); // $r = array ('A', 'B', 'C', 'D')
+	 * ```
+	 * @example Converting multiple arguments into an one-dimentional array
+	 * ```php
+	 * $r = arr::flat('A', array ('B', 'C'), 'D');
+	 *     // $r = array ('A', 'B', 'C', 'D')
+	 * ```
 	 * @param mixed $X Any number of parameters are accepted
 	 * @return array
 	 */
