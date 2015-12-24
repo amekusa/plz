@@ -14,6 +14,7 @@ var shell = require('child_process').exec;
 var del = require('del');
 var util = require('util');
 var fs = require('fs');
+var tmp = require('tmp');
 
 gulp.task('default', ['build']);
 gulp.task('build', ['docs']);
@@ -24,16 +25,21 @@ gulp.task('docs.example', function () {
 		//.pipe(g.changed(dest))
 		.pipe(g.intercept(function (file) {
 			var dss = require('dss');
-
+			
+			dss.detector(function (line) {
+				if (typeof line !== 'string') return false;
+				var reference = line.split("\n\n").pop();
+				return !!reference.match(/.*@/);
+			});
+			
 			dss.parser('example', function (i, line, block, file) {
-				// find the next instance of a parser (if there is one based on the @ symbol)
-				// in order to isolate the current multi-line parser
-				var nextParserIndex = block.indexOf('* @', i + 1);
-				var bodyLength = nextParserIndex > -1 ? nextParserIndex - i : block.length;
-				var body = block.split('').splice(i, bodyLength).join('');
-				var body = (function (body) {
+				var codeStart = block.indexOf('* ```php\n', i + 1) + 10;
+				var codeEnd = block.indexOf('* ```\n', codeStart + 1);
+				var codeLength = codeEnd > -1 ? codeEnd - codeStart : block.length;
+				var code = block.split('').splice(codeStart, codeLength).join('');
+				var code = (function (code) {
 					var r = [],
-					lines = body.split('\n');
+					lines = code.split('\n');
 					lines.forEach(function (line) {
 						var pattern = '* ',
 						index = line.indexOf(pattern);
@@ -45,14 +51,27 @@ gulp.task('docs.example', function () {
 						if (line && line != '@example') r.push(line);
 					});
 					return r.join('\n');
-				})(body);
+				})(code);
 				
-			 	shell('kss-node --config ' + paths.kssConf, function(error, stdout, stderr) {
-			 		if (error !== null) console.log('' + error);
-			 		else console.log(stdout);
-			 	});
+				/*
+				tmp.file(function (error, path, fd, cleanup) {
+					if (error) throw error;
+					fs.writeSync(fd, '<?php namespace amekusa\\plz; require ""; ' + code);
+					shell('php ' + path, function (error, stdout, stderr) {
+						if (error) console.log(error);
+						else console.log(stdout);
+					});
+					fs.closeSync(fd);
+				});
+				*/
+				
+				fs.writeFileSync('tmp.php', '<?php namespace amekusa\\plz;\nrequire "vendor/autoload.php";\n' + code);
+				shell('php ' + 'tmp.php', function (error, stdout, stderr) {
+					if (error) console.log(error);
+					else console.log(stdout);
+				});
 
-				return body;
+				return code;
 			});
 
 			dss.parse(file.contents.toString(), {}, function (data) {
