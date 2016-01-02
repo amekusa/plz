@@ -1,38 +1,107 @@
-var path = {
+var paths = {
 	pkg: 'package.json',
 	src: 'src',
 	docs: 'docs',
-	docsConf: 'apigen.neon'
+	docsConf: 'apigen.neon',
+	build: 'build',
+	buildSrc: 'build/src'
 };
 
-var pkg = require('./' + path.pkg);
+var pkg = require('./' + paths.pkg);
 var gulp = require('gulp');
 var g = require('gulp-load-plugins')();
 var series = require('run-sequence'); // TODO Replace with gulp.series on Gulp 4.0 release
 var bsync = require('browser-sync');
-var shell = require('child_process').exec;
+var sh = require('child_process');
 var del = require('del');
 var util = require('util');
 var fs = require('fs');
+var tmp = require('tmp');
+var transform = require('vinyl-transform');
+var map = require('map-stream');
 
 gulp.task('default', ['build']);
 gulp.task('build', ['docs']);
 
-gulp.task('docs', ['docs.clean'], function (done) {
-	shell('apigen generate -s ' + path.src + ' -d ' + path.docs,
-	function (error, stdout, stderr) {
+gulp.task('build:src', function () {
+	return gulp.src(paths.src + '/**/*.php')
+		.pipe(g.changed(paths.buildSrc))
+		.pipe(transform(function () {
+			return map(function (chunk, next) {
+				var lines = chunk.toString().split(/\n/);
+				var newLines = [];
+				var contexts = [{name: 'root'}];
+
+				for (var i = 0; i < lines.length; i++) {
+					newLines.push(lines[i]);
+					var line = lines[i].trim();
+					var context = contexts[contexts.length - 1];
+
+					switch (context.name) {
+					case 'root':
+						if (line.match(/^\/\*{2}$/))
+							contexts.push({name: 'doc'}); // Doc starts at "/**"
+						continue;
+					case 'doc': // In a doc block
+						if (line.match(/^\*\//)) contexts.pop(); // Ends at "*/"
+						else if (line.match(/^\* @example/))
+							contexts.push({name: 'example'}); // Example starts at "* @example"
+						continue;
+					case 'example': // In a example block
+						if (line.match(/^\* @example/)); // Does nothing at "* @example"
+						else if (line.match(/^\* @\w+/)) contexts.pop(); // Ends at "* @whatever"
+						else if (line.match(/^\*\//)) {
+							contexts.pop(); // Ends at "*/"
+							i--;
+						} else {
+							var matches = lines[i].match(/^(\s* \* )```php$/);
+							if (matches) {
+								contexts.push({
+									name: 'php',
+									base: matches[1],
+									lines: []
+								});
+							}
+						}
+						continue;
+					case 'php':
+						if (line.match(/^\* ```$/)) { // Ends at "```"
+							var code = context.lines.join('\n');
+							var header = '<?php namespace amekusa\\plz;require "' + __dirname + '/vendor/autoload.php";';
+							var executable = tmp.fileSync({prefix: 'plz-tmp', postfix: '.php'});
+							fs.writeSync(executable.fd, header + code);
+							var result = sh.execSync('php ' + executable.name).toString().trim(); // Evaluate the code
+							if (result) {
+								newLines = newLines.concat(('```php\n' + result + '\n```').split(/\n/)
+									.map(function (line) { // Process every lines
+										return context.base + line;
+									}));
+							}
+							contexts.pop();
+						} else context.lines.push(lines[i].substr(context.base.length));
+						continue;
+					}
+				}
+				return next(null, newLines.join('\n'));
+			});
+		}))
+		.pipe(gulp.dest(paths.buildSrc));
+});
+
+gulp.task('docs', ['docs:clean', 'build:src'], function (done) {
+	sh.exec('apigen generate -s ' + paths.buildSrc + ' -d ' + paths.docs, function (error, stdout, stderr) {
 		if (error !== null) console.log('' + error);
 		else console.log(stdout);
 		done();
 	});
 });
 
-gulp.task('docs.clean', function (done) {
-	return del([path.docs + '/**/*'], done);
+gulp.task('docs:clean', function (done) {
+	return del([paths.docs + '/**/*'], done);
 });
 
-gulp.task('docs.deploy', ['docs'], function () {
-	return gulp.src(path.docs + '/**/*')
+gulp.task('docs:deploy', ['docs'], function () {
+	return gulp.src(paths.docs + '/**/*')
 		.pipe(g.ghPages());
 });
 
@@ -44,14 +113,14 @@ gulp.task('reload', function (done) {
 gulp.task('watch', ['docs'], function () {
 	bsync.init({
 		server: {
-			baseDir: path.docs
+			baseDir: paths.docs
 		}
 	});
 
 	gulp.watch([
-		path.src + '/**/*.php',
-		path.pkg,
-		path.docsConf
+		paths.src + '/**/*.php',
+		paths.pkg,
+		paths.docsConf
 	], function (event) {
 		series('docs', 'reload'); // Run tasks synchronously
 	});
