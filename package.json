@@ -33,6 +33,7 @@
     "gulp-marked": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "map-stream": "0.0.6",
+    "node-emoji": "^1.0.4",
     "run-sequence": "^1.1.5",
     "tmp": "0.0.28",
     "vinyl-transform": "^1.0.0"

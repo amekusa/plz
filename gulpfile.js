@@ -19,6 +19,7 @@ var fs = require('fs');
 var tmp = require('tmp');
 var transform = require('vinyl-transform');
 var map = require('map-stream');
+var emoji = require('node-emoji');
 
 gulp.task('default', ['build']);
 gulp.task('build', ['docs']);
@@ -93,6 +94,11 @@ gulp.task('build:readme', function () {
 	var dest = paths.build;
 	return gulp.src('README.md')
 		.pipe(g.changed(dest, {extension: '.html'}))
+		.pipe(transform(function () {
+			return map(function (chunk, next) {
+				return next(null, emoji.emojify(chunk.toString()));
+			});
+		}))
 		.pipe(g.marked())
 		.pipe(g.rename({extname: '.html'}))
 		.pipe(gulp.dest(dest));
