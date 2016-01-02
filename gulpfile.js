@@ -19,13 +19,15 @@ var fs = require('fs');
 var tmp = require('tmp');
 var transform = require('vinyl-transform');
 var map = require('map-stream');
+var emoji = require('node-emoji');
 
 gulp.task('default', ['build']);
 gulp.task('build', ['docs']);
 
 gulp.task('build:src', function () {
+	var dest = paths.buildSrc;
 	return gulp.src(paths.src + '/**/*.php')
-		.pipe(g.changed(paths.buildSrc))
+		.pipe(g.changed(dest))
 		.pipe(transform(function () {
 			return map(function (chunk, next) {
 				var lines = chunk.toString().split(/\n/);
@@ -85,10 +87,35 @@ gulp.task('build:src', function () {
 				return next(null, newLines.join('\n'));
 			});
 		}))
-		.pipe(gulp.dest(paths.buildSrc));
+		.pipe(gulp.dest(dest));
 });
 
-gulp.task('docs', ['docs:clean', 'build:src'], function (done) {
+gulp.task('build:readme', function () {
+	var dest = paths.build;
+	return gulp.src('README.md')
+		.pipe(g.changed(dest, {extension: '.html'}))
+		.pipe(transform(function () {
+			return map(function (chunk, next) {
+				return next(null, emoji.emojify(chunk.toString()));
+			});
+		}))
+		.pipe(g.marked())
+		.pipe(g.rename({extname: '.html'}))
+		.pipe(gulp.dest(dest));
+});
+
+gulp.task('docs', ['docs:index']);
+
+gulp.task('docs:index', ['docs:api', 'build:readme'], function () {
+	return gulp.src(paths.docs + '/index.html')
+		.pipe(g.dom(function () {
+            this.querySelector('#content').innerHTML = fs.readFileSync(paths.build + '/README.html');
+			return this;
+        }))
+		.pipe(gulp.dest(paths.docs));
+});
+
+gulp.task('docs:api', ['docs:clean', 'build:src'], function (done) {
 	sh.exec('apigen generate -s ' + paths.buildSrc + ' -d ' + paths.docs, function (error, stdout, stderr) {
 		if (error !== null) console.log('' + error);
 		else console.log(stdout);
