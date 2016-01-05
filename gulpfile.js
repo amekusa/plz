@@ -36,42 +36,46 @@ gulp.task('build:src', function () {
 
 			return map(function (chunk, next) {
 				var lines = chunk.toString().split(/\n/);
-				var newLines = [];
+				var parsed = []; // Parsed lines
 				var contexts = [{name: 'root'}];
 
 				for (var i = 0; i < lines.length; i++) {
-					newLines.push(lines[i]);
 					var line = lines[i].trim();
 					var context = contexts[contexts.length - 1];
 
 					switch (context.name) {
 					case 'root':
-						if (line.match(/^\/\*{2}$/))
-							contexts.push({name: 'doc'}); // Doc starts at "/**"
+						parsed.push(lines[i]);
+						if (line.match(/^\/\*{2}$/)) contexts.push({name: 'doc'}); // Doc starts at "/**"
 						continue;
 					case 'doc': // In a doc block
+						parsed.push(lines[i]);
 						if (line.match(/^\*\//)) contexts.pop(); // Ends at "*/"
-						else if (line.match(/^\* @example/))
-							contexts.push({name: 'example'}); // Example starts at "* @example"
+						else if (line.match(/^\* @example/)) contexts.push({name: 'example'}); // Example starts at "* @example"
 						continue;
 					case 'example': // In a example block
-						if (line.match(/^\* @example/)); // Does nothing at "* @example"
-						else if (line.match(/^\* @\w+/)) contexts.pop(); // Ends at "* @whatever"
-						else if (line.match(/^\*\//)) {
+						if (line.match(/^\* @example/)) parsed.push(lines[i]); // Another @example
+						else if (line.match(/^\* @\w+/)) { // Ends at "* @whatever"
+							parsed.push(lines[i]);
+							contexts.pop();
+						} else if (line.match(/^\*\//)) {
 							contexts.pop(); // Ends at "*/"
-							i--;
+							i--; // Step back
 						} else {
-							var matches = lines[i].match(/^(\s* \* )```php$/);
-							if (matches) {
+							var matches = lines[i].match(/^((\s* \* )```php)(?:\s+>>+\s+(\w+))?$/);
+							if (matches) { // PHP starts at " * ```php >> lang"
+								parsed.push(matches[1]);
 								contexts.push({
 									name: 'php',
-									base: matches[1],
+									base: matches[2],
+									outputLang: matches[3] || 'php',
 									lines: []
 								});
-							}
+							} else parsed.push(lines[i]);
 						}
 						continue;
 					case 'php':
+						parsed.push(lines[i]);
 						if (line.match(/^\* ```$/)) { // Ends at "```"
 							var code = context.lines.join('\n');
 							var header = '<?php require "' + __dirname + '/vendor/autoload.php";use amekusa\\plz\\' + cls + ';';
@@ -82,17 +86,18 @@ gulp.task('build:src', function () {
 							fs.writeSync(executable.fd, header + code);
 							var result = sh.execSync('php ' + executable.name).toString().trim(); // Evaluate the code
 							if (result) {
-								newLines = newLines.concat(('```php\n' + result + '\n```').split(/\n/)
+								parsed = parsed.concat(('```' + context.outputLang + '\n' + result + '\n```').split(/\n/)
 									.map(function (line) { // Process every lines
 										return context.base + line;
-									}));
+									})
+								);
 							}
 							contexts.pop();
 						} else context.lines.push(lines[i].substr(context.base.length));
 						continue;
 					}
 				}
-				return next(null, newLines.join('\n'));
+				return next(null, parsed.join('\n'));
 			});
 		}))
 		.pipe(gulp.dest(dest));
@@ -121,9 +126,9 @@ gulp.task('docs', ['docs:index']);
 gulp.task('docs:index', ['docs:api', 'build:readme'], function () {
 	return gulp.src(paths.docs + '/index.html')
 		.pipe(g.dom(function () {
-            this.querySelector('#content').innerHTML = fs.readFileSync(paths.build + '/README.html');
+			this.querySelector('#content').innerHTML = fs.readFileSync(paths.build + '/README.html');
 			return this;
-        }))
+		}))
 		.pipe(gulp.dest(paths.docs));
 });
 
@@ -155,7 +160,6 @@ gulp.task('watch', ['docs'], function () {
 			baseDir: paths.docs
 		}
 	});
-
 	gulp.watch([
 		paths.src + '/**/*.php',
 		paths.pkg,
