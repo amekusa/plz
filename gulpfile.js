@@ -24,6 +24,7 @@ var emoji = require('node-emoji');
 
 gulp.task('default', ['build']);
 gulp.task('build', ['docs']);
+gulp.task('clean', ['build:clean', 'docs:clean']);
 
 gulp.task('build:src', function () {
 	var dest = paths.buildSrc;
@@ -109,6 +110,10 @@ gulp.task('build:readme', function () {
 		.pipe(g.marked())
 		.pipe(g.rename({extname: '.html'}))
 		.pipe(gulp.dest(dest));
+});
+
+gulp.task('build:clean', function (done) {
+	return del([paths.build + '/**/*'], done);
 });
 
 gulp.task('docs', ['docs:index']);
