@@ -16,6 +16,7 @@ var sh = require('child_process');
 var del = require('del');
 var util = require('util');
 var fs = require('fs');
+var path = require('path');
 var tmp = require('tmp');
 var transform = require('vinyl-transform');
 var map = require('map-stream');
@@ -28,7 +29,10 @@ gulp.task('build:src', function () {
 	var dest = paths.buildSrc;
 	return gulp.src(paths.src + '/**/*.php')
 		.pipe(g.changed(dest))
-		.pipe(transform(function () {
+		.pipe(transform(function (src) {
+			console.log('Processing: ' + src);
+			var cls = path.basename(src, '.php');
+
 			return map(function (chunk, next) {
 				var lines = chunk.toString().split(/\n/);
 				var newLines = [];
@@ -69,8 +73,11 @@ gulp.task('build:src', function () {
 					case 'php':
 						if (line.match(/^\* ```$/)) { // Ends at "```"
 							var code = context.lines.join('\n');
-							var header = '<?php namespace amekusa\\plz;require "' + __dirname + '/vendor/autoload.php";';
-							var executable = tmp.fileSync({prefix: 'plz-tmp', postfix: '.php'});
+							var header = '<?php require "' + __dirname + '/vendor/autoload.php";use amekusa\\plz\\' + cls + ';';
+							var executable = tmp.fileSync({
+								prefix: cls + '-example-at' + i + '_',
+								postfix: '.php'
+							});
 							fs.writeSync(executable.fd, header + code);
 							var result = sh.execSync('php ' + executable.name).toString().trim(); // Evaluate the code
 							if (result) {
