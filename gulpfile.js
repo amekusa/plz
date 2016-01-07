@@ -22,6 +22,11 @@ var transform = require('vinyl-transform');
 var map = require('map-stream');
 var emoji = require('node-emoji');
 
+var args = require('yargs').argv;
+var mode = {
+	clean: args.c || args.clean
+};
+
 gulp.task('default', ['build']);
 gulp.task('build', ['docs']);
 gulp.task('clean', ['build:clean', 'docs:clean']);
@@ -29,7 +34,7 @@ gulp.task('clean', ['build:clean', 'docs:clean']);
 gulp.task('build:src', function () {
 	var dest = paths.buildSrc;
 	return gulp.src(paths.src + '/**/*.php')
-		.pipe(g.changed(dest))
+		.pipe(g.if(!mode.clean, g.changed(dest)))
 		.pipe(transform(function (src) {
 			console.log('Processing: ' + src);
 			var cls = path.basename(src, '.php');
@@ -106,7 +111,7 @@ gulp.task('build:src', function () {
 gulp.task('build:readme', function () {
 	var dest = paths.build;
 	return gulp.src('README.md')
-		.pipe(g.changed(dest, {extension: '.html'}))
+		.pipe(g.if(!mode.clean, g.changed(dest, {extension: '.html'})))
 		.pipe(transform(function () {
 			return map(function (chunk, next) {
 				return next(null, emoji.emojify(chunk.toString()));
