@@ -117,7 +117,7 @@
 
 
 	<div class="description">
-	<p>A collection of utilities for Numbers.</p>
+	<p>Number utilities</p>
 
 <p>To get started, place the following line around top of your code.</p>
 
@@ -138,7 +138,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.num.html#3-59" title="Go to source code">num.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.num.html#3-85" title="Go to source code">num.php</a>
 		<br>
 	</div>
 
@@ -158,7 +158,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordinal">#</a>
-			<code><a href="source-class-amekusa.plz.num.html#13-41" title="Go to source code">ordinal</a>( <span>integer <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.num.html#13-58" title="Go to source code">ordinal</a>( <span>integer <var>$X</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns an ordinal number</p>
@@ -182,12 +182,25 @@
 
 					<h4>Example</h4>
 					<div class="list">
-							<p>Basic usage</p>
+							<p>Demonstration</p>
 
-<pre><span class="php-var">$r1</span> = num::ordinal(<span class="php-num">1</span>); <span class="php-comment">// $r1 = '1st'</span>
-<span class="php-var">$r2</span> = num::ordinal(<span class="php-num">2</span>); <span class="php-comment">// $r2 = '2nd'</span>
-<span class="php-var">$r3</span> = num::ordinal(<span class="php-num">3</span>); <span class="php-comment">// $r3 = '3rd'</span>
-<span class="php-var">$r4</span> = num::ordinal(<span class="php-num">4</span>); <span class="php-comment">// $r4 = '4th'</span></pre><br>
+<pre><span class="php-keyword2">var_dump</span>( num::ordinal(<span class="php-num">1</span>) );  <span class="php-comment">// First</span>
+<span class="php-keyword2">var_dump</span>( num::ordinal(<span class="php-num">2</span>) );  <span class="php-comment">// Second</span>
+<span class="php-keyword2">var_dump</span>( num::ordinal(<span class="php-num">3</span>) );  <span class="php-comment">// Third</span>
+<span class="php-keyword2">var_dump</span>( num::ordinal(<span class="php-num">4</span>) );  <span class="php-comment">// Fourth</span>
+<span class="php-keyword2">var_dump</span>( num::ordinal(<span class="php-num">11</span>) ); <span class="php-comment">// Eleventh</span>
+<span class="php-keyword2">var_dump</span>( num::ordinal(<span class="php-num">20</span>) ); <span class="php-comment">// Twentieth</span>
+<span class="php-keyword2">var_dump</span>( num::ordinal(<span class="php-num">21</span>) ); <span class="php-comment">// Twenty-first</span>
+<span class="php-keyword2">var_dump</span>( num::ordinal(-<span class="php-num">1</span>) ); <span class="php-comment">// Negative first</span></pre>
+
+<pre>string(<span class="php-num">3</span>) <span class="php-quote">&quot;1st&quot;</span>
+string(<span class="php-num">3</span>) <span class="php-quote">&quot;2nd&quot;</span>
+string(<span class="php-num">3</span>) <span class="php-quote">&quot;3rd&quot;</span>
+string(<span class="php-num">3</span>) <span class="php-quote">&quot;4th&quot;</span>
+string(<span class="php-num">4</span>) <span class="php-quote">&quot;11th&quot;</span>
+string(<span class="php-num">4</span>) <span class="php-quote">&quot;20th&quot;</span>
+string(<span class="php-num">4</span>) <span class="php-quote">&quot;21st&quot;</span>
+string(<span class="php-num">4</span>) <span class="php-quote">&quot;-1st&quot;</span></pre><br>
 					</div>
 
 
@@ -205,7 +218,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_abc">#</a>
-			<code><a href="source-class-amekusa.plz.num.html#43-58" title="Go to source code">abc</a>( <span>integer <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.num.html#60-84" title="Go to source code">abc</a>( <span>integer <var>$X</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns an alphabetic character indexed by <code>$X</code></p>
@@ -229,11 +242,19 @@
 
 					<h4>Example</h4>
 					<div class="list">
-							<p>Basic usage</p>
+							<p>Demonstration</p>
 
-<pre><span class="php-var">$r1</span> = num::abc(<span class="php-num">0</span>);  <span class="php-comment">// $r1 = 'a'</span>
-<span class="php-var">$r2</span> = num::abc(<span class="php-num">25</span>); <span class="php-comment">// $r2 = 'z'</span>
-<span class="php-var">$r3</span> = num::abc(<span class="php-num">26</span>); <span class="php-comment">// $r3 = 'a'</span></pre><br>
+<pre><span class="php-keyword2">var_dump</span>( num::abc(<span class="php-num">0</span>) );  <span class="php-comment">// 'a'</span>
+<span class="php-keyword2">var_dump</span>( num::abc(<span class="php-num">1</span>) );  <span class="php-comment">// 'b'</span>
+<span class="php-keyword2">var_dump</span>( num::abc(<span class="php-num">2</span>) );  <span class="php-comment">// 'c'</span>
+<span class="php-keyword2">var_dump</span>( num::abc(<span class="php-num">25</span>) ); <span class="php-comment">// 'z'</span>
+<span class="php-keyword2">var_dump</span>( num::abc(<span class="php-num">26</span>) ); <span class="php-comment">// 'a'</span></pre>
+
+<pre>string(<span class="php-num">1</span>) <span class="php-quote">&quot;a&quot;</span>
+string(<span class="php-num">1</span>) <span class="php-quote">&quot;b&quot;</span>
+string(<span class="php-num">1</span>) <span class="php-quote">&quot;c&quot;</span>
+string(<span class="php-num">1</span>) <span class="php-quote">&quot;z&quot;</span>
+string(<span class="php-num">1</span>) <span class="php-quote">&quot;a&quot;</span></pre><br>
 					</div>
 
 

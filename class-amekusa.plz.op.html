@@ -138,7 +138,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.op.html#3-149" title="Go to source code">op.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.op.html#3-151" title="Go to source code">op.php</a>
 		<br>
 	</div>
 
@@ -198,7 +198,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_any">#</a>
-			<code><a href="source-class-amekusa.plz.op.html#46-96" title="Go to source code">any</a>( <span>mixed[*] <var>$Conditions</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.op.html#46-97" title="Go to source code">any</a>( <span>mixed[*] <var>$Conditions</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns whether any one of conditions supplied is <em>truthy</em></p>
@@ -208,7 +208,7 @@
 				<p>Returns whether any one of conditions supplied is <em>truthy</em></p>
 
 <p>If only 1 argument is passed and it is <em>iterable</em>,
-checks whether any one of its elements is <em>truthy</em></p>
+checks whether any one of its elements is <em>truthy</em>.</p>
 
 
 					<h4>Parameters</h4>
@@ -225,34 +225,33 @@ checks whether any one of its elements is <em>truthy</em></p>
 
 					<h4>Example</h4>
 					<div class="list">
-							<p>Basic usage</p>
+							<p>Demonstration</p>
 
-<pre><span class="php-var">$var1</span> = <span class="php-keyword1">null</span>;     <span class="php-comment">// Falsy</span>
-<span class="php-var">$var2</span> = <span class="php-num">0</span>;        <span class="php-comment">// Falsy</span>
+<pre><span class="php-var">$var1</span> = <span class="php-num">0</span>;        <span class="php-comment">// Falsy</span>
+<span class="php-var">$var2</span> = <span class="php-keyword1">null</span>;     <span class="php-comment">// Falsy</span>
 <span class="php-var">$var3</span> = <span class="php-quote">'string'</span>; <span class="php-comment">// Truthy</span>
-<span class="php-keyword1">if</span> (op::any(<span class="php-var">$var1</span>, <span class="php-var">$var2</span>, <span class="php-var">$var3</span>)) {
-  <span class="php-keyword1">echo</span> <span class="php-quote">'true'</span>;
-} <span class="php-keyword1">else</span> {
-  <span class="php-keyword1">echo</span> <span class="php-quote">'false'</span>;
-}</pre>
+<span class="php-keyword2">var_dump</span>( op::any(<span class="php-var">$var1</span>, <span class="php-var">$var2</span>)        );
+<span class="php-keyword2">var_dump</span>( op::any(<span class="php-var">$var1</span>, <span class="php-var">$var2</span>, <span class="php-var">$var3</span>) );</pre>
 
-<pre><code class="html">true
-</code></pre><br>
+<pre>bool(<span class="php-keyword1">false</span>)
+bool(<span class="php-keyword1">true</span>)</pre><br>
 							<p>Checking iterable elements</p>
 
-<pre><span class="php-var">$var</span> = <span class="php-keyword1">array</span> (
-  <span class="php-keyword1">null</span>,    <span class="php-comment">// Falsy</span>
+<pre><span class="php-var">$var1</span> = <span class="php-keyword1">array</span> (
   <span class="php-num">0</span>,       <span class="php-comment">// Falsy</span>
+  <span class="php-keyword1">null</span>,    <span class="php-comment">// Falsy</span>
   <span class="php-quote">'string'</span> <span class="php-comment">// Truthy</span>
 );
-<span class="php-keyword1">if</span> (op::any(<span class="php-var">$var</span>)) {
-  <span class="php-keyword1">echo</span> <span class="php-quote">'true'</span>;
-} <span class="php-keyword1">else</span> {
-  <span class="php-keyword1">echo</span> <span class="php-quote">'false'</span>;
-}</pre>
+<span class="php-var">$var2</span> = <span class="php-keyword1">array</span> (
+  <span class="php-num">0</span>,       <span class="php-comment">// Falsy</span>
+  <span class="php-keyword1">null</span>,    <span class="php-comment">// Falsy</span>
+  <span class="php-keyword1">false</span>    <span class="php-comment">// Falsy</span>
+);
+<span class="php-keyword2">var_dump</span>( op::any(<span class="php-var">$var1</span>) );
+<span class="php-keyword2">var_dump</span>( op::any(<span class="php-var">$var2</span>) );</pre>
 
-<pre><code class="html">true
-</code></pre><br>
+<pre>bool(<span class="php-keyword1">true</span>)
+bool(<span class="php-keyword1">false</span>)</pre><br>
 					</div>
 
 
@@ -270,7 +269,7 @@ checks whether any one of its elements is <em>truthy</em></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_all">#</a>
-			<code><a href="source-class-amekusa.plz.op.html#98-148" title="Go to source code">all</a>( <span>mixed[*] <var>$Conditions</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.op.html#99-150" title="Go to source code">all</a>( <span>mixed[*] <var>$Conditions</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns whether all of conditions supplied is <em>truthy</em></p>
@@ -280,7 +279,7 @@ checks whether any one of its elements is <em>truthy</em></p>
 				<p>Returns whether all of conditions supplied is <em>truthy</em></p>
 
 <p>If only 1 argument is passed and it is <em>iterable</em>,
-checks whether all of its elements is <em>truthy</em></p>
+checks whether all of its elements is <em>truthy</em>.</p>
 
 
 					<h4>Parameters</h4>
@@ -297,34 +296,33 @@ checks whether all of its elements is <em>truthy</em></p>
 
 					<h4>Example</h4>
 					<div class="list">
-							<p>Basic usage</p>
+							<p>Demonstration</p>
 
-<pre><span class="php-var">$var1</span> = <span class="php-keyword1">null</span>;     <span class="php-comment">// Falsy</span>
-<span class="php-var">$var2</span> = <span class="php-num">0</span>;        <span class="php-comment">// Falsy</span>
-<span class="php-var">$var3</span> = <span class="php-quote">'string'</span>; <span class="php-comment">// Truthy</span>
-<span class="php-keyword1">if</span> (op::all(<span class="php-var">$var1</span>, <span class="php-var">$var2</span>, <span class="php-var">$var3</span>)) {
-  <span class="php-keyword1">echo</span> <span class="php-quote">'true'</span>;
-} <span class="php-keyword1">else</span> {
-  <span class="php-keyword1">echo</span> <span class="php-quote">'false'</span>;
-}</pre>
+<pre><span class="php-var">$var1</span> = <span class="php-num">1</span>;    <span class="php-comment">// Truthy</span>
+<span class="php-var">$var2</span> = <span class="php-keyword1">true</span>; <span class="php-comment">// Truthy</span>
+<span class="php-var">$var3</span> = <span class="php-keyword1">null</span>; <span class="php-comment">// Falsy</span>
+<span class="php-keyword2">var_dump</span>( op::all(<span class="php-var">$var1</span>, <span class="php-var">$var2</span>)        );
+<span class="php-keyword2">var_dump</span>( op::all(<span class="php-var">$var1</span>, <span class="php-var">$var2</span>, <span class="php-var">$var3</span>) );</pre>
 
-<pre><code class="html">false
-</code></pre><br>
+<pre>bool(<span class="php-keyword1">true</span>)
+bool(<span class="php-keyword1">false</span>)</pre><br>
 							<p>Checking iterable elements</p>
 
-<pre><span class="php-var">$var</span> = <span class="php-keyword1">array</span> (
-  <span class="php-keyword1">null</span>,    <span class="php-comment">// Falsy</span>
-  <span class="php-num">0</span>,       <span class="php-comment">// Falsy</span>
+<pre><span class="php-var">$var1</span> = <span class="php-keyword1">array</span> (
+  <span class="php-num">1</span>,       <span class="php-comment">// Truthy</span>
+  <span class="php-keyword1">true</span>,    <span class="php-comment">// Truthy</span>
+  <span class="php-keyword1">null</span>     <span class="php-comment">// Falsy</span>
+);
+<span class="php-var">$var2</span> = <span class="php-keyword1">array</span> (
+  <span class="php-num">1</span>,       <span class="php-comment">// Truthy</span>
+  <span class="php-keyword1">true</span>,    <span class="php-comment">// Truthy</span>
   <span class="php-quote">'string'</span> <span class="php-comment">// Truthy</span>
 );
-<span class="php-keyword1">if</span> (op::all(<span class="php-var">$var</span>)) {
-  <span class="php-keyword1">echo</span> <span class="php-quote">'true'</span>;
-} <span class="php-keyword1">else</span> {
-  <span class="php-keyword1">echo</span> <span class="php-quote">'false'</span>;
-}</pre>
+<span class="php-keyword2">var_dump</span>( op::all(<span class="php-var">$var1</span>) );
+<span class="php-keyword2">var_dump</span>( op::all(<span class="php-var">$var2</span>) );</pre>
 
-<pre><code class="html">false
-</code></pre><br>
+<pre>bool(<span class="php-keyword1">false</span>)
+bool(<span class="php-keyword1">true</span>)</pre><br>
 					</div>
 
 

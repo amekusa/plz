@@ -117,7 +117,7 @@
 
 
 	<div class="description">
-	<p>A collection of utilities for Constants.</p>
+	<p>Constant utilities</p>
 
 <p>To get started, place the following line around top of your code.</p>
 
@@ -138,7 +138,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.constant.html#3-29" title="Go to source code">constant.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.constant.html#3-63" title="Go to source code">constant.php</a>
 		<br>
 	</div>
 
@@ -158,7 +158,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_get">#</a>
-			<code><a href="source-class-amekusa.plz.constant.html#13-28" title="Go to source code">get</a>( <span>string <var>$X</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$Defines</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.constant.html#13-62" title="Go to source code">get</a>( <span>string <var>$X</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$Defines</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				<p>Returns the value of constant:<code>$X</code></p>
@@ -187,6 +187,39 @@ Additionally, if the 3rd is <code>true</code>, defines constant:<code>$X</code> 
 					</div>
 
 
+					<h4>Example</h4>
+					<div class="list">
+							<p>Demonstration</p>
+
+<pre><span class="php-keyword2">define</span>(<span class="php-quote">'CONST_X'</span>, <span class="php-quote">'I am CONST_X.'</span>);
+<span class="php-keyword2">define</span>(<span class="php-quote">'CONST_Y'</span>, <span class="php-quote">'I am CONST_Y.'</span>);
+<span class="php-keyword2">var_dump</span>( <span class="php-keyword2">constant</span>::get(<span class="php-quote">'CONST_X'</span>)                      );
+<span class="php-keyword2">var_dump</span>( <span class="php-keyword2">constant</span>::get(<span class="php-quote">'CONST_Y'</span>)                      );
+<span class="php-keyword2">var_dump</span>( <span class="php-keyword2">constant</span>::get(<span class="php-quote">'CONST_Z'</span>)                      ); <span class="php-comment">// Alternates with NULL</span>
+<span class="php-keyword2">var_dump</span>( <span class="php-keyword2">constant</span>::get(<span class="php-quote">'CONST_Z'</span>, <span class="php-quote">'No such constant!'</span>) ); <span class="php-comment">// Alternates with a string</span></pre>
+
+<pre>string(<span class="php-num">13</span>) <span class="php-quote">&quot;I am CONST_X.&quot;</span>
+string(<span class="php-num">13</span>) <span class="php-quote">&quot;I am CONST_Y.&quot;</span>
+<span class="php-keyword1">NULL</span>
+string(<span class="php-num">17</span>) <span class="php-quote">&quot;No such constant!&quot;</span></pre><br>
+							<p>Just-in-Time <code>define()</code></p>
+
+<pre><span class="php-keyword2">define</span>(<span class="php-quote">'CONST_X'</span>, <span class="php-quote">'I am CONST_X.'</span>);
+<span class="php-keyword2">define</span>(<span class="php-quote">'CONST_Y'</span>, <span class="php-quote">'I am CONST_Y.'</span>);
+<span class="php-keyword2">var_dump</span>( <span class="php-keyword2">constant</span>::get(<span class="php-quote">'CONST_X'</span>)                        );
+<span class="php-keyword2">var_dump</span>( <span class="php-keyword2">constant</span>::get(<span class="php-quote">'CONST_Y'</span>)                        );
+<span class="php-keyword2">var_dump</span>( <span class="php-keyword2">constant</span>::get(<span class="php-quote">'CONST_Z'</span>, <span class="php-quote">'I am CONST_Z.'</span>, <span class="php-keyword1">true</span>) );
+<span class="php-keyword1">echo</span> <span class="php-quote">'Hi, '</span> . CONST_X . <span class="php-quote">&quot;\n&quot;</span>;
+<span class="php-keyword1">echo</span> <span class="php-quote">'Hi, '</span> . CONST_Y . <span class="php-quote">&quot;\n&quot;</span>;
+<span class="php-keyword1">echo</span> <span class="php-quote">'Hi, '</span> . CONST_Z . <span class="php-quote">&quot;\n&quot;</span>;</pre>
+
+<pre>string(<span class="php-num">13</span>) <span class="php-quote">&quot;I am CONST_X.&quot;</span>
+string(<span class="php-num">13</span>) <span class="php-quote">&quot;I am CONST_Y.&quot;</span>
+string(<span class="php-num">13</span>) <span class="php-quote">&quot;I am CONST_Z.&quot;</span>
+Hi, I am CONST_X.
+Hi, I am CONST_Y.
+Hi, I am CONST_Z.</pre><br>
+					</div>
 
 
 			</div>

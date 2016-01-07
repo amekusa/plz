@@ -117,7 +117,7 @@
 
 
 	<div class="description">
-	<p>A collection of utilities for fail-safe.</p>
+	<p>Fail-safe utilities</p>
 
 <p>To get started, place the following line around top of your code.</p>
 
@@ -138,7 +138,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.alt.html#3-46" title="Go to source code">alt.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.alt.html#3-54" title="Go to source code">alt.php</a>
 		<br>
 	</div>
 
@@ -158,7 +158,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_null">#</a>
-			<code><a href="source-class-amekusa.plz.alt.html#13-28" title="Go to source code">null</a>( <span>mixed <var>$X</var></span>, <span>mixed <var>$Alt</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.alt.html#13-32" title="Go to source code">null</a>( <span>mixed <var>$X</var></span>, <span>mixed <var>$Alt</var></span> )</code>
 
 			<div class="description short">
 				<p>If <code>$X</code> is <code>null</code>, returns <code>$Alt</code>. Otherwise returns <code>$X</code></p>
@@ -184,12 +184,15 @@
 
 					<h4>Example</h4>
 					<div class="list">
-							<p>Basic usage</p>
+							<p>Demonstration</p>
 
 <pre><span class="php-var">$var1</span> = <span class="php-quote">'Not Null'</span>;
 <span class="php-var">$var2</span> = <span class="php-keyword1">null</span>;
-<span class="php-var">$r1</span> = alt::<span class="php-keyword1">null</span>(<span class="php-var">$var1</span>, <span class="php-quote">'Null'</span>); <span class="php-comment">// $r1 = 'Not Null'</span>
-<span class="php-var">$r2</span> = alt::<span class="php-keyword1">null</span>(<span class="php-var">$var2</span>, <span class="php-quote">'Null'</span>); <span class="php-comment">// $r2 = 'Null'</span></pre><br>
+<span class="php-keyword2">var_dump</span>( alt::<span class="php-keyword1">null</span>(<span class="php-var">$var1</span>, <span class="php-quote">'Null'</span>) );
+<span class="php-keyword2">var_dump</span>( alt::<span class="php-keyword1">null</span>(<span class="php-var">$var2</span>, <span class="php-quote">'Null'</span>) );</pre>
+
+<pre>string(<span class="php-num">8</span>) <span class="php-quote">&quot;Not Null&quot;</span>
+string(<span class="php-num">4</span>) <span class="php-quote">&quot;Null&quot;</span></pre><br>
 					</div>
 
 
@@ -207,7 +210,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_false">#</a>
-			<code><a href="source-class-amekusa.plz.alt.html#30-45" title="Go to source code">false</a>( <span>mixed <var>$X</var></span>, <span>mixed <var>$Alt</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.alt.html#34-53" title="Go to source code">false</a>( <span>mixed <var>$X</var></span>, <span>mixed <var>$Alt</var></span> )</code>
 
 			<div class="description short">
 				<p>If <code>$X</code> is <em>falsy</em>, returns <code>$Alt</code>. Otherwise returns <code>$X</code></p>
@@ -233,12 +236,15 @@
 
 					<h4>Example</h4>
 					<div class="list">
-							<p>Basic usage</p>
+							<p>Demonstration</p>
 
 <pre><span class="php-var">$var1</span> = <span class="php-quote">'Truthy'</span>;
 <span class="php-var">$var2</span> = <span class="php-quote">''</span>;
-<span class="php-var">$r1</span> = alt::<span class="php-keyword1">false</span>(<span class="php-var">$var1</span>, <span class="php-quote">'Falsy'</span>); <span class="php-comment">// $r1 = 'Truthy'</span>
-<span class="php-var">$r2</span> = alt::<span class="php-keyword1">false</span>(<span class="php-var">$var2</span>, <span class="php-quote">'Falsy'</span>); <span class="php-comment">// $r2 = 'Falsy'</span></pre><br>
+<span class="php-keyword2">var_dump</span>( alt::<span class="php-keyword1">false</span>(<span class="php-var">$var1</span>, <span class="php-quote">'Falsy'</span>) );
+<span class="php-keyword2">var_dump</span>( alt::<span class="php-keyword1">false</span>(<span class="php-var">$var2</span>, <span class="php-quote">'Falsy'</span>) );</pre>
+
+<pre>string(<span class="php-num">6</span>) <span class="php-quote">&quot;Truthy&quot;</span>
+string(<span class="php-num">5</span>) <span class="php-quote">&quot;Falsy&quot;</span></pre><br>
 					</div>
 
 
