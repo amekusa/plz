@@ -1,7 +1,7 @@
-<?php namespace amekusa\plz;
+<?php namespace amekusa\plz; main::required;
 
 /**
- * A collection of utilities for Objects.
+ * Object utilities
  *
  * To get started, place the following line around top of your code.
  * ```php
@@ -15,7 +15,7 @@ abstract class obj {
 	 *
 	 * If `$X` has a *getter* method, calls it.
 	 *
-	 * @example Basic usage
+	 * @example Demonstration
 	 * ```php
 	 * class Student {
 	 *   public $name;
@@ -28,8 +28,10 @@ abstract class obj {
 	 * }
 	 *
 	 * $student = new Student('Alice', 21);
-	 * $r1 = obj::get($student, 'name', 'Secret!'); // $r1 = 'Alice'
-	 * $r2 = obj::get($student, 'age', 'Secret!');  // $r2 = 'Secret!'
+	 * var_dump( obj::get($student, 'name') );
+	 * // Because of $age is private and no getter method, you can never get it
+	 * var_dump( obj::get($student, 'age') );            // Alternates with NULL
+	 * var_dump( obj::get($student, 'age', 'Secret!') ); // Alternates with a string
 	 * ```
 	 * @example Calling a *getter* method
 	 * ```php
@@ -44,13 +46,14 @@ abstract class obj {
 	 *
 	 *   // The getter method for $age
 	 *   public function getAge() {
-	 *     return $this->age - 2; // Lies :P
+	 *     return $this->age;
 	 *   }
 	 * }
 	 *
 	 * $student = new Student('Alice', 21);
-	 * $r1 = obj::get($student, 'name', 'Secret!'); // $r1 = 'Alice'
-	 * $r2 = obj::get($student, 'age', 'Secret!');  // $r2 = '19'
+	 * var_dump( obj::get($student, 'name') );
+	 * var_dump( obj::get($student, 'age') );            // Invokes $student->getAge()
+	 * var_dump( obj::get($student, 'age', 'Secret!') ); // No alternation
 	 * ```
 	 * @param object $X An object to retrieve a property from
 	 * @param string $Prop The name of a property to get

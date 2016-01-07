@@ -1,7 +1,7 @@
-<?php namespace amekusa\plz;
+<?php namespace amekusa\plz; main::required;
 
 /**
- * A collection of utilities for System.
+ * System utilities
  *
  * To get started, place the following line around top of your code.
  * ```php

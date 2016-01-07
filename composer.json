@@ -21,9 +21,6 @@
 	"autoload" : {
 		"psr-4" : {
 			"amekusa\\plz\\" : "src"
-		},
-		"files" : [
-			"src/main.php"
-		]
+		}
 	}
 }

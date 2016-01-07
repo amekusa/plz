@@ -1,7 +1,7 @@
-<?php namespace amekusa\plz;
+<?php namespace amekusa\plz; main::required;
 
 /**
- * A collection of utilities for Strings.
+ * String utilities
  *
  * To get started, place the following line around top of your code.
  * ```php
@@ -12,6 +12,15 @@ abstract class str {
 
 	/**
 	 * Returns whether `$X` equals `$Y`
+	 * @example Demonstration
+	 * ```php
+	 * $var1 = 'ABC';
+	 * $var2 = 'ABC';
+	 * $var3 = 'Abc';
+	 * var_dump( str::eq($var1, $var2)       );
+	 * var_dump( str::eq($var1, $var3)       );
+	 * var_dump( str::eq($var1, $var3, true) ); // Case-insensitive
+	 * ```
 	 * @param string $X A string to compare with `$Y`
 	 * @param string $Y A string to compare with `$X`
 	 * @param boolean $CaseInsensitive *(optional)* Whether or not to ignore letter case
@@ -24,15 +33,29 @@ abstract class str {
 
 	/**
 	 * Returns whether `$X` contains any visible character
+	 * @example Demonstration
+	 * ```php
+	 * $var1 = " \t \n ";   // Spaces, Tab, Linebreak
+	 * $var2 = " \t \n _ "; // Spaces, Tab, Linebreak, and Underscore
+	 * var_dump( str::is_visible($var1) );
+	 * var_dump( str::is_visible($var2) );
+	 * ```
 	 * @param string $X
 	 * @return boolean
 	 */
 	static function is_visible($X) {
-		return !empty(trim($X));
+		return !empty(str::trim($X));
 	}
 
 	/**
 	 * Returns whether `$X` contains any multibyte character
+	 * @example Demonstration
+	 * ```php
+	 * $var1 = "ABC 123";
+	 * $var2 = "ABC 一二三";
+	 * var_dump( str::is_mb($var1) );
+	 * var_dump( str::is_mb($var2) );
+	 * ```
 	 * @param string $X
 	 * @return boolean
 	 */
@@ -42,6 +65,15 @@ abstract class str {
 
 	/**
 	 * Returns whether `$X` contains `$Y`
+	 * @example Demonstration
+	 * ```php
+	 * $haystack = "ABCDEFGHI";
+	 * $needle1  = "DEF";
+	 * $needle2  = "Def";
+	 * var_dump( str::contains($haystack, $needle1)       );
+	 * var_dump( str::contains($haystack, $needle2)       );
+	 * var_dump( str::contains($haystack, $needle2, true) ); // Case-insensitive
+	 * ```
 	 * @param string $X A haystack
 	 * @param string $Y A needle
 	 * @param boolean $CaseInsensitive *(optional)* Whether or not to ignore letter case
@@ -63,14 +95,14 @@ abstract class str {
 
 	/**
 	 * Replaces newline characters in `$X` with the supplied string
-	 * @example Replace every line-breaks with `<br>`
-	 * ```php
-	 * $var = <<<DOC
+	 * @example Replacing every line-breaks with `<br>\n`
+	 * ```php >> html
+	 * $var = <<<TEXT
 	 * If the doors of perception were cleansed
 	 * every thing would appear to man as it is,
-	 * Infinite
-	 * DOC;
-	 * echo str::replace_nl('<br>', $var);
+	 * Infinite.
+	 * TEXT;
+	 * echo str::replace_nl($var, "<br>\n");
 	 * ```
 	 * @param string $X A haystack
 	 * @param string $With *(optional)* A replacement string
@@ -83,19 +115,13 @@ abstract class str {
 
 	/**
 	 * Repeats `$X`
-	 * @example Basic usage
+	 * @example Demonstration
 	 * ```php
 	 * echo str::repeat('Knock');
 	 * ```
-	 * ```html
-	 * KnockKnock
-	 * ```
-	 * @example Repeats so many times
+	 * @example Repeating so many times
 	 * ```php
 	 * echo 'YEA'.str::repeat('H', 32).'!!';
-	 * ```
-	 * ```html
-	 * YEAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!
 	 * ```
 	 * @param string $X A string to repeat
 	 * @param integer $Times *(optional)* How many times `$X` to appear
@@ -105,6 +131,6 @@ abstract class str {
 		if ($Times == 1) return $X;
 		$r = '';
 		for ($i = 1; $i < $Times; $i++) $r .= ($X . $Insert);
-		return $r . $X;
+		return $r.$X;
 	}
 }
