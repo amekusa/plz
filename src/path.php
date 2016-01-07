@@ -1,7 +1,7 @@
-<?php namespace amekusa\plz;
+<?php namespace amekusa\plz; main::required;
 
 /**
- * A collection of utilities for Path.
+ * Path utilities
  *
  * To get started, place the following line around top of your code.
  * ```php
@@ -12,10 +12,10 @@ abstract class path {
 
 	/**
 	 * Returns the extension of a file path
-	 * @example
+	 * @example Demonstration
 	 * ```php
-	 * $var = 'logotype.svg';
-	 * $r = path::ext($var); // $r = 'svg'
+	 * $var = 'choosy-developers-choose.gif';
+	 * var_dump( path::ext($var) );
 	 * ```
 	 * @param string $X A file path
 	 * @return string The extension of `$X`

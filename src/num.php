@@ -1,7 +1,7 @@
-<?php namespace amekusa\plz;
+<?php namespace amekusa\plz; main::required;
 
 /**
- * A collection of utilities for Numbers.
+ * Number utilities
  *
  * To get started, place the following line around top of your code.
  * ```php
@@ -12,20 +12,25 @@ abstract class num {
 
 	/**
 	 * Returns an ordinal number
-	 * @example Basic usage
+	 * @example Demonstration
 	 * ```php
-	 * $r1 = num::ordinal(1); // $r1 = '1st'
-	 * $r2 = num::ordinal(2); // $r2 = '2nd'
-	 * $r3 = num::ordinal(3); // $r3 = '3rd'
-	 * $r4 = num::ordinal(4); // $r4 = '4th'
+	 * var_dump( num::ordinal(1) );  // First
+	 * var_dump( num::ordinal(2) );  // Second
+	 * var_dump( num::ordinal(3) );  // Third
+	 * var_dump( num::ordinal(4) );  // Fourth
+	 * var_dump( num::ordinal(11) ); // Eleventh
+	 * var_dump( num::ordinal(20) ); // Twentieth
+	 * var_dump( num::ordinal(21) ); // Twenty-first
+	 * var_dump( num::ordinal(-1) ); // Negative first
 	 * ```
 	 * @param integer $X A number
 	 * @return string
 	 */
 	static function ordinal($X) {
-		if (abs($X) % 100 < 21 && abs($X) % 100 > 4) $suffix = 'th';
+		$n = abs($X) % 100;
+		if ($n < 21 && $n > 3) $suffix = 'th';
 		else {
-			switch ($X % 10) {
+			switch ($n % 10) {
 				case 1:
 					$suffix = 'st';
 					break;
@@ -35,18 +40,22 @@ abstract class num {
 				case 3:
 					$suffix = 'rd';
 					break;
+				default:
+					$suffix = 'th';
 			}
 		}
-		return $X . $suffix;
+		return $X.$suffix;
 	}
 
 	/**
 	 * Returns an alphabetic character indexed by `$X`
-	 * @example Basic usage
+	 * @example Demonstration
 	 * ```php
-	 * $r1 = num::abc(0);  // $r1 = 'a'
-	 * $r2 = num::abc(25); // $r2 = 'z'
-	 * $r3 = num::abc(26); // $r3 = 'a'
+	 * var_dump( num::abc(0) );  // 'a'
+	 * var_dump( num::abc(1) );  // 'b'
+	 * var_dump( num::abc(2) );  // 'c'
+	 * var_dump( num::abc(25) ); // 'z'
+	 * var_dump( num::abc(26) ); // 'a'
 	 * ```
 	 * @param integer $X A number
 	 * @return string

@@ -1,7 +1,7 @@
-<?php namespace amekusa\plz;
+<?php namespace amekusa\plz; main::required;
 
 /**
- * A collection of utilities for fail-safe.
+ * Fail-safe utilities
  *
  * To get started, place the following line around top of your code.
  * ```php
@@ -12,12 +12,12 @@ abstract class alt {
 
 	/**
 	 * If `$X` is `null`, returns `$Alt`. Otherwise returns `$X`
-	 * @example Basic usage
+	 * @example Demonstration
 	 * ```php
 	 * $var1 = 'Not Null';
 	 * $var2 = null;
-	 * $r1 = alt::null($var1, 'Null'); // $r1 = 'Not Null'
-	 * $r2 = alt::null($var2, 'Null'); // $r2 = 'Null'
+	 * var_dump( alt::null($var1, 'Null') );
+	 * var_dump( alt::null($var2, 'Null') );
 	 * ```
 	 * @param mixed $X A variable to check
 	 * @param mixed $Alt A fail-safe value
@@ -29,12 +29,12 @@ abstract class alt {
 
 	/**
 	 * If `$X` is *falsy*, returns `$Alt`. Otherwise returns `$X`
-	 * @example Basic usage
+	 * @example Demonstration
 	 * ```php
 	 * $var1 = 'Truthy';
 	 * $var2 = '';
-	 * $r1 = alt::false($var1, 'Falsy'); // $r1 = 'Truthy'
-	 * $r2 = alt::false($var2, 'Falsy'); // $r2 = 'Falsy'
+	 * var_dump( alt::false($var1, 'Falsy') );
+	 * var_dump( alt::false($var2, 'Falsy') );
 	 * ```
 	 * @param mixed $X A variable to check
 	 * @param mixed $Alt A fail-safe value

@@ -1,4 +1,4 @@
-<?php namespace amekusa\plz;
+<?php namespace amekusa\plz; main::required;
 
 interface LocalException {
 }
