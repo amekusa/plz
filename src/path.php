@@ -21,6 +21,6 @@ abstract class path {
 	 * @return string The extension of `$X`
 	 */
 	static function ext($X) {
-		return substr($X, strrpos($X, '.') + 1);
+		return substr($X, strrpos($X, '.'));
 	}
 }
