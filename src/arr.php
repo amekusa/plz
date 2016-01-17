@@ -20,10 +20,10 @@ abstract class arr {
 	 *
 	 * @example Demonstration
 	 * ```php
-	 * $var1 = array ('A', 'B');                        // Array
+	 * $var1 = array ('A', 'B');                       // Array
 	 * $var2 = new ArrayObject(array ('A', 'B', 'C')); // Countable object
-	 * $var3 = 'ABCD';                                  // String
-	 * $var4 = null;                                    // Null
+	 * $var3 = 'ABCD';                                 // String
+	 * $var4 = null;                                   // Null
 	 * var_dump( arr::count($var1) );
 	 * var_dump( arr::count($var2) );
 	 * var_dump( arr::count($var3) );
@@ -64,7 +64,7 @@ abstract class arr {
 	 *
 	 * @example Demonstration
 	 * ```php
-	 * $var1 = array ('A', 'B', 'C');                   // Array
+	 * $var1 = array ('A', 'B', 'C');                  // Array
 	 * $var2 = new ArrayObject(array ('A', 'B', 'C')); // Iterable object
 	 * var_dump( arr::first($var1) );
 	 * var_dump( arr::first($var2) );
@@ -84,7 +84,7 @@ abstract class arr {
 	 *
 	 * @example Demonstration
 	 * ```php
-	 * $var1 = array ('A', 'B', 'C');                   // Array
+	 * $var1 = array ('A', 'B', 'C');                  // Array
 	 * $var2 = new ArrayObject(array ('A', 'B', 'C')); // Iterable object
 	 * var_dump( arr::last($var1) );
 	 * var_dump( arr::last($var2) );
@@ -172,21 +172,22 @@ abstract class arr {
 	 * @example Converting a multi-dimensional array into one-dimensional
 	 * ```php
 	 * $var = array (
-	 *   'A', 'B',
+	 *   'A',
 	 *   array (
-	 *     'C', 'D',
+	 *     'B',
 	 *     array (
-	 *       'E', 'F'
-	 *     )
+	 *       'C'
+	 *     ),
+	 *     'D'
 	 *   ),
-	 *   'G', 'H'
+	 *   'E'
 	 * );
-	 * var_dump( arr::flat($var) );
+	 * var_export( arr::flat($var) );
 	 * ```
 	 * @example Converting multiple arguments into an one-dimentional array
 	 * ```php
 	 * $r = arr::flat('A', 'B', array ('C', 'D'), 'E', 'F');
-	 * var_dump( $r );
+	 * var_export( $r );
 	 * ```
 	 * @param mixed $X Any number of parameters are accepted
 	 * @return array
