@@ -1,16 +1,17 @@
-<?php namespace amekusa\plz;
+<?php namespace amekusa\plz; main::required;
 
 /**
  * @ignore
  */
 abstract class main {
+	const required = true;
 
 	static function init() {
 		static $done = false;
 		if ($done) return;
 
-		set_error_handler(function ($xCode, $xMsg, $xFile, $xLine, array $xContext) {
-			if (strpos($xFile, __DIR__) !== 0) return false; // Not Plz issue
+		set_error_handler(function ($Code, $Msg, $File, $Line, array $Context) {
+			if (strpos($File, __DIR__) !== 0) return false; // Not Plz issue
 
 			/**
 			 * Handlable errors:
@@ -20,19 +21,21 @@ abstract class main {
 			 * Unhandlable errors:
 			 * E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR, E_COMPILE_WARNING
 			 */
-			switch ($xCode) {
+			switch ($Code) {
+				case E_WARNING:
+				case E_NOTICE:
 				case E_RECOVERABLE_ERROR:
-					throw new RecoverableError($xMsg, $xCode, 1, $xFile, $xLine);
+					throw new RecoverableError($Msg, $Code, 1, $File, $Line);
 			}
 
 			return false;
 		});
 
-		set_exception_handler(function (\Exception $xE) {
-			if (!$xE instanceof LocalException) throw $xE; // Not Plz issue
+		set_exception_handler(function (\Exception $E) {
+			if (!$E instanceof LocalException) throw $E; // Not Plz issue
 
 			// TODO: Do special (ex. Show bug-report instructions)
-			throw $xE;
+			throw $E;
 		});
 
 		$done = true;

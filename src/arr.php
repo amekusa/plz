@@ -1,7 +1,7 @@
-<?php namespace amekusa\plz;
+<?php namespace amekusa\plz; main::required;
 
 /**
- * A collection of utilities for Arrays.
+ * Array utilities
  *
  * To get started, place the following line around top of your code.
  * ```php
@@ -13,9 +13,32 @@ abstract class arr {
 	/**
 	 * Returns the number of elements in `$X`
 	 *
-	 * If `$X` is uncountable, `1` is returned.
-	 * If `$X` is `null`, `0` is returned.
+	 * Additionally:
 	 *
+	 * + If `$X` is uncountable, `1` is returned.
+	 * + If `$X` is `null`, `0` is returned.
+	 *
+	 * @example Demonstration
+	 * ```php
+	 * $var1 = array ('A', 'B');                        // Array
+	 * $var2 = new ArrayObject(array ('A', 'B', 'C')); // Countable object
+	 * $var3 = 'ABCD';                                  // String
+	 * $var4 = null;                                    // Null
+	 * var_dump( arr::count($var1) );
+	 * var_dump( arr::count($var2) );
+	 * var_dump( arr::count($var3) );
+	 * var_dump( arr::count($var4) );
+	 * ```
+	 * @example Recursively counting
+	 * ```php
+	 * $var = array (
+	 *   'A', 'B',
+	 *   array ('C', 'D'),
+	 *   'E', 'F'
+	 * );
+	 * var_dump( arr::count($var)       ); // Normal
+	 * var_dump( arr::count($var, true) ); // Recursive
+	 * ```
 	 * @param array|object $X An array, countable object, or iterable object
 	 * @param boolean $Recursive *(optional)* Whether or not to count recursively
 	 * @return integer
@@ -39,6 +62,13 @@ abstract class arr {
 	 *
 	 * **CAUTION:** Calling in a `foreach` loop over `$X` can cause unpredictable results.
 	 *
+	 * @example Demonstration
+	 * ```php
+	 * $var1 = array ('A', 'B', 'C');                   // Array
+	 * $var2 = new ArrayObject(array ('A', 'B', 'C')); // Iterable object
+	 * var_dump( arr::first($var1) );
+	 * var_dump( arr::first($var2) );
+	 * ```
 	 * @param array|object $X An array or an iterable object
 	 * @return mixed
 	 */
@@ -52,6 +82,13 @@ abstract class arr {
 	 *
 	 * **CAUTION:** Calling this in a `foreach` loop over `$X` can cause unpredictable results.
 	 *
+	 * @example Demonstration
+	 * ```php
+	 * $var1 = array ('A', 'B', 'C');                   // Array
+	 * $var2 = new ArrayObject(array ('A', 'B', 'C')); // Iterable object
+	 * var_dump( arr::last($var1) );
+	 * var_dump( arr::last($var2) );
+	 * ```
 	 * @param array|object $X An array or an iterable object
 	 * @return mixed
 	 */
@@ -67,6 +104,16 @@ abstract class arr {
 
 	/**
 	 * Returns whether `$X` has the supplied key
+	 * @example Demonstration
+	 * ```php
+	 * $var = array (
+	 *   'X' => 'A',
+	 *   'Y' => 'B',
+	 *   'Z' => 'C'
+	 * );
+	 * var_dump( arr::has_key($var, 'X') );
+	 * var_dump( arr::has_key($var, 'W') );
+	 * ```
 	 * @param array|object $X An array, array-like object, or traversable object
 	 * @param mixed $Key A key to find
 	 * @return boolean
@@ -90,6 +137,17 @@ abstract class arr {
 	 *
 	 * If the element doesn’t exist, returns `$Alt`.
 	 *
+	 * @example Demonstration
+	 * ```php
+	 * $var = array (
+	 *   'X' => 'A',
+	 *   'Y' => 'B',
+	 *   'Z' => 'C'
+	 * );
+	 * var_dump( arr::get($var, 'X')                 ); // Same as $var['X']
+	 * var_dump( arr::get($var, 'W')                 ); // Alternates with NULL
+	 * var_dump( arr::get($var, 'W', 'No such key!') ); // Alternates with a string
+	 * ```
 	 * @param array|object $X An array, array-like object, or traversable object
 	 * @param mixed $Key The key of an element to be returned
 	 * @param mixed $Alt *(optional)* An alternative value to return if `$X` doesn’t have the key
@@ -111,31 +169,31 @@ abstract class arr {
 
 	/**
 	 * Treats arguments as an one-dimensional array
-	 * @example Converting a multi-dimentional array into one-dimentional
+	 * @example Converting a multi-dimensional array into one-dimensional
 	 * ```php
 	 * $var = array (
-	 *   'A',
+	 *   'A', 'B',
 	 *   array (
-	 *     'B',
+	 *     'C', 'D',
 	 *     array (
-	 *       'C'
+	 *       'E', 'F'
 	 *     )
 	 *   ),
-	 *   'D'
+	 *   'G', 'H'
 	 * );
-	 * $r = arr::flat($var); // $r = array ('A', 'B', 'C', 'D')
+	 * var_dump( arr::flat($var) );
 	 * ```
 	 * @example Converting multiple arguments into an one-dimentional array
 	 * ```php
-	 * $r = arr::flat('A', array ('B', 'C'), 'D');
-	 *     // $r = array ('A', 'B', 'C', 'D')
+	 * $r = arr::flat('A', 'B', array ('C', 'D'), 'E', 'F');
+	 * var_dump( $r );
 	 * ```
 	 * @param mixed $X Any number of parameters are accepted
 	 * @return array
 	 */
 	static function flat($X) {
 		$r = array ();
-		$args = (func_num_args() > 1) ? func_get_args() : (is_array($X)) ? $X : array ($X);
+		$args = (func_num_args() > 1) ? func_get_args() : (type::is_iterable($X) ? $X : array ($X));
 		foreach ($args as $iArg) {
 			if (is_array($iArg)) $r = array_merge($r, arr::flat($iArg));
 			else $r[] = $iArg;
