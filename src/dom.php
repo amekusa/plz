@@ -47,7 +47,7 @@ abstract class dom {
 	static function attr($X, $Value, $Default = null) {
 		if (!$name = htmlspecialchars($X, ENT_QUOTES, null, false)) return '';
 		if (is_bool($Value)) return $Value ? " $name=\"$name\"" : '';
-		if (!$Value) return isset($Default) ? dom::attr($X, $Default) : '';
+		if (!isset($Value)) return isset($Default) ? dom::attr($X, $Default) : '';
 		return " $name=\"".htmlspecialchars($Value, ENT_QUOTES, null, false)."\"";
 	}
 
