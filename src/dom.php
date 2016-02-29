@@ -29,26 +29,31 @@ abstract class dom {
 	}
 
 	/**
-	 * Returns DOM attribute expression
-	 * @example Single attribute
+	 * Returns a DOM attribute expression
+	 * @example "class" attribute
 	 * ```php >> html
-	 * echo '<div' . dom::attr('class', 'cols') . '>';
+	 * $class = 'cols';
+	 * echo '<div' . dom::attr('class', $class) . '>';
+	 * ```
+	 * @example Returns nothing if the value is empty
+	 * ```php >> html
+	 * $class = ''; // Empty string
+	 * echo '<div' . dom::attr('class', $class) . '>';
 	 * ```
 	 * @example Boolean attribute
 	 * ```php >> html
 	 * echo '<input type="radio"' . dom::attr('checked', true) . '/>' . "\n";
 	 * echo '<input type="radio"' . dom::attr('checked', false) . '/>';
 	 * ```
-	 * @param string $X Attribute name
+	 * @param string $Name Attribute name
 	 * @param mixed $Value Attribute value
 	 * @param mixed $Default *(optional)* Default value of the attribute
 	 * @return string DOM attribute expression
 	 */
-	static function attr($X, $Value, $Default = null) {
-		if (!$name = htmlspecialchars($X, ENT_QUOTES, null, false)) return '';
-		if (is_bool($Value)) return $Value ? " $name=\"$name\"" : '';
-		if (!isset($Value)) return isset($Default) ? dom::attr($X, $Default) : '';
-		return " $name=\"".htmlspecialchars($Value, ENT_QUOTES, null, false)."\"";
+	static function attr($Name, $Value, $Default = null) {
+		if (is_bool($Value)) return $Value ? " $Name=\"$Name\"" : '';
+		if (!$Value && !is_numeric($Value)) return isset($Default) ? dom::attr($Name, $Default) : '';
+		return " $Name=\"".htmlspecialchars($Value, ENT_QUOTES, null, false)."\"";
 	}
 
 	/**
