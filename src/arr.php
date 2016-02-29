@@ -11,6 +11,58 @@
 abstract class arr {
 
 	/**
+	 * Returns whether or not `$X` equals `$Y`
+	 *
+	 * Specifically:
+	 *
+	 * + Tests each elements with {@link op}`::eq()`
+	 * + Recurses a multidimensional array
+	 * + Treats an object as an array with {@link type}`::arr()`
+	 *
+	 * @example Comparing arrays
+	 * ```php
+	 * $X = array ('A', 'B', 'C');
+	 * $Y = array ('a', 'b', 'c');
+	 * $Z = array ('A', 'B', 'C');
+	 *
+	 * echo 'Does $X equal to $Y? - ';
+	 * echo arr::eq($X, $Y) ? 'Yes.' : 'No.';
+	 * echo "\n";
+	 * echo 'Does $X equal to $Z? - ';
+	 * echo arr::eq($X, $Z) ? 'Yes.' : 'No.';
+	 * ```
+	 * @example Comparing array-like objects
+	 * ```php
+	 * $X = new ArrayObject(array ('A', 'B', 'C'));
+	 * $Y = new ArrayObject(array ('a', 'b', 'c'));
+	 * $Z = new ArrayObject(array ('A', 'B', 'C'));
+	 *
+	 * echo 'Does $X equal to $Y? - ';
+	 * echo arr::eq($X, $Y) ? 'Yes.' : 'No.';
+	 * echo "\n";
+	 * echo 'Does $X equal to $Z? - ';
+	 * echo arr::eq($X, $Z) ? 'Yes.' : 'No.';
+	 * ```
+	 * @param array|object $X A variable to compare with `$Y`
+	 * @param array|object $Y A variable to compare with `$X`
+	 * @return boolean
+	 */
+	static function eq($X, $Y) {
+		if ($X != $Y) return false;
+		$x = type::arr($X, null);
+		if (is_null($x)) return false;
+		$y = type::arr($Y, null);
+		if (is_null($y)) return false;
+		if (count($x) != count($y)) return false;
+
+		foreach ($x as $i => $iX) {
+			if (!isset($y[$i])) return false;
+			if (!op::eq($iX, $y[$i])) return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Returns the number of elements in `$X`
 	 *
 	 * Additionally:
