@@ -1,4 +1,4 @@
-<?php namespace amekusa\plz; main::required;
+<?php namespace amekusa\plz;
 
 /**
  * @ignore
