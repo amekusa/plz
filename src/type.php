@@ -210,15 +210,19 @@ abstract class type {
 	 * + If `$X` is an object, calls `$X->toBoolean()` or `$X->toBool()` if they exist.
 	 * + If `$X` is a countable object, returns whether `count($X) > 0`.
 	 *
-	 * @example Demonstration
+	 * @example Number to boolean
 	 * ```php
-	 * var_dump( type::bool(1)                     ); // Integer
-	 * var_dump( type::bool(0)                     ); // Zero
-	 * var_dump( type::bool(-1)                    ); // Negative
-	 * echo "\n";
-	 * var_dump( type::bool('string')              ); // String
-	 * var_dump( type::bool('')                    ); // Empty String
-	 * echo "\n";
+	 * var_dump( type::bool(1)  ); // Integer
+	 * var_dump( type::bool(0)  ); // Zero
+	 * var_dump( type::bool(-1) ); // Negative
+	 * ```
+	 * @example String to boolean
+	 * ```php
+	 * var_dump( type::bool('string') ); // String
+	 * var_dump( type::bool('')       ); // Empty String
+	 * ```
+	 * @example Array to boolean
+	 * ```php
 	 * var_dump( type::bool(array ('A', 'B', 'C')) ); // Array
 	 * var_dump( type::bool(array ())              ); // Empty Array
 	 * ```
@@ -231,6 +235,12 @@ abstract class type {
 	 * var_dump( type::bool('null')  );
 	 * var_dump( type::bool('Null')  );
 	 * var_dump( type::bool('NULL')  );
+	 * var_dump( type::bool('no')    );
+	 * var_dump( type::bool('No')    );
+	 * var_dump( type::bool('NO')    );
+	 * var_dump( type::bool('off')   );
+	 * var_dump( type::bool('Off')   );
+	 * var_dump( type::bool('OFF')   );
 	 * ```
 	 * @example Methods evaluation
 	 * ```php
@@ -246,10 +256,10 @@ abstract class type {
 	 *   }
 	 * }
 	 *
-	 * $var1 = new Truthy();
-	 * $var2 = new Falsy();
-	 * var_dump( type::bool($var1) );
-	 * var_dump( type::bool($var2) );
+	 * $obj1 = new Truthy();
+	 * $obj2 = new Falsy();
+	 * var_dump( type::bool($obj1) );
+	 * var_dump( type::bool($obj2) );
 	 * ```
 	 * @param mixed $X A variable to treat as a boolean
 	 * @param boolean $Alt *(optional)* An alternative value to return if evaluation has failed
@@ -266,6 +276,12 @@ abstract class type {
 				case 'null':
 				case 'Null':
 				case 'NULL':
+				case 'no':
+				case 'No':
+				case 'NO':
+				case 'off':
+				case 'Off':
+				case 'OFF':
 					return false;
 			}
 		} else if (is_object($X)) {
@@ -407,18 +423,41 @@ abstract class type {
 	}
 
 	/**
-	 * Treats `$X` as an array
+	 * Evaluates `$X` as an array
 	 *
 	 * If `$X` is an object, calls `$X->toArray()` or `$X->toArr()` if they exist.
 	 *
+	 * @example Demonstration
+	 * ```php
+	 * var_dump( type::arr(null) ); // Null
+	 * var_dump( type::arr(true) ); // Boolean
+	 * var_dump( type::arr(1)    ); // Integer
+	 * ```
+	 * @example Method evaluation
+	 * ```php
+	 * class Stack {
+	 *   private $items;
+	 *
+	 *   function __construct() {
+	 *     $this->items = func_get_args();
+	 *   }
+	 *
+	 *   function toArray() {
+	 *     return $this->items;
+	 *   }
+	 * }
+	 *
+	 * $obj = new Stack('A', 'B', 'C');
+	 * var_export( type::arr($obj) );
+	 * ```
 	 * @param mixed $X
 	 * @param array $Alt *(optional)* An alternative value to return if casting failed
 	 * @return array
 	 */
-	static function arr($X, $Alt = null) {
+	static function arr($X, $Alt = array ()) {
 		if (is_array($X)) return $X;
-		$r = null;
 		if (is_object($X)) {
+			$r = null;
 			if (is_callable(array ($X, 'toArray'))) $r = $X->toArray();
 			else if (is_callable(array ($X, 'toArr'))) $r = $X->toArr();
 			if (is_array($r)) return $r;
@@ -429,10 +468,9 @@ abstract class type {
 			}
 		}
 		try {
-			$r = (array) $X;
+			return (array) $X;
 		} catch (RecoverableError $e) {
-			$r = $Alt;
+			return $Alt;
 		}
-		return $r ?: array ($X);
 	}
 }
