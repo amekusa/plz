@@ -51,9 +51,10 @@ abstract class dom {
 	 * @return string DOM attribute expression
 	 */
 	static function attr($Name, $Value, $Default = null) {
-		if (is_bool($Value)) return $Value ? " $Name=\"$Name\"" : '';
+		if (is_bool($Value)) return $Value ? dom::attr($Name, $Name) : '';
 		if (!$Value && !is_numeric($Value)) return isset($Default) ? dom::attr($Name, $Default) : '';
-		return " $Name=\"".htmlspecialchars($Value, ENT_QUOTES, null, false)."\"";
+		return ' '.htmlspecialchars($Name, ENT_QUOTES, null, false).'="'
+				.htmlspecialchars($Value, ENT_QUOTES, null, false).'"';
 	}
 
 	/**
