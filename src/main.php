@@ -10,7 +10,7 @@ abstract class main {
 		static $done = false;
 		if ($done) return;
 
-		set_error_handler(function ($Code, $Msg, $File, $Line, array $Context) {
+		set_error_handler(function ($Code, $Msg, $File, $Line, $Context) {
 			if (strpos($File, __DIR__) !== 0) return false; // Not Plz issue
 
 			/**
@@ -31,7 +31,7 @@ abstract class main {
 			return false;
 		});
 
-		set_exception_handler(function (\Exception $E) {
+		set_exception_handler(function ($E) {
 			if (!$E instanceof LocalException) throw $E; // Not Plz issue
 
 			// TODO: Do special (ex. Show bug-report instructions)
