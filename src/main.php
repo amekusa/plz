@@ -10,8 +10,8 @@ abstract class main {
 		static $done = false;
 		if ($done) return;
 
-		set_error_handler(function ($Code, $Msg, $File, $Line, $Context) {
-			if (strpos($File, __DIR__) !== 0) return false; // Not Plz issue
+		set_error_handler(function ($Code, $Msg, $File = null, $Line = null, $Context = null) {
+			if (!File || strpos($File, __DIR__) !== 0) return false;
 
 			/**
 			 * Handlable errors:
