@@ -11,7 +11,7 @@ abstract class main {
 		if ($done) return;
 
 		set_error_handler(function ($Code, $Msg, $File = null, $Line = null, $Context = null) {
-			if (!File || strpos($File, __DIR__) !== 0) return false;
+			if (!$File || strpos($File, __DIR__) !== 0) return false;
 
 			/**
 			 * Handlable errors:
