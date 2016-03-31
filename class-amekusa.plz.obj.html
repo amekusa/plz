@@ -81,6 +81,7 @@
 				<li><a href="class-amekusa.plz.alt.html">alt</a></li>
 				<li><a href="class-amekusa.plz.arr.html">arr</a></li>
 				<li><a href="class-amekusa.plz.constant.html">constant</a></li>
+				<li><a href="class-amekusa.plz.dom.html">dom</a></li>
 				<li><a href="class-amekusa.plz.fn.html">fn</a></li>
 				<li><a href="class-amekusa.plz.num.html">num</a></li>
 				<li class="active"><a href="class-amekusa.plz.obj.html">obj</a></li>
@@ -90,17 +91,14 @@
 				<li><a href="class-amekusa.plz.sys.html">sys</a></li>
 				<li><a href="class-amekusa.plz.T.html">T</a></li>
 				<li><a href="class-amekusa.plz.type.html">type</a></li>
+				<li><a href="class-amekusa.plz.xml.html" class="deprecated">xml</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-amekusa.plz.LocalException.html">LocalException</a></li>
-			</ul>
 
 
 			<h3>Exceptions</h3>
 			<ul>
-				<li><a href="class-amekusa.plz.RecoverableError.html">RecoverableError</a></li>
+				<li><a href="class-amekusa.plz.ErrorException.html">ErrorException</a></li>
 			</ul>
 
 
@@ -138,7 +136,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.obj.html#3-88" title="Go to source code">obj.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.obj.html#3-162" title="Go to source code">obj.php</a>
 		<br>
 	</div>
 
@@ -147,6 +145,107 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="eq" id="_eq">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_eq">#</a>
+			<code><a href="source-class-amekusa.plz.obj.html#13-85" title="Go to source code">eq</a>( <span>object <var>$X</var></span>, <span>object <var>$Y</var></span> )</code>
+
+			<div class="description short">
+				<p>Returns whether two objects are equal</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns whether two objects are equal</p>
+
+<p>If the objects are <strong>same instance</strong>, returns <code>true</code>.</p>
+
+<p>Otherwise the result is same as <code>$X == $Y</code>
+except for under certain conditions:</p>
+
+<ul>
+<li>If <code>$X</code> has <code>equals()</code> method, invokes <code>$X-&gt;equals($Y)</code></li>
+<li>If <code>$Y</code> has <code>equals()</code> method, invokes <code>$Y-&gt;equals($X)</code></li>
+</ul>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$X</var></dt>
+						<dd>An object to compare with <code>$Y</code></dd>
+						<dt><var>$Y</var></dt>
+						<dd>An object to compare with <code>$X</code></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+					<h4>Example</h4>
+					<div class="list">
+							<p>Comparing objects of the same class</p>
+
+<pre><span class="php-var">$P1</span> = <span class="php-keyword1">new</span> stdClass();
+<span class="php-var">$P1</span>-&gt;x = <span class="php-num">1.0</span>;
+<span class="php-var">$P1</span>-&gt;y = <span class="php-num">2.0</span>;
+
+<span class="php-var">$P2</span> = <span class="php-keyword1">new</span> stdClass();
+<span class="php-var">$P2</span>-&gt;x = <span class="php-num">2.0</span>;
+<span class="php-var">$P2</span>-&gt;y = <span class="php-num">4.0</span>;
+
+<span class="php-var">$P3</span> = <span class="php-keyword1">new</span> stdClass();
+<span class="php-var">$P3</span>-&gt;x = <span class="php-num">1.0</span>;
+<span class="php-var">$P3</span>-&gt;y = <span class="php-num">2.0</span>;
+
+<span class="php-keyword1">echo</span> <span class="php-quote">'Does $P1 equal to $P2? - '</span>;
+<span class="php-keyword1">echo</span> obj::eq(<span class="php-var">$P1</span>, <span class="php-var">$P2</span>) ? <span class="php-quote">'Yes.'</span> : <span class="php-quote">'No.'</span>;
+<span class="php-keyword1">echo</span> <span class="php-quote">&quot;\n&quot;</span>;
+<span class="php-keyword1">echo</span> <span class="php-quote">'Does $P1 equal to $P3? - '</span>;
+<span class="php-keyword1">echo</span> obj::eq(<span class="php-var">$P1</span>, <span class="php-var">$P3</span>) ? <span class="php-quote">'Yes.'</span> : <span class="php-quote">'No.'</span>;</pre>
+
+<pre>Does <span class="php-var">$P1</span> equal to <span class="php-var">$P2</span>? - No.
+Does <span class="php-var">$P1</span> equal to <span class="php-var">$P3</span>? - Yes.</pre><br>
+							<p><code>equals()</code> evaluation</p>
+
+<pre><span class="php-keyword1">class</span> Fraction {
+  <span class="php-keyword1">public</span> <span class="php-var">$numerator</span>, <span class="php-var">$denominator</span>;
+
+  <span class="php-keyword1">function</span> __construct(<span class="php-var">$Numerator</span>, <span class="php-var">$Denominator</span>) {
+    <span class="php-var">$this</span>-&gt;numerator   = <span class="php-var">$Numerator</span>;
+    <span class="php-var">$this</span>-&gt;denominator = <span class="php-var">$Denominator</span>;
+  }
+
+  <span class="php-keyword1">function</span> quotient() {
+    <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;numerator / <span class="php-var">$this</span>-&gt;denominator;
+  }
+
+  <span class="php-keyword1">function</span> equals(<span class="php-var">$Fraction</span>) {
+    <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;quotient() == <span class="php-var">$Fraction</span>-&gt;quotient();
+  }
+}
+
+<span class="php-var">$X</span> = <span class="php-keyword1">new</span> Fraction(<span class="php-num">2</span>, <span class="php-num">1</span>); <span class="php-comment">// = 2/1</span>
+<span class="php-var">$Y</span> = <span class="php-keyword1">new</span> Fraction(<span class="php-num">4</span>, <span class="php-num">2</span>); <span class="php-comment">// = 4/2</span>
+
+<span class="php-keyword1">echo</span> <span class="php-quote">'Does $X equal to $Y? - '</span>;
+<span class="php-keyword1">echo</span> obj::eq(<span class="php-var">$X</span>, <span class="php-var">$Y</span>) ? <span class="php-quote">'Yes.'</span> : <span class="php-quote">'No.'</span>;</pre>
+
+<pre>Does <span class="php-var">$X</span> equal to <span class="php-var">$Y</span>? - Yes.</pre><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="get" id="_get">
 
 			<td class="attributes"><code>
@@ -158,7 +257,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_get">#</a>
-			<code><a href="source-class-amekusa.plz.obj.html#13-78" title="Go to source code">get</a>( <span>object <var>$X</var></span>, <span>string <var>$Prop</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.obj.html#87-152" title="Go to source code">get</a>( <span>object <var>$X</var></span>, <span>string <var>$Prop</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Returns a property of an object</p>

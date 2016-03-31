@@ -81,6 +81,7 @@
 				<li><a href="class-amekusa.plz.alt.html">alt</a></li>
 				<li><a href="class-amekusa.plz.arr.html">arr</a></li>
 				<li><a href="class-amekusa.plz.constant.html">constant</a></li>
+				<li><a href="class-amekusa.plz.dom.html">dom</a></li>
 				<li><a href="class-amekusa.plz.fn.html">fn</a></li>
 				<li><a href="class-amekusa.plz.num.html">num</a></li>
 				<li><a href="class-amekusa.plz.obj.html">obj</a></li>
@@ -90,17 +91,14 @@
 				<li><a href="class-amekusa.plz.sys.html">sys</a></li>
 				<li><a href="class-amekusa.plz.T.html">T</a></li>
 				<li class="active"><a href="class-amekusa.plz.type.html">type</a></li>
+				<li><a href="class-amekusa.plz.xml.html" class="deprecated">xml</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-amekusa.plz.LocalException.html">LocalException</a></li>
-			</ul>
 
 
 			<h3>Exceptions</h3>
 			<ul>
-				<li><a href="class-amekusa.plz.RecoverableError.html">RecoverableError</a></li>
+				<li><a href="class-amekusa.plz.ErrorException.html">ErrorException</a></li>
 			</ul>
 
 
@@ -138,7 +136,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.type.html#3-569" title="Go to source code">type.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.type.html#3-634" title="Go to source code">type.php</a>
 		<br>
 	</div>
 
@@ -526,7 +524,7 @@ bool(<span class="php-keyword1">false</span>)</pre><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_bool">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#277-378" title="Go to source code">bool</a>( <span>mixed <var>$X</var></span>, <span>boolean <var>$Alt</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#277-402" title="Go to source code">bool</a>( <span>mixed <var>$X</var></span>, <span>boolean <var>$Alt</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				<p>Evaluates <code>$X</code> as a boolean</p>
@@ -559,26 +557,28 @@ bool(<span class="php-keyword1">false</span>)</pre><br>
 
 					<h4>Example</h4>
 					<div class="list">
-							<p>Demonstration</p>
+							<p>Number to boolean</p>
 
-<pre><span class="php-keyword2">var_dump</span>( type::bool(<span class="php-num">1</span>)                     ); <span class="php-comment">// Integer</span>
-<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-num">0</span>)                     ); <span class="php-comment">// Zero</span>
-<span class="php-keyword2">var_dump</span>( type::bool(-<span class="php-num">1</span>)                    ); <span class="php-comment">// Negative</span>
-<span class="php-keyword1">echo</span> <span class="php-quote">&quot;\n&quot;</span>;
-<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'string'</span>)              ); <span class="php-comment">// String</span>
-<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">''</span>)                    ); <span class="php-comment">// Empty String</span>
-<span class="php-keyword1">echo</span> <span class="php-quote">&quot;\n&quot;</span>;
-<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>)) ); <span class="php-comment">// Array</span>
-<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-keyword1">array</span> ())              ); <span class="php-comment">// Empty Array</span></pre>
+<pre><span class="php-keyword2">var_dump</span>( type::bool(<span class="php-num">1</span>)  ); <span class="php-comment">// Integer</span>
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-num">0</span>)  ); <span class="php-comment">// Zero</span>
+<span class="php-keyword2">var_dump</span>( type::bool(-<span class="php-num">1</span>) ); <span class="php-comment">// Negative</span></pre>
 
 <pre>bool(<span class="php-keyword1">true</span>)
 bool(<span class="php-keyword1">false</span>)
-bool(<span class="php-keyword1">true</span>)
+bool(<span class="php-keyword1">true</span>)</pre><br>
+							<p>String to boolean</p>
 
-bool(<span class="php-keyword1">true</span>)
-bool(<span class="php-keyword1">false</span>)
+<pre><span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'string'</span>) ); <span class="php-comment">// String</span>
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">''</span>)       ); <span class="php-comment">// Empty String</span></pre>
 
-bool(<span class="php-keyword1">true</span>)
+<pre>bool(<span class="php-keyword1">true</span>)
+bool(<span class="php-keyword1">false</span>)</pre><br>
+							<p>Array to boolean</p>
+
+<pre><span class="php-keyword2">var_dump</span>( type::bool(<span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>)) ); <span class="php-comment">// Array</span>
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-keyword1">array</span> ())              ); <span class="php-comment">// Empty Array</span></pre>
+
+<pre>bool(<span class="php-keyword1">true</span>)
 bool(<span class="php-keyword1">false</span>)</pre><br>
 							<p>Semantic evaluation</p>
 
@@ -588,9 +588,21 @@ bool(<span class="php-keyword1">false</span>)</pre><br>
 <span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'FALSE'</span>) );
 <span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'null'</span>)  );
 <span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'Null'</span>)  );
-<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'NULL'</span>)  );</pre>
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'NULL'</span>)  );
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'no'</span>)    );
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'No'</span>)    );
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'NO'</span>)    );
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'off'</span>)   );
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'Off'</span>)   );
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-quote">'OFF'</span>)   );</pre>
 
 <pre>bool(<span class="php-keyword1">false</span>)
+bool(<span class="php-keyword1">false</span>)
+bool(<span class="php-keyword1">false</span>)
+bool(<span class="php-keyword1">false</span>)
+bool(<span class="php-keyword1">false</span>)
+bool(<span class="php-keyword1">false</span>)
+bool(<span class="php-keyword1">false</span>)
 bool(<span class="php-keyword1">false</span>)
 bool(<span class="php-keyword1">false</span>)
 bool(<span class="php-keyword1">false</span>)
@@ -610,10 +622,10 @@ bool(<span class="php-keyword1">false</span>)</pre><br>
   }
 }
 
-<span class="php-var">$var1</span> = <span class="php-keyword1">new</span> Truthy();
-<span class="php-var">$var2</span> = <span class="php-keyword1">new</span> Falsy();
-<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-var">$var1</span>) );
-<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-var">$var2</span>) );</pre>
+<span class="php-var">$obj1</span> = <span class="php-keyword1">new</span> Truthy();
+<span class="php-var">$obj2</span> = <span class="php-keyword1">new</span> Falsy();
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-var">$obj1</span>) );
+<span class="php-keyword2">var_dump</span>( type::bool(<span class="php-var">$obj2</span>) );</pre>
 
 <pre>bool(<span class="php-keyword1">true</span>)
 bool(<span class="php-keyword1">false</span>)</pre><br>
@@ -634,7 +646,7 @@ bool(<span class="php-keyword1">false</span>)</pre><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_int">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#380-451" title="Go to source code">int</a>( <span>mixed <var>$X</var></span>, <span>integer <var>$Alt</var> = <span class="php-num">0</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#404-475" title="Go to source code">int</a>( <span>mixed <var>$X</var></span>, <span>integer <var>$Alt</var> = <span class="php-num">0</span></span> )</code>
 
 			<div class="description short">
 				<p>Evaluates <code>$X</code> as an integer</p>
@@ -722,7 +734,7 @@ int(-<span class="php-num">1</span>)</pre><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_str">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#453-538" title="Go to source code">str</a>( <span>mixed <var>$X</var></span>, <span>string <var>$Alt</var> = <span class="php-quote">''</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#477-562" title="Go to source code">str</a>( <span>mixed <var>$X</var></span>, <span>string <var>$Alt</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
 				<p>Evaluates <code>$X</code> as an string</p>
@@ -814,14 +826,14 @@ Hello World.</pre><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_arr">#</a>
-			<code><a href="source-class-amekusa.plz.type.html#540-568" title="Go to source code">arr</a>( <span>mixed <var>$X</var></span>, <span>array <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.type.html#564-633" title="Go to source code">arr</a>( <span>mixed <var>$X</var></span>, <span>array <var>$Alt</var> = <span class="php-keyword1">array</span> ()</span> )</code>
 
 			<div class="description short">
-				<p>Treats <code>$X</code> as an array</p>
+				<p>Evaluates <code>$X</code> as an array</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Treats <code>$X</code> as an array</p>
+				<p>Evaluates <code>$X</code> as an array</p>
 
 <p>If <code>$X</code> is an object, calls <code>$X-&gt;toArray()</code> or <code>$X-&gt;toArr()</code> if they exist.</p>
 
@@ -840,6 +852,47 @@ Hello World.</pre><br>
 					</div>
 
 
+					<h4>Example</h4>
+					<div class="list">
+							<p>Demonstration</p>
+
+<pre><span class="php-keyword2">var_dump</span>( type::arr(<span class="php-keyword1">null</span>) ); <span class="php-comment">// Null</span>
+<span class="php-keyword2">var_dump</span>( type::arr(<span class="php-keyword1">true</span>) ); <span class="php-comment">// Boolean</span>
+<span class="php-keyword2">var_dump</span>( type::arr(<span class="php-num">1</span>)    ); <span class="php-comment">// Integer</span></pre>
+
+<pre><span class="php-keyword1">array</span>(<span class="php-num">0</span>) {
+}
+<span class="php-keyword1">array</span>(<span class="php-num">1</span>) {
+  [<span class="php-num">0</span>]=&gt;
+  bool(<span class="php-keyword1">true</span>)
+}
+<span class="php-keyword1">array</span>(<span class="php-num">1</span>) {
+  [<span class="php-num">0</span>]=&gt;
+  int(<span class="php-num">1</span>)
+}</pre><br>
+							<p>Method evaluation</p>
+
+<pre><span class="php-keyword1">class</span> Stack {
+  <span class="php-keyword1">private</span> <span class="php-var">$items</span>;
+
+  <span class="php-keyword1">function</span> __construct() {
+    <span class="php-var">$this</span>-&gt;items = <span class="php-keyword2">func_get_args</span>();
+  }
+
+  <span class="php-keyword1">function</span> toArray() {
+    <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;items;
+  }
+}
+
+<span class="php-var">$obj</span> = <span class="php-keyword1">new</span> Stack(<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>);
+<span class="php-keyword2">var_export</span>( type::arr(<span class="php-var">$obj</span>) );</pre>
+
+<pre><span class="php-keyword1">array</span> (
+  <span class="php-num">0</span> =&gt; <span class="php-quote">'A'</span>,
+  <span class="php-num">1</span> =&gt; <span class="php-quote">'B'</span>,
+  <span class="php-num">2</span> =&gt; <span class="php-quote">'C'</span>,
+)</pre><br>
+					</div>
 
 
 			</div>

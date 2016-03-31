@@ -81,6 +81,7 @@
 				<li><a href="class-amekusa.plz.alt.html">alt</a></li>
 				<li class="active"><a href="class-amekusa.plz.arr.html">arr</a></li>
 				<li><a href="class-amekusa.plz.constant.html">constant</a></li>
+				<li><a href="class-amekusa.plz.dom.html">dom</a></li>
 				<li><a href="class-amekusa.plz.fn.html">fn</a></li>
 				<li><a href="class-amekusa.plz.num.html">num</a></li>
 				<li><a href="class-amekusa.plz.obj.html">obj</a></li>
@@ -90,17 +91,14 @@
 				<li><a href="class-amekusa.plz.sys.html">sys</a></li>
 				<li><a href="class-amekusa.plz.T.html">T</a></li>
 				<li><a href="class-amekusa.plz.type.html">type</a></li>
+				<li><a href="class-amekusa.plz.xml.html" class="deprecated">xml</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-amekusa.plz.LocalException.html">LocalException</a></li>
-			</ul>
 
 
 			<h3>Exceptions</h3>
 			<ul>
-				<li><a href="class-amekusa.plz.RecoverableError.html">RecoverableError</a></li>
+				<li><a href="class-amekusa.plz.ErrorException.html">ErrorException</a></li>
 			</ul>
 
 
@@ -138,7 +136,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.arr.html#3-266" title="Go to source code">arr.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.arr.html#3-310" title="Go to source code">arr.php</a>
 		<br>
 	</div>
 
@@ -147,6 +145,85 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="eq" id="_eq">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_eq">#</a>
+			<code><a href="source-class-amekusa.plz.arr.html#13-71" title="Go to source code">eq</a>( <span>array|object <var>$X</var></span>, <span>array|object <var>$Y</var></span> )</code>
+
+			<div class="description short">
+				<p>Returns whether or not <code>$X</code> equals <code>$Y</code></p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns whether or not <code>$X</code> equals <code>$Y</code></p>
+
+<p>Specifically:</p>
+
+<ul>
+<li>Tests each elements with <code><a href="class-amekusa.plz.op.html">amekusa\plz\op</a></code><code>::eq()</code></li>
+<li>Recurses a multidimensional array</li>
+<li>Treats an object as an array with <code><a href="class-amekusa.plz.type.html">amekusa\plz\type</a></code><code>::arr()</code></li>
+</ul>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$X</var></dt>
+						<dd>A variable to compare with <code>$Y</code></dd>
+						<dt><var>$Y</var></dt>
+						<dd>A variable to compare with <code>$X</code></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+					<h4>Example</h4>
+					<div class="list">
+							<p>Comparing arrays</p>
+
+<pre><span class="php-var">$X</span> = <span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>);
+<span class="php-var">$Y</span> = <span class="php-keyword1">array</span> (<span class="php-quote">'a'</span>, <span class="php-quote">'b'</span>, <span class="php-quote">'c'</span>);
+<span class="php-var">$Z</span> = <span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>);
+
+<span class="php-keyword1">echo</span> <span class="php-quote">'Does $X equal to $Y? - '</span>;
+<span class="php-keyword1">echo</span> arr::eq(<span class="php-var">$X</span>, <span class="php-var">$Y</span>) ? <span class="php-quote">'Yes.'</span> : <span class="php-quote">'No.'</span>;
+<span class="php-keyword1">echo</span> <span class="php-quote">&quot;\n&quot;</span>;
+<span class="php-keyword1">echo</span> <span class="php-quote">'Does $X equal to $Z? - '</span>;
+<span class="php-keyword1">echo</span> arr::eq(<span class="php-var">$X</span>, <span class="php-var">$Z</span>) ? <span class="php-quote">'Yes.'</span> : <span class="php-quote">'No.'</span>;</pre>
+
+<pre>Does <span class="php-var">$X</span> equal to <span class="php-var">$Y</span>? - No.
+Does <span class="php-var">$X</span> equal to <span class="php-var">$Z</span>? - Yes.</pre><br>
+							<p>Comparing array-like objects</p>
+
+<pre><span class="php-var">$X</span> = <span class="php-keyword1">new</span> ArrayObject(<span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>));
+<span class="php-var">$Y</span> = <span class="php-keyword1">new</span> ArrayObject(<span class="php-keyword1">array</span> (<span class="php-quote">'a'</span>, <span class="php-quote">'b'</span>, <span class="php-quote">'c'</span>));
+<span class="php-var">$Z</span> = <span class="php-keyword1">new</span> ArrayObject(<span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>));
+
+<span class="php-keyword1">echo</span> <span class="php-quote">'Does $X equal to $Y? - '</span>;
+<span class="php-keyword1">echo</span> arr::eq(<span class="php-var">$X</span>, <span class="php-var">$Y</span>) ? <span class="php-quote">'Yes.'</span> : <span class="php-quote">'No.'</span>;
+<span class="php-keyword1">echo</span> <span class="php-quote">&quot;\n&quot;</span>;
+<span class="php-keyword1">echo</span> <span class="php-quote">'Does $X equal to $Z? - '</span>;
+<span class="php-keyword1">echo</span> arr::eq(<span class="php-var">$X</span>, <span class="php-var">$Z</span>) ? <span class="php-quote">'Yes.'</span> : <span class="php-quote">'No.'</span>;</pre>
+
+<pre>Does <span class="php-var">$X</span> equal to <span class="php-var">$Y</span>? - No.
+Does <span class="php-var">$X</span> equal to <span class="php-var">$Z</span>? - Yes.</pre><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="count" id="_count">
 
 			<td class="attributes"><code>
@@ -158,7 +235,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_count">#</a>
-			<code><a href="source-class-amekusa.plz.arr.html#13-68" title="Go to source code">count</a>( <span>array|object <var>$X</var></span>, <span>boolean <var>$Recursive</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.arr.html#73-128" title="Go to source code">count</a>( <span>array|object <var>$X</var></span>, <span>boolean <var>$Recursive</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				<p>Returns the number of elements in <code>$X</code></p>
@@ -193,10 +270,10 @@
 					<div class="list">
 							<p>Demonstration</p>
 
-<pre><span class="php-var">$var1</span> = <span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>);                        <span class="php-comment">// Array</span>
+<pre><span class="php-var">$var1</span> = <span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>);                       <span class="php-comment">// Array</span>
 <span class="php-var">$var2</span> = <span class="php-keyword1">new</span> ArrayObject(<span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>)); <span class="php-comment">// Countable object</span>
-<span class="php-var">$var3</span> = <span class="php-quote">'ABCD'</span>;                                  <span class="php-comment">// String</span>
-<span class="php-var">$var4</span> = <span class="php-keyword1">null</span>;                                    <span class="php-comment">// Null</span>
+<span class="php-var">$var3</span> = <span class="php-quote">'ABCD'</span>;                                 <span class="php-comment">// String</span>
+<span class="php-var">$var4</span> = <span class="php-keyword1">null</span>;                                   <span class="php-comment">// Null</span>
 <span class="php-keyword2">var_dump</span>( arr::<span class="php-keyword2">count</span>(<span class="php-var">$var1</span>) );
 <span class="php-keyword2">var_dump</span>( arr::<span class="php-keyword2">count</span>(<span class="php-var">$var2</span>) );
 <span class="php-keyword2">var_dump</span>( arr::<span class="php-keyword2">count</span>(<span class="php-var">$var3</span>) );
@@ -235,7 +312,7 @@ int(<span class="php-num">7</span>)</pre><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_first">#</a>
-			<code><a href="source-class-amekusa.plz.arr.html#70-92" title="Go to source code">first</a>( <span>array|object <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.arr.html#130-152" title="Go to source code">first</a>( <span>array|object <var>$X</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns the first element of <code>$X</code></p>
@@ -263,7 +340,7 @@ int(<span class="php-num">7</span>)</pre><br>
 					<div class="list">
 							<p>Demonstration</p>
 
-<pre><span class="php-var">$var1</span> = <span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>);                   <span class="php-comment">// Array</span>
+<pre><span class="php-var">$var1</span> = <span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>);                  <span class="php-comment">// Array</span>
 <span class="php-var">$var2</span> = <span class="php-keyword1">new</span> ArrayObject(<span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>)); <span class="php-comment">// Iterable object</span>
 <span class="php-keyword2">var_dump</span>( arr::first(<span class="php-var">$var1</span>) );
 <span class="php-keyword2">var_dump</span>( arr::first(<span class="php-var">$var2</span>) );</pre>
@@ -287,7 +364,7 @@ string(<span class="php-num">1</span>) <span class="php-quote">&quot;A&quot;</sp
 
 			<td class="name"><div>
 			<a class="anchor" href="#_last">#</a>
-			<code><a href="source-class-amekusa.plz.arr.html#94-121" title="Go to source code">last</a>( <span>array|object <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.arr.html#154-181" title="Go to source code">last</a>( <span>array|object <var>$X</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns the last element of <code>$X</code></p>
@@ -315,7 +392,7 @@ string(<span class="php-num">1</span>) <span class="php-quote">&quot;A&quot;</sp
 					<div class="list">
 							<p>Demonstration</p>
 
-<pre><span class="php-var">$var1</span> = <span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>);                   <span class="php-comment">// Array</span>
+<pre><span class="php-var">$var1</span> = <span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>);                  <span class="php-comment">// Array</span>
 <span class="php-var">$var2</span> = <span class="php-keyword1">new</span> ArrayObject(<span class="php-keyword1">array</span> (<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-quote">'C'</span>)); <span class="php-comment">// Iterable object</span>
 <span class="php-keyword2">var_dump</span>( arr::last(<span class="php-var">$var1</span>) );
 <span class="php-keyword2">var_dump</span>( arr::last(<span class="php-var">$var2</span>) );</pre>
@@ -339,7 +416,7 @@ string(<span class="php-num">1</span>) <span class="php-quote">&quot;C&quot;</sp
 
 			<td class="name"><div>
 			<a class="anchor" href="#_has_key">#</a>
-			<code><a href="source-class-amekusa.plz.arr.html#123-155" title="Go to source code">has_key</a>( <span>array|object <var>$X</var></span>, <span>mixed <var>$Key</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.arr.html#183-215" title="Go to source code">has_key</a>( <span>array|object <var>$X</var></span>, <span>mixed <var>$Key</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns whether <code>$X</code> has the supplied key</p>
@@ -394,7 +471,7 @@ bool(<span class="php-keyword1">false</span>)</pre><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_get">#</a>
-			<code><a href="source-class-amekusa.plz.arr.html#157-195" title="Go to source code">get</a>( <span>array|object <var>$X</var></span>, <span>mixed <var>$Key</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-amekusa.plz.arr.html#217-255" title="Go to source code">get</a>( <span>array|object <var>$X</var></span>, <span>mixed <var>$Key</var></span>, <span>mixed <var>$Alt</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Returns <code>$X</code>’s element indexed by <code>$Key</code></p>
@@ -455,7 +532,7 @@ string(<span class="php-num">12</span>) <span class="php-quote">&quot;No such ke
 
 			<td class="name"><div>
 			<a class="anchor" href="#_flat">#</a>
-			<code><a href="source-class-amekusa.plz.arr.html#197-265" title="Go to source code">flat</a>( <span>mixed <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.arr.html#257-309" title="Go to source code">flat</a>( <span>mixed <var>$X</var></span> )</code>
 
 			<div class="description short">
 				<p>Treats arguments as an one-dimensional array</p>
@@ -482,54 +559,38 @@ string(<span class="php-num">12</span>) <span class="php-quote">&quot;No such ke
 							<p>Converting a multi-dimensional array into one-dimensional</p>
 
 <pre><span class="php-var">$var</span> = <span class="php-keyword1">array</span> (
-  <span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>,
+  <span class="php-quote">'A'</span>,
   <span class="php-keyword1">array</span> (
-    <span class="php-quote">'C'</span>, <span class="php-quote">'D'</span>,
+    <span class="php-quote">'B'</span>,
     <span class="php-keyword1">array</span> (
-      <span class="php-quote">'E'</span>, <span class="php-quote">'F'</span>
-    )
+      <span class="php-quote">'C'</span>
+    ),
+    <span class="php-quote">'D'</span>
   ),
-  <span class="php-quote">'G'</span>, <span class="php-quote">'H'</span>
+  <span class="php-quote">'E'</span>
 );
-<span class="php-keyword2">var_dump</span>( arr::flat(<span class="php-var">$var</span>) );</pre>
+<span class="php-keyword2">var_export</span>( arr::flat(<span class="php-var">$var</span>) );</pre>
 
-<pre><span class="php-keyword1">array</span>(<span class="php-num">8</span>) {
-  [<span class="php-num">0</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;A&quot;</span>
-  [<span class="php-num">1</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;B&quot;</span>
-  [<span class="php-num">2</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;C&quot;</span>
-  [<span class="php-num">3</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;D&quot;</span>
-  [<span class="php-num">4</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;E&quot;</span>
-  [<span class="php-num">5</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;F&quot;</span>
-  [<span class="php-num">6</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;G&quot;</span>
-  [<span class="php-num">7</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;H&quot;</span>
-}</pre><br>
+<pre><span class="php-keyword1">array</span> (
+  <span class="php-num">0</span> =&gt; <span class="php-quote">'A'</span>,
+  <span class="php-num">1</span> =&gt; <span class="php-quote">'B'</span>,
+  <span class="php-num">2</span> =&gt; <span class="php-quote">'C'</span>,
+  <span class="php-num">3</span> =&gt; <span class="php-quote">'D'</span>,
+  <span class="php-num">4</span> =&gt; <span class="php-quote">'E'</span>,
+)</pre><br>
 							<p>Converting multiple arguments into an one-dimentional array</p>
 
 <pre><span class="php-var">$r</span> = arr::flat(<span class="php-quote">'A'</span>, <span class="php-quote">'B'</span>, <span class="php-keyword1">array</span> (<span class="php-quote">'C'</span>, <span class="php-quote">'D'</span>), <span class="php-quote">'E'</span>, <span class="php-quote">'F'</span>);
-<span class="php-keyword2">var_dump</span>( <span class="php-var">$r</span> );</pre>
+<span class="php-keyword2">var_export</span>( <span class="php-var">$r</span> );</pre>
 
-<pre><span class="php-keyword1">array</span>(<span class="php-num">6</span>) {
-  [<span class="php-num">0</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;A&quot;</span>
-  [<span class="php-num">1</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;B&quot;</span>
-  [<span class="php-num">2</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;C&quot;</span>
-  [<span class="php-num">3</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;D&quot;</span>
-  [<span class="php-num">4</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;E&quot;</span>
-  [<span class="php-num">5</span>]=&gt;
-  string(<span class="php-num">1</span>) <span class="php-quote">&quot;F&quot;</span>
-}</pre><br>
+<pre><span class="php-keyword1">array</span> (
+  <span class="php-num">0</span> =&gt; <span class="php-quote">'A'</span>,
+  <span class="php-num">1</span> =&gt; <span class="php-quote">'B'</span>,
+  <span class="php-num">2</span> =&gt; <span class="php-quote">'C'</span>,
+  <span class="php-num">3</span> =&gt; <span class="php-quote">'D'</span>,
+  <span class="php-num">4</span> =&gt; <span class="php-quote">'E'</span>,
+  <span class="php-num">5</span> =&gt; <span class="php-quote">'F'</span>,
+)</pre><br>
 					</div>
 
 

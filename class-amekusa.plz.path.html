@@ -81,6 +81,7 @@
 				<li><a href="class-amekusa.plz.alt.html">alt</a></li>
 				<li><a href="class-amekusa.plz.arr.html">arr</a></li>
 				<li><a href="class-amekusa.plz.constant.html">constant</a></li>
+				<li><a href="class-amekusa.plz.dom.html">dom</a></li>
 				<li><a href="class-amekusa.plz.fn.html">fn</a></li>
 				<li><a href="class-amekusa.plz.num.html">num</a></li>
 				<li><a href="class-amekusa.plz.obj.html">obj</a></li>
@@ -90,17 +91,14 @@
 				<li><a href="class-amekusa.plz.sys.html">sys</a></li>
 				<li><a href="class-amekusa.plz.T.html">T</a></li>
 				<li><a href="class-amekusa.plz.type.html">type</a></li>
+				<li><a href="class-amekusa.plz.xml.html" class="deprecated">xml</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-amekusa.plz.LocalException.html">LocalException</a></li>
-			</ul>
 
 
 			<h3>Exceptions</h3>
 			<ul>
-				<li><a href="class-amekusa.plz.RecoverableError.html">RecoverableError</a></li>
+				<li><a href="class-amekusa.plz.ErrorException.html">ErrorException</a></li>
 			</ul>
 
 
@@ -138,7 +136,7 @@
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.path.html#3-29" title="Go to source code">path.php</a>
+			<b>Located at</b> <a href="source-class-amekusa.plz.path.html#3-95" title="Go to source code">path.php</a>
 		<br>
 	</div>
 
@@ -147,6 +145,65 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="normal" id="_normal">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_normal">#</a>
+			<code><a href="source-class-amekusa.plz.path.html#13-49" title="Go to source code">normal</a>( <span>string <var>$X</var></span>, <span>string <var>$Separator</var> = <span class="php-quote">'/'</span></span> )</code>
+
+			<div class="description short">
+				<p>Returns a normalized path</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns a normalized path</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$X</var></dt>
+						<dd>Path to normalize</dd>
+						<dt><var>$Separator</var></dt>
+						<dd>[<code>'/'</code>] Directory separator</dd>
+					</dl></div>
+
+
+
+					<h4>Example</h4>
+					<div class="list">
+							<p>Absolute path</p>
+
+<pre><span class="php-keyword1">echo</span> path::normal(<span class="php-quote">'/srv//http/example.com///'</span>);</pre>
+
+<pre>/srv/http/example.com/</pre><br>
+							<p>Relative path</p>
+
+<pre><span class="php-keyword1">echo</span> path::normal(<span class="php-quote">'images//favicon.svg'</span>);</pre>
+
+<pre>images/favicon.svg</pre><br>
+							<p>Normalize to slash</p>
+
+<pre><span class="php-keyword1">echo</span> path::normal(<span class="php-quote">'xxx\yyy\zzz'</span>);</pre>
+
+<pre>xxx/yyy/zzz</pre><br>
+							<p>Normalize to backslash</p>
+
+<pre><span class="php-keyword1">echo</span> path::normal(<span class="php-quote">'xxx/yyy/zzz'</span>, <span class="php-quote">'\\'</span>);</pre>
+
+<pre>xxx\yyy\zzz</pre><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="ext" id="_ext">
 
 			<td class="attributes"><code>
@@ -158,7 +215,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ext">#</a>
-			<code><a href="source-class-amekusa.plz.path.html#13-28" title="Go to source code">ext</a>( <span>string <var>$X</var></span> )</code>
+			<code><a href="source-class-amekusa.plz.path.html#51-65" title="Go to source code">ext</a>( <span>string <var>$X</var></span> )</code>
 
 			<div class="description short">
 				<p>Returns the extension of a file path</p>
@@ -184,11 +241,86 @@
 					<div class="list">
 							<p>Demonstration</p>
 
-<pre><span class="php-var">$var</span> = <span class="php-quote">'choosy-developers-choose.gif'</span>;
-<span class="php-keyword2">var_dump</span>( path::ext(<span class="php-var">$var</span>) );</pre>
+<pre><span class="php-keyword1">echo</span> path::ext(<span class="php-quote">'choosy-developers-choose.gif'</span>);</pre>
 
-<pre>string(<span class="php-num">3</span>) <span class="php-quote">&quot;gif&quot;</span></pre><br>
+<pre>.gif</pre><br>
 					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="join" id="_join">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_join">#</a>
+			<code><a href="source-class-amekusa.plz.path.html#67-88" title="Go to source code">join</a>( <span>array|string* <var>$Paths</var></span> )</code>
+
+			<div class="description short">
+				<p>Returns a single path that is concatenated with supplied paths</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns a single path that is concatenated with supplied paths</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$Paths</var></dt>
+						<dd>Pieces of a path</dd>
+					</dl></div>
+
+
+
+					<h4>Example</h4>
+					<div class="list">
+							<p>Demonstration</p>
+
+<pre><span class="php-keyword1">echo</span> path::<span class="php-keyword2">join</span>(<span class="php-quote">'/srv'</span>, <span class="php-quote">'http/'</span>, <span class="php-quote">'/example.com'</span>);</pre>
+
+<pre>/srv/http/example.com</pre><br>
+							<p>Passing an array</p>
+
+<pre><span class="php-keyword1">echo</span> path::<span class="php-keyword2">join</span>(<span class="php-keyword1">array</span> (<span class="php-quote">'/srv'</span>, <span class="php-quote">'http'</span>, <span class="php-quote">'example.com'</span>));</pre>
+
+<pre>/srv/http/example.com</pre><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="join_with" id="_join_with">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_join_with">#</a>
+			<code><a href="source-class-amekusa.plz.path.html#90-94" title="Go to source code">join_with</a>( <span> <var>$Separator</var></span>, <span> <var>$Paths</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
 
 
 			</div>

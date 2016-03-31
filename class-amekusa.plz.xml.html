@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class amekusa\plz\RecoverableError | PLZ: A handy PHP library for lazy programmers</title>
+	<title>Deprecated Class amekusa\plz\xml | PLZ: A handy PHP library for lazy programmers</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?70c1d062672daa3f906b72e4f5d03d4bc5c4174d">
@@ -81,6 +81,7 @@
 				<li><a href="class-amekusa.plz.alt.html">alt</a></li>
 				<li><a href="class-amekusa.plz.arr.html">arr</a></li>
 				<li><a href="class-amekusa.plz.constant.html">constant</a></li>
+				<li><a href="class-amekusa.plz.dom.html">dom</a></li>
 				<li><a href="class-amekusa.plz.fn.html">fn</a></li>
 				<li><a href="class-amekusa.plz.num.html">num</a></li>
 				<li><a href="class-amekusa.plz.obj.html">obj</a></li>
@@ -90,17 +91,14 @@
 				<li><a href="class-amekusa.plz.sys.html">sys</a></li>
 				<li><a href="class-amekusa.plz.T.html">T</a></li>
 				<li><a href="class-amekusa.plz.type.html">type</a></li>
+				<li class="active"><a href="class-amekusa.plz.xml.html" class="deprecated">xml</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-amekusa.plz.LocalException.html">LocalException</a></li>
-			</ul>
 
 
 			<h3>Exceptions</h3>
 			<ul>
-				<li class="active"><a href="class-amekusa.plz.RecoverableError.html">RecoverableError</a></li>
+				<li><a href="class-amekusa.plz.ErrorException.html">ErrorException</a></li>
 			</ul>
 
 
@@ -113,29 +111,27 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class RecoverableError</h1>
+	<h1 class="deprecated">Class xml</h1>
 
 
+	<div class="description">
+	<p>XML utilities</p>
+
+<p>To get started, place the following line around top of your code.</p>
+
+<pre><span class="php-keyword1">use</span> amekusa\plz\xml;</pre>
+	</div>
 
 	<dl class="tree well">
 		<dd style="padding-left:0px">
-			<a href="class-Exception.html"><span>Exception</span></a>
+			<a href="class-amekusa.plz.dom.html"><span>amekusa\plz\dom</span></a>
 			
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-			<a href="class-ErrorException.html"><span>ErrorException</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:60px">
-			<img src="resources/inherit.png" alt="Extended by">
-<b><span>amekusa\plz\RecoverableError</span></b>			
-			 implements 
-				<a href="class-amekusa.plz.LocalException.html"><span>amekusa\plz\LocalException</span></a>
+<b><span class="deprecated">amekusa\plz\xml</span></b>			
 			
 			
 		</dd>
@@ -149,12 +145,14 @@
 
 
 	<div class="alert alert-info">
-		
+		<b>Abstract</b><br>
 		
 		<b>Namespace:</b> <a href="namespace-amekusa.html">amekusa</a>\<a href="namespace-amekusa.plz.html">plz</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-amekusa.plz.RecoverableError.html#3-4" title="Go to source code">RecoverableError.php</a>
+				<b>Deprecated:</b>
+				This class is marked as <strong>DEPRECATED</strong>. Use <strong><code><a href="class-amekusa.plz.dom.html">amekusa\plz\dom</a></code></strong> instead.<br>
+			<b>Located at</b> <a href="source-class-amekusa.plz.xml.html#3-14" title="Go to source code">xml.php</a>
 		<br>
 	</div>
 
@@ -165,24 +163,10 @@
 		</div>
 
 		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods inherited from <a href="class-ErrorException.html#methods">ErrorException</a></h3></div>
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-amekusa.plz.dom.html#methods">amekusa\plz\dom</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-ErrorException.html#___construct">__construct()</a></code>, 
-				<code><a href="class-ErrorException.html#_getSeverity">getSeverity()</a></code>
-			</p>
-		</div>
-		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Exception.html#methods">Exception</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-Exception.html#___toString">__toString()</a></code>, 
-				<code><a href="class-Exception.html#___wakeup">__wakeup()</a></code>, 
-				<code><a href="class-Exception.html#_getCode">getCode()</a></code>, 
-				<code><a href="class-Exception.html#_getFile">getFile()</a></code>, 
-				<code><a href="class-Exception.html#_getLine">getLine()</a></code>, 
-				<code><a href="class-Exception.html#_getMessage">getMessage()</a></code>, 
-				<code><a href="class-Exception.html#_getPrevious">getPrevious()</a></code>, 
-				<code><a href="class-Exception.html#_getTrace">getTrace()</a></code>, 
-				<code><a href="class-Exception.html#_getTraceAsString">getTraceAsString()</a></code>
+				<code><a href="class-amekusa.plz.dom.html#_attr">attr()</a></code>, 
+				<code><a href="class-amekusa.plz.dom.html#_attrs">attrs()</a></code>
 			</p>
 		</div>
 
@@ -190,30 +174,6 @@
 
 
 
-
-
-
-
-
-		<div class="panel panel-default">
-            <div class="panel-heading"><h2>Properties summary</h2></div>
-		</div>
-
-		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Properties inherited from <a href="class-ErrorException.html#properties">ErrorException</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-ErrorException.html#$severity"><var>$severity</var></a></code>
-			</p>
-		</div>
-		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Properties inherited from <a href="class-Exception.html#properties">Exception</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-Exception.html#$code"><var>$code</var></a></code>, 
-				<code><a href="class-Exception.html#$file"><var>$file</var></a></code>, 
-				<code><a href="class-Exception.html#$line"><var>$line</var></a></code>, 
-				<code><a href="class-Exception.html#$message"><var>$message</var></a></code>
-			</p>
-		</div>
 
 
 
