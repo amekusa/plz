@@ -1,7 +1,12 @@
 {
 	"name" : "amekusa/plz",
 	"description" : "A handy PHP library for lazy programmers",
-	"keywords" : ["general", "syntax", "sugar", "lazy"],
+	"keywords" : [
+		"general",
+		"syntax",
+		"sugar",
+		"lazy"
+	],
 	"homepage" : "http://amekusa.github.io/plz",
 	"license" : "MIT",
 	"authors" : [{
@@ -15,8 +20,8 @@
 		"php" : ">=5.3.5"
 	},
 	"require-dev" : {
-		"apigen/apigen" : "^4.1",
-		"phpunit/phpunit" : "5.0.*"
+		"apigen/apigen" : "4.*",
+		"phpunit/phpunit" : "5.*"
 	},
 	"autoload" : {
 		"psr-4" : {
