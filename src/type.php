@@ -293,7 +293,7 @@ abstract class type {
 		}
 		try {
 			return (bool) $X;
-		} catch (RecoverableError $e) {
+		} catch (ErrorException $e) {
 			return $Alt;
 		}
 	}
@@ -348,7 +348,7 @@ abstract class type {
 		}
 		try {
 			return (int) $X;
-		} catch (RecoverableError $e) {
+		} catch (ErrorException $e) {
 			return $Alt;
 		}
 	}
@@ -417,7 +417,7 @@ abstract class type {
 		}
 		try {
 			return (string) $X;
-		} catch (RecoverableError $e) {
+		} catch (ErrorException $e) {
 			return $Alt;
 		}
 	}
@@ -469,7 +469,7 @@ abstract class type {
 		}
 		try {
 			return (array) $X;
-		} catch (RecoverableError $e) {
+		} catch (ErrorException $e) {
 			return $Alt;
 		}
 	}
