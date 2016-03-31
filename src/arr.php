@@ -11,6 +11,58 @@
 abstract class arr {
 
 	/**
+	 * Returns whether or not `$X` equals `$Y`
+	 *
+	 * Specifically:
+	 *
+	 * + Tests each elements with {@link op}`::eq()`
+	 * + Recurses a multidimensional array
+	 * + Treats an object as an array with {@link type}`::arr()`
+	 *
+	 * @example Comparing arrays
+	 * ```php
+	 * $X = array ('A', 'B', 'C');
+	 * $Y = array ('a', 'b', 'c');
+	 * $Z = array ('A', 'B', 'C');
+	 *
+	 * echo 'Does $X equal to $Y? - ';
+	 * echo arr::eq($X, $Y) ? 'Yes.' : 'No.';
+	 * echo "\n";
+	 * echo 'Does $X equal to $Z? - ';
+	 * echo arr::eq($X, $Z) ? 'Yes.' : 'No.';
+	 * ```
+	 * @example Comparing array-like objects
+	 * ```php
+	 * $X = new ArrayObject(array ('A', 'B', 'C'));
+	 * $Y = new ArrayObject(array ('a', 'b', 'c'));
+	 * $Z = new ArrayObject(array ('A', 'B', 'C'));
+	 *
+	 * echo 'Does $X equal to $Y? - ';
+	 * echo arr::eq($X, $Y) ? 'Yes.' : 'No.';
+	 * echo "\n";
+	 * echo 'Does $X equal to $Z? - ';
+	 * echo arr::eq($X, $Z) ? 'Yes.' : 'No.';
+	 * ```
+	 * @param array|object $X A variable to compare with `$Y`
+	 * @param array|object $Y A variable to compare with `$X`
+	 * @return boolean
+	 */
+	static function eq($X, $Y) {
+		if ($X != $Y) return false;
+		$x = type::arr($X, null);
+		if (is_null($x)) return false;
+		$y = type::arr($Y, null);
+		if (is_null($y)) return false;
+		if (count($x) != count($y)) return false;
+
+		foreach ($x as $i => $iX) {
+			if (!isset($y[$i])) return false;
+			if (!op::eq($iX, $y[$i])) return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Returns the number of elements in `$X`
 	 *
 	 * Additionally:
@@ -20,10 +72,10 @@ abstract class arr {
 	 *
 	 * @example Demonstration
 	 * ```php
-	 * $var1 = array ('A', 'B');                        // Array
+	 * $var1 = array ('A', 'B');                       // Array
 	 * $var2 = new ArrayObject(array ('A', 'B', 'C')); // Countable object
-	 * $var3 = 'ABCD';                                  // String
-	 * $var4 = null;                                    // Null
+	 * $var3 = 'ABCD';                                 // String
+	 * $var4 = null;                                   // Null
 	 * var_dump( arr::count($var1) );
 	 * var_dump( arr::count($var2) );
 	 * var_dump( arr::count($var3) );
@@ -64,7 +116,7 @@ abstract class arr {
 	 *
 	 * @example Demonstration
 	 * ```php
-	 * $var1 = array ('A', 'B', 'C');                   // Array
+	 * $var1 = array ('A', 'B', 'C');                  // Array
 	 * $var2 = new ArrayObject(array ('A', 'B', 'C')); // Iterable object
 	 * var_dump( arr::first($var1) );
 	 * var_dump( arr::first($var2) );
@@ -84,7 +136,7 @@ abstract class arr {
 	 *
 	 * @example Demonstration
 	 * ```php
-	 * $var1 = array ('A', 'B', 'C');                   // Array
+	 * $var1 = array ('A', 'B', 'C');                  // Array
 	 * $var2 = new ArrayObject(array ('A', 'B', 'C')); // Iterable object
 	 * var_dump( arr::last($var1) );
 	 * var_dump( arr::last($var2) );
@@ -172,21 +224,22 @@ abstract class arr {
 	 * @example Converting a multi-dimensional array into one-dimensional
 	 * ```php
 	 * $var = array (
-	 *   'A', 'B',
+	 *   'A',
 	 *   array (
-	 *     'C', 'D',
+	 *     'B',
 	 *     array (
-	 *       'E', 'F'
-	 *     )
+	 *       'C'
+	 *     ),
+	 *     'D'
 	 *   ),
-	 *   'G', 'H'
+	 *   'E'
 	 * );
-	 * var_dump( arr::flat($var) );
+	 * var_export( arr::flat($var) );
 	 * ```
 	 * @example Converting multiple arguments into an one-dimentional array
 	 * ```php
 	 * $r = arr::flat('A', 'B', array ('C', 'D'), 'E', 'F');
-	 * var_dump( $r );
+	 * var_export( $r );
 	 * ```
 	 * @param mixed $X Any number of parameters are accepted
 	 * @return array
